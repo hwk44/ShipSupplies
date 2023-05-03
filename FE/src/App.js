@@ -1,11 +1,9 @@
 import './App.css';
-//import Form1 from './01/Form1';
-import Form2 from './01/Form2';
+import RouterMain from './routes/RouterMain';
 
 function App() {
   return (
-   //<Form1/>
-    <Form2/>
+      <RouterMain />
   );
 }
 
