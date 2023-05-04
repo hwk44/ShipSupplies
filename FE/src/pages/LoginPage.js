@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import { useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
@@ -58,4 +59,33 @@ const LoginPage = () => {
   );
 };
 
+=======
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
+
+const LoginPage = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
+    }
+
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        
+    }
+
+
+    return(
+        <>
+        </>
+    );
+}
+>>>>>>> e8998638d5c592a468c0b2b8fc2d2ee59dc2338f
 export default LoginPage;
