@@ -1,3 +1,4 @@
+// import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import '../styles/Register.css';
@@ -47,6 +48,10 @@ const RegisterPage = () => {
   return (
     <div className="form1">
       <form className="form2" onSubmit={onSubmitHandler}>
+        <span className="hi">hi my name is gito</span>
+        <h1 className="hello"> 안녕하세요  Hello eveyone</h1>
+        <h2 className="h2">프리텐드 글씨체 pretend Hallo</h2>
+        <h2>프리텐드 글씨체</h2>
         <label>이메일 주소</label>
         <input type="email" value={email} onChange={onEmailChange} placeholder="email" />
         <label>비밀번호</label>
