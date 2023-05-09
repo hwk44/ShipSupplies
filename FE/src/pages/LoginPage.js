@@ -10,6 +10,13 @@ const LoginPage = ({ setIsLogged }) => {
     // const [error, setError] = useState(null);
     const navigate = useNavigate();
 
+    const errorMessage = {
+        color: 'red',
+        textAlign : 'center',
+        fontSize : '0.875rem',
+        marginTop : '1rem',
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
@@ -26,7 +33,8 @@ const LoginPage = ({ setIsLogged }) => {
         } 
         catch (error) {
             console.log(error);
-            alert('ID 혹은 비밀번호가 일치하지 않습니다.');
+            // alert('ID 혹은 비밀번호가 일치하지 않습니다.');
+            
         }
     };
 
@@ -43,6 +51,7 @@ const LoginPage = ({ setIsLogged }) => {
                 </div>
                 <button type="submit">로그인</button>
             </form>
+            {/* <div style={errorMessage}>ID 혹은 비밀번호가 일치하지 않습니다.</div> */}
             <Link to="/register">회원가입</Link>
         </div>
     );
