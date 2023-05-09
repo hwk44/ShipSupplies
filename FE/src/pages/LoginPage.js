@@ -1,23 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Login.css';
 
 
-const LoginPage = () => {
+const LoginPage = ({ setIsLogged }) => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
+    // const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try{
-            const response = await axios.post('/Login', {
+            const response = await axios.post('/api/Login', {
                 id, 
                 password,
             });
             console.log(response.data); // 서버에서 반환한 데이터 출력
             alert('로그인 되었습니다.');
+            setIsLogged(true); // 로그인 상태 변경
+            localStorage.setItem('isLogged', 'true'); // 로컬 스토리지에 로그인 상태 저장
             // 로그인 완료 후 메인 페이지로 이동
             navigate('/');
         } 
