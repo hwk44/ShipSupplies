@@ -14,7 +14,7 @@ const RouterLogo = () => {
         <div>
             <header className="rlogoheader">
                 <Link to="/">
-                    <img src={logoImage} alt="ship" style={{width : "2em", height : "2em"}} /> 
+                    <img className="rlogoimg1" src={logoImage} alt="ship" style={{width : "2em", height : "2em"}} /> 
                 </Link>
                 <div className="rlogodiv2" onClick={goCart}>
                     <img className="rlogoimg2" src={cartImage} alt="cart"/>
