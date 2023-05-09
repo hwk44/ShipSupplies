@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -9,6 +8,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -18,10 +18,11 @@ const RegisterPage = () => {
       return;
     } 
     try{
-      const response = await axios.post('/Addmember', {
+      const response = await axios.post('/addMember', {
         id,
         password,
         userName,
+        email,
       });
       console.log(response.data); // 서버에서 반환한 데이터 출력
       alert('회원가입이 완료되었습니다.');
@@ -38,8 +39,8 @@ const RegisterPage = () => {
   return (
     <div className="registerdiv1">
       <form className="registerform1" onSubmit={handleSubmit}>
-        <label>아이디(이메일)</label>
-        <input type="email" id="id" value={id} 
+        <label>아이디</label>
+        <input type="text" id="id" value={id} 
           onChange={(e) => setId(e.target.value)} required/>
         <label>비밀번호</label>
         <input type="password" id="password" value={password} 
@@ -50,6 +51,9 @@ const RegisterPage = () => {
         <label>이름</label>
         <input type="text" id="userName" value={userName}
           onChange={(e) => setUserName(e.target.value)} />
+        <label>이메일</label>
+        <input type="email" id="email" value={email} 
+          onChange={(e) => setEmail(e.target.value)} required/>
         <br />
         <button type="submit">회원가입</button>
       </form>
