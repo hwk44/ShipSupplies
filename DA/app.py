@@ -2,9 +2,12 @@ from flask import Flask, request, jsonify, render_template, request, url_for
 import pickle
 import numpy as np
 import json
+import joblib
 
-model_categoricalNB = pickle.load(open('model/model_categoricalNB.pkl', 'rb'))
-
+# model_categoricalNB = pickle.load(open('model/model_categoricalNB.pkl', 'rb'))
+model_softmax = joblib.load(open('./model/model_softmax.pkl', 'rb'))
+# score = model_softmax.score(X,y)
+# print(score)
 app = Flask(__name__)
 # 기본주소에서 일어나는 일
 @app.route('/')
@@ -28,7 +31,7 @@ def home():
     data3 = request.form['c']
     data4 = request.form['d']
     arr = np.array([[data1, data2, data3, data4]])
-    pred = model_categoricalNB.predict(arr)
+    pred = model_softmax.predict(arr)
     # 보여줄 페이지 그리고 어떤 데이터를 넘길지에 대해서 확인한다....
     # 모델이 예측한 결과를 넘겨서 그 값에 따라 if문을 작성하게 한다.
     return render_template('after.html', data=pred)
