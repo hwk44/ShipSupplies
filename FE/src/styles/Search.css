@@ -1,0 +1,35 @@
+.searchbox {
+      display: flex; 
+     flex-direction: row; 
+     justify-content: center;  
+    position: relative;
+    width: 40vw;
+  /* width: 300px; */
+
+}
+.searchbox input {
+    /*  width: 50vw; 
+    box-sizing: border-box;
+    border : 1px solid rgb(220, 220, 220);
+    border-radius: 5px;
+    padding: 15px; */
+    width: 100%; 
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 15px 12px;
+  font-size: 14px;
+}
+
+.searchbox input:focus {
+    outline: none;
+    border: 1px solid #1f93ff;
+}
+
+.searchlogoimg{
+    position : absolute;
+    width: 20px;
+    top: 10px;
+    right: 12px;
+    margin: 0;
+    cursor: pointer;
+}

@@ -11,6 +11,14 @@
     margin-top: 0.6vh;
 }
 
+.rlogodiv1{
+    cursor: pointer;
+    /* width: 70px;
+    height: 70px; */
+    display: flex;
+    flex-direction: row;
+}
+
 .rlogodiv2{
     /* background-color: blue; */
     cursor: pointer;
@@ -22,15 +30,24 @@
     margin-top: 0.6vh;
 }
 
-.rlogoimg2{
-    width : 2.3em;
-    height : 2.3em;
-    margin-left: 0.5vw;
+.logoname{
+    margin-top: 0px;
+    /* margin-left: 0.3vw; */
+    font-family: "Pretendard ExtraBold";
+    font-size: 1em;
+    margin-top: 5%;
 }
 
 .rlogop1{
     margin-top: 0px;
-    margin-left: 0.3vw;
+    /* margin-left: 0.3vw; */
     font-family: "Pretendard Regular";
     font-size: 0.93em;
 }
+
+.rlogoimg2{
+    width : 2.3em;
+    height : 2.3em;
+    /* margin-left: 0.5vw; */
+}
+
