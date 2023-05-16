@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Login.css';
+import Logo from '../components/Logo';
 
 
 const LoginPage = ({ setIsLogged }) => {
@@ -28,6 +29,7 @@ const LoginPage = ({ setIsLogged }) => {
 
     return(
         <div className="logindiv1">
+            <Logo />
             <form className="loginform1" onSubmit={handleLogin}>
                 <div>
                     < input type="text" id="id" value={id} placeholder="아이디"

@@ -30,9 +30,11 @@
     width: 70px;
     height: 70px;
     display: flex;
+    /* justify-content: flex-end; */
     flex-direction: column;
     margin-left: 21vw;
     /* margin-top: 10px; */
+  
 }
 
 .logoname{
