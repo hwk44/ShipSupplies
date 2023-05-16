@@ -4,6 +4,7 @@ import cartImage from '../images/cart.svg';
 import '../styles/RouterLogo.css';
 import Search from '../components/Search';
 
+
 const RouterLogo = () => {
     const navigate = useNavigate();
 
@@ -17,17 +18,17 @@ const RouterLogo = () => {
 
     return(
         <div>
-            <header className="rlogoheader" >
+            <div className="rlogodiv" >
                 <div className="rlogodiv1" onClick={goHome}>
-                    <img className="rlogoimg1" src={logoImage} alt="ship" style={{width : "2em", height : "2em"}} /> 
+                    <img className="rlogoimg1" src={logoImage} alt="ship" /> 
                     <p className="logoname">ShipSupplies</p>
                 </div>
-                {/* <Search /> */}
+                <Search className="rlogosearch" />
                 <div className="rlogodiv2" onClick={goCart}>
                     <img className="rlogoimg2" src={cartImage} alt="cart"/>
                     <p className="rlogop1">관심상품</p>
                 </div>
-            </header>
+            </div>
         </div>
     );
 }

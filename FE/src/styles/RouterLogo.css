@@ -1,6 +1,6 @@
-.rlogoheader {
+.rlogodiv {
     /* background: gray; */
-    padding: 20;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     clear: both;
@@ -8,34 +8,39 @@
 
 .rlogoimg1 {
     margin-left: 3vw;
-    margin-top: 0.6vh;
+    /* margin-top: 0.6vh; */
+    width: 2.7em;
+    height: 2.7em;
 }
+
 
 .rlogodiv1{
+    /* background-color: blue; */
     cursor: pointer;
-    /* width: 70px;
-    height: 70px; */
     display: flex;
     flex-direction: row;
+    margin-right: 20vw;
 }
 
+
+
 .rlogodiv2{
-    /* background-color: blue; */
+    /* background-color: red; */
     cursor: pointer;
     width: 70px;
     height: 70px;
     display: flex;
     flex-direction: column;
-    margin-left: 89vw;
-    margin-top: 0.6vh;
+    margin-left: 21vw;
+    /* margin-top: 10px; */
 }
 
 .logoname{
     margin-top: 0px;
     /* margin-left: 0.3vw; */
     font-family: "Pretendard ExtraBold";
-    font-size: 1em;
-    margin-top: 5%;
+    font-size: 1.5em;
+    margin-top: 3%;
 }
 
 .rlogop1{
@@ -50,4 +55,3 @@
     height : 2.3em;
     /* margin-left: 0.5vw; */
 }
-

@@ -1,7 +1,6 @@
 import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import '../styles/MainPage.css';
 import '../components/Search'
-import Search from '../components/Search';
 
 
 const MainPage = () => {
@@ -14,7 +13,6 @@ const MainPage = () => {
     return(
         <div className="maindiv1">
             <div className="maindiv2">
-                <Search />
                 <h1>MainPage</h1>
                 <div>서비스 내용</div>
                 <button onClick={goProductSelect}>바로가기</button>
