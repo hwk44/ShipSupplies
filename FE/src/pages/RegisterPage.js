@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Register.css';
+import Logo from '../components/Logo';
 
 const RegisterPage = () => {
   // 아이디, 이메일, 비밀번호, 비밀번호 확인
@@ -73,6 +74,7 @@ const RegisterPage = () => {
 
   return (
     <div className="registerdiv1">
+      <Logo className="logo" />
       <form className="registerform1" onSubmit={handleRegister}>
         <label>아이디</label>
         <input type="text" id="id" value={id} 

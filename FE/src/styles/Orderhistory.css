@@ -1,0 +1,14 @@
+.ohp1 {
+    font-family: "Pretendard Regular";
+    font-size: 0.93em;
+}
+.ordhisimg{
+    width : 2.3em;
+    height : 2.3em;
+}
+.ordhisdiv{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+}

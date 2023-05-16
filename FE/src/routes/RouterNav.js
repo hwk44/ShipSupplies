@@ -26,6 +26,8 @@ const RouterNav = ({ isLogged, setIsLogged }) => {
         }
     };
 
+    if (window.location.pathname === '/login') return null;
+    if (window.location.pathname === '/register') return null;
     return(
         <>
             {isLogged ? (

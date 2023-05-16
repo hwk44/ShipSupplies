@@ -7,7 +7,7 @@ const Search = () => {
         fontSize : "1em",
         
     };
-
+    
     return(
         <div className="searchbox">
             <input placeholder="검색" style={font} />
