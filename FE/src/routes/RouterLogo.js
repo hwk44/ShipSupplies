@@ -1,30 +1,28 @@
 import {BrowserRouter, Route, Routes, useNavigate, Link} from 'react-router-dom';
-import logoImage from '../images/ship.svg';
 import cartImage from '../images/cart.svg';
 import '../styles/RouterLogo.css';
 import Search from '../components/Search';
+import Logo from '../components/Logo';
+import Orderhistory from '../components/Orderhistory';
+
 
 
 const RouterLogo = () => {
     const navigate = useNavigate();
 
-    const goCart = () => {
-        navigate('/cart')
+    const goCartDetail = () => {
+        navigate('/cartdetail')
     };
 
-    const goHome = () => {
-        navigate('/')
-    }
-
+    if (window.location.pathname === '/login') return null;
+    if (window.location.pathname === '/register') return null;
     return(
         <div>
             <div className="rlogodiv" >
-                <div className="rlogodiv1" onClick={goHome}>
-                    <img className="rlogoimg1" src={logoImage} alt="ship" /> 
-                    <p className="logoname">ShipSupplies</p>
-                </div>
+                <Logo />
                 <Search className="rlogosearch" />
-                <div className="rlogodiv2" onClick={goCart}>
+                <Orderhistory />
+                <div className="rlogodiv2" onClick={goCartDetail}>
                     <img className="rlogoimg2" src={cartImage} alt="cart"/>
                     <p className="rlogop1">관심상품</p>
                 </div>

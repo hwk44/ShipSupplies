@@ -1,7 +1,5 @@
 import {BrowserRouter, Route, Routes, useNavigate} from 'react-router-dom';
 import '../styles/MainPage.css';
-import '../components/Search'
-
 
 const MainPage = () => {
     const navigate = useNavigate();
