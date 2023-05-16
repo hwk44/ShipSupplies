@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 
-
 # df = pd.read_csv('D:/ShipSupplies/DA/data/raw_postpro.csv', encoding='cp949')
 df = pd.read_csv('../ShipSupplies/DA/data/raw_postpro.csv', encoding='cp949')
 

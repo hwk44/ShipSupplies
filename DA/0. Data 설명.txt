@@ -4,8 +4,3 @@
 
 3. 
 
-정밀도/ true 라고 분류한것 중에 true 인것
-ppv positive 정답률이라 한다.
-recall 실제 true 인것 중에 true 라고 예측한 것
-sensitivity Hit rate
-
