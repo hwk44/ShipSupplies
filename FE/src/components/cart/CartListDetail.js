@@ -1,6 +1,7 @@
 const CartListDetail = () => {
     return(
         <>
+            
         </>
     );
 }

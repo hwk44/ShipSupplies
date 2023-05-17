@@ -6,15 +6,9 @@
     clear: both;
 }
 
-.rlogoimg1 {
-    margin-left: 3vw;
-    /* margin-top: 0.6vh; */
-    width: 2.7em;
-    height: 2.7em;
-}
+/* components/Logo.js */
 
-
-.rlogodiv1{
+.logodiv{
     /* background-color: blue; */
     cursor: pointer;
     display: flex;
@@ -22,22 +16,14 @@
     margin-right: 20vw;
 }
 
-
-
-.rlogodiv2{
-    /* background-color: red; */
-    cursor: pointer;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    /* justify-content: flex-end; */
-    flex-direction: column;
-    margin-left: 21vw;
-    /* margin-top: 10px; */
-  
+.logoimg {
+    margin-left: 3vw;
+    /* margin-top: 0.6vh; */
+    width: 2.7em;
+    height: 2.7em;
 }
 
-.logoname{
+.logop1{
     margin-top: 0px;
     /* margin-left: 0.3vw; */
     font-family: "Pretendard ExtraBold";
@@ -45,15 +31,50 @@
     margin-top: 3%;
 }
 
-.rlogop1{
-    margin-top: 0px;
+/* components/Cart.js  */
+
+.cartdiv{
+    /* background-color: red; */
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    /* justify-content: flex-end; */
+    flex-direction: column;
+    /* margin-left: 21vw; */
+    /* margin-top: 10px; */
+  
+}
+
+.cartimg{
+    width : 2.3em;
+    height : 2.3em;
+    /* margin-left: 0.5vw; */
+}
+
+.cartp1{
+    margin-top: 5px;
     /* margin-left: 0.3vw; */
     font-family: "Pretendard Regular";
     font-size: 0.93em;
 }
 
-.rlogoimg2{
+/* components/OrderHistory.js */
+
+.ohp1 {
+    font-family: "Pretendard Regular";
+    font-size: 0.93em;
+    margin-top: 5.3px;
+}
+
+.ordhisimg{
     width : 2.3em;
     height : 2.3em;
-    /* margin-left: 0.5vw; */
+}
+
+.ordhisdiv{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
 }

@@ -9,9 +9,9 @@ const Logo = () => {
     }
 
     return(
-        <div className="rlogodiv1" onClick={goHome}>
-            <img className="rlogoimg1" src={logoImage} alt="ship" /> 
-            <p className="logoname">ShipSupplies</p>
+        <div className="logodiv" onClick={goHome}>
+            <img className="logoimg" src={logoImage} alt="ship" /> 
+            <p className="logop1">ShipSupplies</p>
         </div>
     );
 }
