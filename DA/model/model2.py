@@ -37,6 +37,6 @@ model.fit(X_train, y_train)
 # print(type(label_encoders))
 import joblib
 # 모델 pkl로 저장
-joblib.dump(model, 'D:/ShipSupplies/DA/model/model_softmax_0517.pkl')
+joblib.dump(model, './model_softmax.pkl')
 #
-joblib.dump(label_encoders,'D:/ShipSupplies/DA/model/model_label_encoders_0517.pkl')
+joblib.dump(label_encoders,'./model_label_encoders.pkl')
