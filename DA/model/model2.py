@@ -18,23 +18,25 @@ for column in columns_to_encode:
     df1[column+"_encoded"] = le.transform(df1[column]) # 새로운 encoding 된 컬럼 추가
 
 print(df1)
-print(label_encoders)
-# X = df1[['Machinery_encoded', 'Assembly_encoded', "Part No.1_encoded", '청구품목_encoded']]
-# y = df1["key2_encoded"]
-# X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=40, shuffle=True, test_size=0.3)
+print(type(label_encoders))
+
+X = df1[['Machinery_encoded', 'Assembly_encoded', "Part No.1_encoded", '청구품목_encoded']] # 학습할 독립변수
+y = df1["key2_encoded"] # 학습할 정답
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=40, shuffle=True, test_size=0.3)
 #
-# import xgboost as xgb
+import xgboost as xgb
 #
-# # xgboost 모델 생성
-# model = xgb.XGBClassifier(objective='multi:softmax', num_class=61)
+# xgboost 모델 생성
+model = xgb.XGBClassifier(objective='multi:softmax', num_class=61)
 #
-# # 모델 학습
-# model.fit(X_train, y_train)
+# 모델 학습
+model.fit(X_train, y_train)
 #
 #
 #
-# import joblib
-# # 모델 pkl로 저장
-# joblib.dump(model, 'D:/ShipSupplies/DA/model/model_softmax.pkl')
+# print(type(label_encoders))
+import joblib
+# 모델 pkl로 저장
+joblib.dump(model, 'D:/ShipSupplies/DA/model/model_softmax_0517.pkl')
 #
-# joblib.dump(label_encoders,'D:/ShipSupplies/DA/model/model_label_encoders.pkl')
+joblib.dump(label_encoders,'D:/ShipSupplies/DA/model/model_label_encoders_0517.pkl')
