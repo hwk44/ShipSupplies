@@ -48,11 +48,13 @@ public class UserService {
         if(findUser.isPresent()) {
             User u = findUser.get();
             if(encoder.matches(user.getPassword(), u.getPassword())){
+                System.out.println("받은 로그인 정보 : " + user);
                 System.out.println("로그인 성공");
                 String token = JwtTokenProvider.createToken(u.getUsername());
-                System.out.println("토큰 : " + token);
+                System.out.println("생성한 토큰 : " + token);
                 return token;
             }else {
+                System.out.println("받은 로그인 정보 : " + user);
                 throw new RuntimeException("비밀번호 불일치");
             }
         }else {

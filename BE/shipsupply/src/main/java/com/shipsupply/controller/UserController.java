@@ -31,7 +31,4 @@ public class UserController {
         // userService의 login 메서드를 호출하고, 그 결과를 HTTP 응답 본문으로 설정.
         return ResponseEntity.ok().body(userService.login(user));
     }
-
-
-
 }
