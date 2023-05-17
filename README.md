@@ -19,7 +19,9 @@ $ (venv) flask run
 
 2. BE 서비스 실행
 ```
-$ 홈터레스팅 ...
+1. 이 레포지토리를 git clone합니다.
+2. IDE를 실행하여 ShipSupplies -> BE -> shiplsupply 폴더를 여세요.
+3. 스프링부트 서버를 실행합니다.
 ```
 3. FE 서비스 실행
 ```
