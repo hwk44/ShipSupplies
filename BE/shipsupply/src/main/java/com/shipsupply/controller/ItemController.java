@@ -10,18 +10,17 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api")
 public class ItemController {
 
     @Autowired
     ItemService itemService;
 
-    @GetMapping("/getItems")
+    @GetMapping("/api/getItems")
     public ResponseEntity<List<Item>> getItems() {
         return ResponseEntity.ok().body(itemService.getItems());
     }
 
-    @PostMapping("/addItem")
+    @PostMapping("/api/addItem")
     public ResponseEntity<Item> addItem(@RequestBody Item item) {
         return ResponseEntity.ok().body(itemService.addItem(item));
     }
