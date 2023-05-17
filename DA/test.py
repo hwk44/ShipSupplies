@@ -33,3 +33,6 @@ pred = model.predict(arr)
 pred = label_encoders["key2"].inverse_transform(pred)
 print(pred)
 # print(model.predict(arr))
+
+# a= "IMPLANTATION INSTRUMENTS  ".strip()
+# print(a)

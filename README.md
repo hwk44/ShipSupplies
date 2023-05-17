@@ -10,10 +10,12 @@
 
 ### 실행
 
-1. DA 서비스 실행
+1. DA 서비스 
 ```
-$ python app.py
+$ (venv) cd DA
+$ (venv) flask run
 ```
+> http://localhost:5000 에서 예시 데이터 입력해주세요.
 
 2. BE 서비스 실행
 ```
@@ -23,8 +25,11 @@ $ 홈터레스팅 ...
 ```
 ```
 
- - DA에서 `localhost:5000/api/prediction `
-    - HTTP 중에서 POST만 제공
+ - DA에서 `localhost:5000/predict `
+   ```python
+   $
+   ```
+    
  - BE, `localhost:8080/api/...`
     - 권한(profile)
     - 인증(login)
