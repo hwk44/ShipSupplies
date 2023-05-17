@@ -21,7 +21,15 @@ $ (venv) flask run
 ```
 1. 이 레포지토리를 git clone합니다.
 2. IDE를 실행하여 ShipSupplies -> BE -> shiplsupply 폴더를 여세요.
-3. 스프링부트 서버를 실행합니다.
+3. application.yml에서 아래와 같이 수정합니다
+    spring:
+      datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ship?serverTimezone=Asia/Seoul
+        username: root
+        password: 1234
+4. MySQL 워크벤치를 켜서 ship 데이터베이스를 생성합니다.
+5. 스프링부트 서버를 실행하면 데이터베이스에 테이블이 자동으로 생성됩니다.
 ```
 3. FE 서비스 실행
 ```
