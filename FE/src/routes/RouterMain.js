@@ -1,12 +1,13 @@
-import { Route, Routes, Switch  } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import RouterNav from './RouterNav';
 import RouterLogo from './RouterLogo';
 import MainPage from '../pages/MainPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
-import CartDetailPage from '../pages/CartDetailPage';
-import CartListPage from '../pages/CartListPage';
+import CartPage from '../pages/CartPage';
 import ItemDetailPage from '../pages/ItemDetailPage';
+import OrderHistoryListPage from '../pages/OrderHistoryListPage';
+
 import { useState, useEffect } from 'react';
 
 const RouterMain = () => {
@@ -27,8 +28,8 @@ const RouterMain = () => {
                 < Route path="/" element={<MainPage />} />
                 < Route path="/login" element={<LoginPage setIsLogged={setIsLogged} />} />
                 < Route path="/register" element={<RegisterPage />} />
-                < Route path="/cartlist" element={<CartListPage />} />
-                < Route path="/cartdetail" element={<CartDetailPage />} />
+                < Route path="/orderhistorylist" element={<OrderHistoryListPage />} />
+                < Route path="/cart" element={<CartPage />} />
                 < Route path="/itemdetail" element={<ItemDetailPage />} />
             </Routes>
         </>

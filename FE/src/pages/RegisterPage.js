@@ -34,7 +34,7 @@ const RegisterPage = () => {
       return;
     } 
     try{
-      const response = await axios.post('/addMember', {
+      const response = await axios.post('/api/user/join', {
         id : id,
         password :password,
         username : userName,
@@ -61,7 +61,7 @@ const RegisterPage = () => {
     } 
   }
   
-  /*
+  
   // 이메일
   const onChangeEmail = (e) => {
     const emailRegex =
@@ -70,7 +70,7 @@ const RegisterPage = () => {
     setEmail(emailCurrent)
 
   }
-  */
+  
 
   return (
     <div className="registerdiv1">
@@ -87,10 +87,10 @@ const RegisterPage = () => {
           onChange={(e) => setConfirmPassword(e.target.value)} required />
         <label>이름</label>
         <input type="text" id="userName" value={userName}
-          onChange={(e) => setUserName(e.target.value)} />
+          onChange={(e) => setUserName(e.target.value)} required/>
         <label>이메일</label>
         <input type="email" id="email" value={email} 
-          onChange={onChangeName} />
+          onChange={onChangeEmail} required/>
         {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
         <br />
         <button type="submit">회원가입</button>

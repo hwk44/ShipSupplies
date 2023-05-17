@@ -1,7 +1,7 @@
 import CartList from "../components/cart/CartList";
-import '../styles/CartList.css';
+import '../styles/OrderHistoryList.css';
 
-const CartListPage = () => {
+const OrderHistoryListPage = () => {
     return(
         <>
            <div>
@@ -11,4 +11,4 @@ const CartListPage = () => {
         </>
     );
 }
-export default CartListPage;
+export default OrderHistoryListPage;

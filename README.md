@@ -33,6 +33,8 @@ $ (venv) flask run
 ```
 3. FE 서비스 실행
 ```
+  cd FE
+  npm start
 ```
 
  - DA에서 `localhost:5000/predict `

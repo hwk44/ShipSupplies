@@ -1,20 +1,18 @@
 import {useNavigate} from 'react-router-dom';
 import orderHistoryImage from '../images/orderhistory.svg';
-import '../styles/Orderhistory.css';
 
-
-const Orderhistory = () => {
+const OrderHistory = () => {
     const navigate = useNavigate();
 
-    const goCartList = () => {
-        navigate('/cartlist')
+    const goOrdHisList = () => {
+        navigate('/orderhistorylist')
     }
 
     return(
-        <div className="ordhisdiv" onClick={goCartList}>
+        <div className="ordhisdiv" onClick={goOrdHisList}>
             <img className="ordhisimg" src={orderHistoryImage} alt="ordhisimg"/>
             <p className="ohp1">주문내역</p>
         </div>
     );
 }
-export default Orderhistory;
+export default OrderHistory;
