@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv('./data/raw_postpro.csv', encoding='cp949')
+df = pd.read_csv('../data/raw_postpro.csv', encoding='cp949')
 df_product = df[["Assembly" ,"key2", "발주처","청구품목", '리드타임',"Machinery" ,"Part No.1"]].copy()
 df_product['seq'] = df_product.index
 # 여러 컬럼명 변경

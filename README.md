@@ -1,7 +1,6 @@
 # ShipSupplies
-> 선용품 최적 구매발주 데이터
-  품목별 발주시간 예측
-  품목 분류
+> 선용품 최적 구매발주 데이터 로 선용품의 카테고리를 분류하고
+<br> 품목별 예상되는 리드타임을 예측 하는 것이 목표입니다.
 
 ## 구조
  - DA, 데이터 분석 관련
@@ -12,10 +11,12 @@
 
 1. DA 서비스 
 ```
+$ .\venv\Scripts\activate
 $ (venv) cd DA
+$ (venv) pip install -r requirements.txt
 $ (venv) flask run
 ```
-> http://localhost:5000 에서 예시 데이터 입력해주세요.
+> http://localhost:5000/predict 에서 분류모델 예측
 
 2. BE 서비스 실행
 ```
@@ -36,18 +37,5 @@ $ (venv) flask run
   cd FE
   npm start
 ```
-
- - DA에서 `localhost:5000/predict `
-   ```python
-   $
-   ```
-    
- - BE, `localhost:8080/api/...`
-    - 권한(profile)
-    - 인증(login)
-    - API(user, history,)
-    
-- FE, `localhost:3000`
-    - ...
 
 

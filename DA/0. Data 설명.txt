@@ -1,8 +1,0 @@
-1. 원본데이터(excel 파일 3개)  =>  data/original.py  =>  data/raw.csv
-
-2. 데이터 전처리 raw.csv => notebooks/postprocessing.ipynb  => data/raw_postpro.csv
-
-3. model/model2.py를 실행하면 model_label_encoders.pkl, model_softmax.pkl 생성
-
-4. DA 폴더에서 "flask run" 명령어 => http://localhost:5000/ 접속 후 form 에 값을 넣고 predict 버튼 클릭
-
