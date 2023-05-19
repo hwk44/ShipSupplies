@@ -13,6 +13,10 @@ const RouterNav = ({ isLogged, setIsLogged }) => {
         navigate('/register')
     };
 
+    const goMypage = () => {
+        navigate('/mypage')
+    }
+
     const handleLogout = async () => {
         try{
             // 서버에 로그아웃 요청을 보냅니다.
@@ -32,6 +36,7 @@ const RouterNav = ({ isLogged, setIsLogged }) => {
         <>
             {isLogged ? (
                 <div className="rnavdiv1">
+                    <button className='rnavbutton1' onClick={goMypage}>마이페이지</button>
                     <button className='rnavbutton1' onClick={handleLogout}>로그아웃</button>
                 </div>
             ) : (

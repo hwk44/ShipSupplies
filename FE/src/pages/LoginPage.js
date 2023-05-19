@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Login.css';
-import Logo from '../components/Logo';
+import Logo from '../components/icon/Logo';
 
 
 const LoginPage = ({ setIsLogged }) => {
@@ -15,7 +15,7 @@ const LoginPage = ({ setIsLogged }) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/api/Login', { id, password });
+            const response = await axios.post('/api/user/login', { id, password });
             setShowErrorMessage(false);
             console.log(response.data); // 서버에서 반환한 데이터 출력
             setIsLogged(true); // 로그인 상태 변경
