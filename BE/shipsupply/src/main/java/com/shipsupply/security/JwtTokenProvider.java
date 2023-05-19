@@ -55,14 +55,19 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
-    // Request의 Header에서 token 파싱 : "X-AUTH-TOKEN: jwt토큰"
+    // Request의 Header에서 token 파싱
     public String resolveToken(HttpServletRequest req) {
+        System.out.println("resolveToken 호출");
         String token =  req.getHeader("Authorization");
         if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
-            return token.substring(7, token.length());
+            token = token.substring(7, token.length());
+            System.out.println("리액트에서 준 토큰 : " + token);
+            return token;
         }
-        System.out.println("리액트에서 받은 토큰" + token);
         return token;
+//        String token = req.getHeader("AUTH-TOKEN");
+//        System.out.println("리액트에서 준 토큰 : " + token);
+//        return token;
     }
 
     // Jwt 토큰의 유효성 + 만료일자 확인
