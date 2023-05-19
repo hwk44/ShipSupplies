@@ -37,6 +37,7 @@ http://localhost:5000/predict 에서 분류모델 예측
 3. FE 서비스 실행
 ```
   cd FE
+  npm install
   npm start
 ```
 

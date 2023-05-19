@@ -18,12 +18,26 @@ const RouterMain = () => {
     const [isLogged, setIsLogged] = useState(false);
 
     useEffect(()=> {
-        const storedIsLogged = localStorage.getItem('isLogged');
+        
+        const storedIsLogged = localStorage.getItem('jwt');
         if (storedIsLogged === 'true') {
-            setIsLogged(true);
+            setIsLogged(true);                        
         }
+        
+        checkLoginStatus();
     }, []);
+    
+    const checkLoginStatus = () => {
+        const token = localStorage.getItem('jwt');
+        setIsLogged(!!token); // 토큰이 존재하면 true, 없으면 false로 설정
+    };
 
+    /*
+    const accessToken = localStorage.getItem("jwt");
+        if (accessToken && accessToken !== null){
+            setIsLogged(false);
+        }
+    */    
     return(
         <>
             <RouterNav isLogged={isLogged} setIsLogged={setIsLogged} />
@@ -39,8 +53,6 @@ const RouterMain = () => {
                 < Route path="/userdelete" element={<UserDelete />} />
                 < Route path="/userupdate" element={<UserUpdate />} />
                 < Route path="/userpwdupdate" element={<UserPwdUpdate />} />
-
-                
             </Routes>
         </>
 

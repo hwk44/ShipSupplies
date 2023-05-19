@@ -20,10 +20,12 @@ const RouterNav = ({ isLogged, setIsLogged }) => {
     const handleLogout = async () => {
         try{
             // 서버에 로그아웃 요청을 보냅니다.
-            await axios.post('/logout');
+            // await axios.post('/logout');
             setIsLogged(false);
-            localStorage.removeItem('isLogged');
+            localStorage.removeItem('jwt');
+            // localStorage.setItem("jwt", null);
             alert('로그아웃 되었습니다.');
+            window.location.href = "/";
         } catch (error) {
             console.log(error);
             alert('로그아웃 처리 중 오류가 발생했습니다.');
