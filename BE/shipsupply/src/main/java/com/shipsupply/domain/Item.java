@@ -14,12 +14,10 @@ import javax.persistence.Id;
 public class Item {
 
     @Id
-    private Long seq;
     private String item;
-    private String assembly;
     private String company;
-    private String category;
     private Long leadtime;
+    private String assembly;
     private String machinery;
     private String partNo1;
 
