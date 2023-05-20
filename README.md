@@ -3,9 +3,10 @@
 <br> 품목별 예상되는 리드타임을 예측 하는 것이 목표입니다.
 
 ## 구조
- - DA, 데이터 분석 관련
- - FE, 사용자 입력 및 시각화 관련
- - BE, 인증 및 권한 그리고 API 관련
+ - DA, 데이터 전처리, 분석 및 모델링
+ - FE, 사용자 입력, 카테고리 출력 및 리드타임 시각화
+ - BE, 인가, 인증 및 권한 
+
 
 ### 실행
 
@@ -14,9 +15,10 @@
 $ .\venv\Scripts\activate
 $ (venv) cd DA
 $ (venv) pip install -r requirements.txt
-$ (venv) flask run
+$ (venv) python app.py
 ```
-> http://localhost:5000/predict 에서 분류모델 예측
+> 가상 환경 구성 후 필요한 라이브러리 설치 후 app.py 실행하여
+http://localhost:5000/predict 에서 분류모델 예측
 
 2. BE 서비스 실행
 ```

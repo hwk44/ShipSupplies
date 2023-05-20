@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Register.css';
-import Logo from '../components/Logo';
+import Logo from '../components/icon/Logo';
 
 const RegisterPage = () => {
   // 아이디, 이메일, 비밀번호, 비밀번호 확인

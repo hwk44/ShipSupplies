@@ -1,5 +1,5 @@
 import {useNavigate} from 'react-router-dom';
-import cartImage from '../images/cart.svg';
+import cartImage from '../../images/cart.svg';
 
 
 const Cart = () => {
