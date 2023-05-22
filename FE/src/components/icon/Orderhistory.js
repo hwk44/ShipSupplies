@@ -1,5 +1,5 @@
 import {useNavigate} from 'react-router-dom';
-import orderHistoryImage from '../images/orderhistory.svg';
+import orderHistoryImage from '../../images/orderhistory.svg';
 
 const OrderHistory = () => {
     const navigate = useNavigate();
