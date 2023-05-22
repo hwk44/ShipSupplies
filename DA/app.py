@@ -13,17 +13,19 @@ def main():
 
 
 # predict 페이지에서는 POST method로 값 넘기기
-@app.route('/predict', methods=['POST'])
+@app.route('/api/item/predict', methods=['POST'])
 def home():
     # loading pkl file
     model = joblib.load(open('./model/model_softmax.pkl', 'rb'))
     label_encoders = joblib.load(open('./model/model_label_encoders.pkl', 'rb'))
 
+    data = request.get_json()
+
     # form 입력에서 공백 제거
-    data1 = request.form['a'].strip()
-    data2 = request.form['b'].strip()
-    data3 = request.form['c'].strip()
-    data4 = request.form['d'].strip()
+    data1 = data['a'].strip()
+    data2 = data['b'].strip()
+    data3 = data['c'].strip()
+    data4 = data['d'].strip()
     datas = [data1, data2, data3, data4]
     arr = [data1, data2, data3, data4]
 
@@ -44,7 +46,7 @@ def home():
     arr = encoding(arr)
     pred = model.predict(arr)
     pred = label_encoders["key2"].inverse_transform(pred)
-    return render_template('after.html', datas=datas, pred=pred[0])
+    return jsonify({"datas": datas, "pred": pred[0]})
 
 
 if __name__ == '__main__':
