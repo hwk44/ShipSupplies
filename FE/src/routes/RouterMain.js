@@ -11,6 +11,11 @@ import OrderHistoryListPage from '../pages/OrderHistoryListPage';
 import UserDelete from '../components/user/UserDelete';
 import UserPwdUpdate from '../components/user/UserPwdUpdate';
 import UserUpdate from '../components/user/UserUpdate';
+import CateSearchPage from '../pages/CateSearchPage';
+import PredictionPage from '../pages/PredictionPage';
+import BoardPage from '../pages/BoardPage';
+
+import Login from '../pages/Login'
 
 import { useState, useEffect } from 'react';
 
@@ -21,7 +26,8 @@ const RouterMain = () => {
         
         const storedIsLogged = localStorage.getItem('jwt');
         if (storedIsLogged === 'true') {
-            setIsLogged(true);                        
+            // setIsLogged(true);   
+            isLogged(true);                     
         }
         
         checkLoginStatus();
@@ -40,11 +46,13 @@ const RouterMain = () => {
     */    
     return(
         <>
-            <RouterNav isLogged={isLogged} setIsLogged={setIsLogged} />
+            <RouterNav />
             <RouterLogo />
             <Routes>
                 < Route path="/" element={<MainPage />} />
-                < Route path="/login" element={<LoginPage setIsLogged={setIsLogged} />} />
+                < Route path="/login" element={<LoginPage />} />
+                < Route path="/login1" element={<Login />} />
+
                 < Route path="/mypage" element={<MyPage />} />
                 < Route path="/register" element={<RegisterPage />} />
                 < Route path="/orderhistorylist" element={<OrderHistoryListPage />} />
@@ -53,6 +61,10 @@ const RouterMain = () => {
                 < Route path="/userdelete" element={<UserDelete />} />
                 < Route path="/userupdate" element={<UserUpdate />} />
                 < Route path="/userpwdupdate" element={<UserPwdUpdate />} />
+                < Route path="/catesearch" element={<CateSearchPage />} />
+                < Route path="/prediction" element={<PredictionPage />} />
+                < Route path="/board" element={<BoardPage />} />
+
             </Routes>
         </>
 
