@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-df = pd.read_csv('../data/raw_postpro.csv', encoding='cp949')
+df = pd.read_csv('../data/raw_postpro.csv')
 df1 = df[['Machinery', 'Assembly' , "Part No.1","청구품목", 'key2']].copy()
 print(df1)
 
@@ -31,12 +31,9 @@ model = xgb.XGBClassifier(objective='multi:softmax', num_class=61)
 #
 # 모델 학습
 model.fit(X_train, y_train)
-#
-#
-#
-# print(type(label_encoders))
+
 import joblib
 # 모델 pkl로 저장
 joblib.dump(model, './model_softmax.pkl')
-#
-joblib.dump(label_encoders,'./model_label_encoders.pkl')
+# label_encoders 딕셔너리 pkl 저장
+joblib.dump(label_encoders, './model_label_encoders.pkl')
