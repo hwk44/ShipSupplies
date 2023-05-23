@@ -13,7 +13,7 @@ def main():
 
 
 # predict 페이지에서는 POST method로 값 넘기기
-@app.route('/api/item/predict', methods=['POST'])
+@app.route('/api/item/predict/classify', methods=['POST'])
 def home():
     # loading pkl file
     model = joblib.load(open('./model/model_softmax.pkl', 'rb'))
