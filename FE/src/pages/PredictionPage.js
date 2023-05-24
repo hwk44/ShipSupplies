@@ -3,46 +3,94 @@ import axios from 'axios';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-
 const PredictionPage = () => {
-    const [machinery, setMachinery] = useState("");
-    const [assembly, setAssembly] = useState("");
-    const [partno1, setPartno1] = useState("");
-    const [item, setItem] = useState("");
+  const [machinery, setMachinery] = useState('');
+  const [assembly, setAssembly] = useState('');
+  const [partno1, setPartno1] = useState('');
+  const [item, setItem] = useState('');
 
-    const handlePred = async (e) => {
-        e.preventDefault();
+  const token = localStorage.getItem('jwt');
+  console.log('token', token);
 
-        try {
-            const response = await axios.post("/api/item/predict/classify", { machinery, assembly, partno1, item });
-            console.log(response.data); // 서버에서 반환한 데이터 출력
-        } catch (error) {
-            console.log(error);
-        }
+  const handlePred = async (e) => {
+    e.preventDefault();
+
+    try {
+      const requestBody = {
+        Machinery : machinery,
+        Assembly : assembly,
+        PartNo1 : partno1,
+        Item : item,
     };
 
+      console.log('requestBody', requestBody); // 확인: requestBody 값 출력
 
-    return (
-        <>
-            <h3>Classification Prediction</h3>
-            <form className="predictionform" onSubmit={handlePred}>
-                <div>
-                    <TextField id="outlined-basic" label="Machinery" variant="outlined" onChange={(e) => setMachinery(e.target.value)} />
-                </div>
-                <div>
-                    <TextField id="outlined-basic" label="Assembly" variant="outlined" onChange={(e) => setAssembly(e.target.value)} required />
-                </div>
-                <div>
-                    <TextField id="outlined-basic" label="Part No.1" variant="outlined" onChange={(e) => setPartno1(e.target.value)} required/>
-                </div>
-                <div>
-                    <TextField id="outlined-basic" label="Item" variant="outlined" onChange={(e) => setItem(e.target.value)} required/>
-                </div>
-                <Button variant="contained" size="medium" type="submit">
-                    분류 예측
-                </Button>
-            </form>
-        </>
-    );
-}
+      const response = await axios.post(
+        '/api/item/predict/classify',
+        requestBody,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+
+      console.log(response.data); // 서버에서 반환한 데이터 출력
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <>
+      <h3>Classification Prediction</h3>
+      <form className="predictionform" onSubmit={handlePred}>
+        <div>
+          <TextField
+            id="machinery"
+            label="Machinery"
+            variant="outlined"
+            value={machinery}
+            onChange={(e) => setMachinery(e.target.value)}
+          />
+        </div>
+        <div>
+          <TextField
+            id="assembly"
+            label="Assembly"
+            variant="outlined"
+            value={assembly}
+            onChange={(e) => setAssembly(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <TextField
+            id="partno1"
+            label="Part No.1"
+            variant="outlined"
+            value={partno1}
+            onChange={(e) => setPartno1(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <TextField
+            id="item"
+            label="Item"
+            variant="outlined"
+            value={item}
+            onChange={(e) => setItem(e.target.value)}
+            required
+          />
+        </div>
+        <Button variant="contained" size="medium" type="submit">
+          분류 예측
+        </Button>
+      </form>
+    </>
+  );
+};
+
 export default PredictionPage;
