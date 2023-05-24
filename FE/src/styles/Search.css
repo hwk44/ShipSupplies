@@ -37,3 +37,8 @@
   margin: 0;
   cursor: pointer;
 }
+
+.autocomplete > div {
+  background: #f1f3f499;
+  padding: .2rem .6rem;
+}

@@ -8,6 +8,20 @@ import OrderHistory from '../components/icon/Orderhistory';
 
 
 const RouterLogo = () => {
+    const navigate = useNavigate();
+
+    const goCategorySearch = () => {
+        navigate('/catesearch')
+    }
+
+    const goPrediction = () => {
+        navigate('/prediction')
+    }
+
+    const goBoard = () => {
+        navigate('board')
+    }
+    
 
     /*if (window.location.pathname === '/login') return null;
     if (window.location.pathname === '/register') return null;*/
@@ -15,6 +29,9 @@ const RouterLogo = () => {
         <div>
             <div className="rlogodiv" >
                 <Logo />
+                <button className="btn" onClick={goCategorySearch}>카테고리 검색</button>
+                <button className="btn" onClick={goPrediction}>카테고리 분류 예측 </button>
+                <button className="btn" onClick={goBoard}>게시판</button>
                 <Search className="rlogosearch" />
                 <OrderHistory />
                 <Cart />
