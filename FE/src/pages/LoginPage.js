@@ -40,7 +40,7 @@ const LoginPage = () => {
                     < input type="password" id="password" value={password} placeholder="비밀번호"
                         onChange={(e) => setPassword(e.target.value)} required />
                 </div>
-                <button onClick={handleLogin}>로그인</button>
+                <button type="submit">로그인</button>
             {showErrorMessage && (
                 <div className="logindiverror">ID 혹은 비밀번호가 일치하지 않습니다.</div>
             )}

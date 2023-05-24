@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 
 const PredictionPage = () => {
@@ -12,9 +14,9 @@ const PredictionPage = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("/api/item/predict", { machinery, assembly, partno1, item });
+            const response = await axios.post("/api/item/predict/classify", { machinery, assembly, partno1, item });
             console.log(response.data); // 서버에서 반환한 데이터 출력
-          } catch (error) {
+        } catch (error) {
             console.log(error);
         }
     };
@@ -25,22 +27,20 @@ const PredictionPage = () => {
             <h3>Classification Prediction</h3>
             <form className="predictionform" onSubmit={handlePred}>
                 <div>
-                    < input type="text" id="machinery" value={machinery} placeholder="Machinery"
-                        onChange={(e) => setMachinery(e.target.value)} required />
+                    <TextField id="outlined-basic" label="Machinery" variant="outlined" onChange={(e) => setMachinery(e.target.value)} />
                 </div>
                 <div>
-                    < input type="text" id="assembly" value={assembly} placeholder="Assembly"
-                        onChange={(e) => setAssembly(e.target.value)} required />
+                    <TextField id="outlined-basic" label="Assembly" variant="outlined" onChange={(e) => setAssembly(e.target.value)} required />
                 </div>
                 <div>
-                    < input type="text" id="partno1" value={partno1} placeholder="Part No.1"
-                        onChange={(e) => setPartno1(e.target.value)} required />
+                    <TextField id="outlined-basic" label="Part No.1" variant="outlined" onChange={(e) => setPartno1(e.target.value)} required/>
                 </div>
                 <div>
-                    < input type="text" id="item" value={item} placeholder="Item"
-                        onChange={(e) => setItem(e.target.value)} required />
+                    <TextField id="outlined-basic" label="Item" variant="outlined" onChange={(e) => setItem(e.target.value)} required/>
                 </div>
-                <button onClick={handlePred}>분류 예측</button>
+                <Button variant="contained" size="medium" type="submit">
+                    분류 예측
+                </Button>
             </form>
         </>
     );
