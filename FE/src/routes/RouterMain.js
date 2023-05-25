@@ -14,7 +14,6 @@ import UserUpdate from '../components/user/UserUpdate';
 import CateSearchPage from '../pages/CateSearchPage';
 import PredictionPage from '../pages/PredictionPage';
 import BoardPage from '../pages/BoardPage';
-
 import Login from '../pages/Login'
 
 import { useState, useEffect } from 'react';
@@ -52,7 +51,6 @@ const RouterMain = () => {
                 < Route path="/" element={<MainPage />} />
                 < Route path="/login" element={<LoginPage />} />
                 < Route path="/login1" element={<Login />} />
-
                 < Route path="/mypage" element={<MyPage />} />
                 < Route path="/register" element={<RegisterPage />} />
                 < Route path="/orderhistorylist" element={<OrderHistoryListPage />} />
@@ -64,7 +62,6 @@ const RouterMain = () => {
                 < Route path="/catesearch" element={<CateSearchPage />} />
                 < Route path="/prediction" element={<PredictionPage />} />
                 < Route path="/board" element={<BoardPage />} />
-
             </Routes>
         </>
 

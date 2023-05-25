@@ -5,7 +5,22 @@ import Logo from '../components/icon/Logo';
 import Cart from '../components/icon/Cart';
 import OrderHistory from '../components/icon/Orderhistory';
 
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
 
+const pages = ["상품검색", "카테고리 분류 예측", "게시판"];
 
 const RouterLogo = () => {
     const navigate = useNavigate();
@@ -32,7 +47,6 @@ const RouterLogo = () => {
                 <button className="btn" onClick={goCategorySearch}>카테고리 검색</button>
                 <button className="btn" onClick={goPrediction}>카테고리 분류 예측 </button>
                 <button className="btn" onClick={goBoard}>게시판</button>
-                <Search className="rlogosearch" />
                 <OrderHistory />
                 <Cart />
             </div>

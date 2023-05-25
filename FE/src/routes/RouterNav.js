@@ -22,7 +22,7 @@ const RouterNav = () => {
     const handleLogout = async () => {
         try{
             // 서버에 로그아웃 요청을 보냅니다.
-            // await axios.post('/logout');
+            // await axios.post('/api/user/logout');
             // setIsLogged(false);
             localStorage.removeItem('jwt');
             // localStorage.setItem("jwt", null);
