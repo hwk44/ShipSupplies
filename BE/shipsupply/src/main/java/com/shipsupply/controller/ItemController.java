@@ -34,6 +34,7 @@ public class ItemController {
     // db에 있는 카테고리 검색 메서드
     @GetMapping("/getCategory")
     public List<Item> getCategory(@RequestBody Item item) {
+
         return itemService.getCategory(item);
     }
 
@@ -46,14 +47,14 @@ public class ItemController {
     // db에 있는 특정 카테고리에 해당하는 선용품 검색 메서드
     @GetMapping("/getCateAndItem")
     public List<Item> getCateAndItem(@RequestBody Item item) {
-        logger.info("리액트에서 준 선용품 : {}", item);
+
         return itemService.getCateAndItem(item);
     }
 
     //분류모델 예측 메서드
     @PostMapping("/predict/classify")
     public ResponseEntity<String> predCategory(@RequestBody Map<String, String> data) {
-        logger.info("리액트에서 준 data : {}", data);
+
         return ResponseEntity.ok().body(itemService.predCategory(data));
     }
 

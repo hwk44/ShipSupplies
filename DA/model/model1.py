@@ -25,10 +25,10 @@ y = df1["key2_encoded"] # 학습할 정답
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=40, shuffle=True, test_size=0.3)
 #
 import xgboost as xgb
-#
+
 # xgboost 모델 생성
 model = xgb.XGBClassifier(objective='multi:softmax', num_class=61)
-#
+
 # 모델 학습
 model.fit(X_train, y_train)
 
