@@ -39,6 +39,7 @@ const RegisterPage = () => {
         password :password,
         username : userName,
         email : email,
+        role : "USER"
       });
       console.log(response.data); // 서버에서 반환한 데이터 출력
       alert('회원가입이 완료되었습니다.');

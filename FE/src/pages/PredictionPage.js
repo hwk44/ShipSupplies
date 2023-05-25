@@ -8,6 +8,7 @@ const PredictionPage = () => {
   const [assembly, setAssembly] = useState('');
   const [partno1, setPartno1] = useState('');
   const [item, setItem] = useState('');
+  const [prediction, setPrediction] = useState('');
 
   const token = localStorage.getItem('jwt');
   console.log('token', token);
@@ -36,7 +37,8 @@ const PredictionPage = () => {
         }
       );
 
-      console.log(response.data); // 서버에서 반환한 데이터 출력
+      console.log("카테고리 값",response.data); // 서버에서 반환한 데이터 출력
+      setPrediction(response.data); // 카테고리 값을 상태에 저장
     } catch (error) {
       console.log(error);
     }
@@ -89,6 +91,16 @@ const PredictionPage = () => {
           분류 예측
         </Button>
       </form>
+
+
+      {prediction && (
+        <div>
+          <h4>카테고리</h4>
+          <p>{prediction.pred}</p>
+        </div>
+      )} 
+
+
     </>
   );
 };
