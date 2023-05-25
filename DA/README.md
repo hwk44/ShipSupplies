@@ -15,6 +15,7 @@
 
   - 독립변수 : 기업에서 선용품을 구분하는 4개의 컬럼  "Machinery", "Assembly", "Part No.1", "청구품목"
   - 종속변수 : 라벨링 되어있는 컬럼 "key2"
+
  DA 폴더에서 `flask run` 명령어 => http://localhost:5000/ 접속 후 form Machinery, Assembly,Part No.1, 청구품목,을 입력하여 학습된 분류모델의 결과를 확인해주세요. 
  
 
