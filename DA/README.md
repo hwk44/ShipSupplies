@@ -23,3 +23,5 @@
     BE 담당자 요청으로 기존 데이터 중 필요로 하는 컬럼만을 db에 저장했습니다. (추후 중복 데이터 삭제 필요)
     database/to_db.py 실행하면 item table이 생성됩니다.
     
+    FE 담당자 요청으로 각 category 에 해당하는 item 항목들을 json 파일로 저장했습니다.
+    database/to_json.py 실행하면 category.json, items.json 파일이 생성됩니다.
