@@ -41,6 +41,7 @@ const RouterLogo = () => {
     /*if (window.location.pathname === '/login') return null;
     if (window.location.pathname === '/register') return null;*/
     return(
+        /*
         <div>
             <div className="rlogodiv" >
                 <Logo />
@@ -51,6 +52,17 @@ const RouterLogo = () => {
                 <Cart />
             </div>
         </div>
+        */
+       <nav>
+        <ul>
+            <li><Logo /></li>
+        </ul>
+        <ul>
+            <li><a href="/prediction">카테고리 검색</a></li>
+            <li><a href="/catesearch">선용품 선택</a></li>
+            <li><a href="/">게시판</a></li>
+        </ul>
+       </nav>
     );
 }
 export default RouterLogo;
