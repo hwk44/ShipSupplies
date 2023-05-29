@@ -1,31 +1,45 @@
 import { useState, useEffect , useRef} from "react";
-import {BrowserRouter, Route, Routes, useNavigate, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, useNavigate, Link, Switch, NavLink} from 'react-router-dom';
+import Sidebar from "../components/user/Sidebar";
+import '../styles/MyPage.css';
+import UserDelete from '../components/user/UserDelete';
+import UserPwdUpdate from '../components/user/UserPwdUpdate';
+import UserUpdate from '../components/user/UserUpdate';
+
 
 
 
 const MyPage = () => {
-    const navigate = useNavigate();
 
-    const goUserPwdUpdate = () => {
-        navigate('/userpwdupdate')
-    }
-
-    const goUserUpdate = () => {
-        navigate('/userupdate')
-    }
-
-    const goUserDelete = () => {
-        navigate('/userdelete')
+    const activeStyle = {
+        color : '#289951',
     }
 
     return(
         <>
-            <h1>MyPage</h1>
-            <button className='btnpwdupdate' onClick={goUserPwdUpdate}>비밀번호 변경</button>
-            <button className='btnupdate' onClick={goUserUpdate}>회원정보 변경</button>
-            <button className='btndelete' onClick={goUserDelete}>회원탈퇴</button>
-            
-           
+            <div className="center">
+                {/* <Sidebar/> */}
+                <Routes>
+                    <Route exact path="/userupdate" component={UserUpdate} />
+                    <Route path="/userpwdupdate" component={UserPwdUpdate} />
+                    <Route path="/userdelete" component={UserDelete} />
+                </Routes>
+                <div>
+                    <div>마이페이지</div>
+                    <ul>
+                        <li>
+                            <NavLink style={({ isActive }) => (isActive? activeStyle : {})} to="/userupdate" >
+                                정보변경
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink style={({ isActive }) => (isActive? activeStyle : {})} to="/userpwdupdate" >
+                                비밀번호 변경
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </>
     );
 }

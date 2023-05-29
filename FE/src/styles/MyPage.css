@@ -1,0 +1,28 @@
+/* pages/MyPage.js */
+.center {
+    height: 92vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.side {
+    display: flex;
+    border-right: 1px solid #e0e0e0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+}
+
+/* components/user/Sidebar.js */
+.side menu {
+    margin-top: 30px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.side link {
+    color: gray;
+    text-decoration: none;
+}
