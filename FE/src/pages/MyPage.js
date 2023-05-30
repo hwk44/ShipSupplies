@@ -12,17 +12,14 @@ import UserUpdate from '../components/user/UserUpdate';
 const MyPage = () => {
     return (
         <>
-            <div className="container">
-                <Sidebar className="sidebar" />
-                <div className="content">
-                    other pages
-                    <Routes>
-                        <Route exact path="/userupdate" component={UserUpdate} />
-                        <Route path="/userpwdupdate" component={UserPwdUpdate} />
-                        <Route path="/userdelete" component={UserDelete} />
-                    </Routes>
-                </div>
-            </div>
+            <Sidebar>
+                <Routes>
+                    <Route exact path="/" element={<UserUpdate />} />
+                    <Route exact path="/userupdate" element={<UserUpdate />} />
+                    <Route path="/userpwdupdate" element={<UserPwdUpdate />} />
+                    <Route path="/userdelete" element={<UserDelete />} />
+                </Routes>
+            </Sidebar>
         </>
     );
 }
