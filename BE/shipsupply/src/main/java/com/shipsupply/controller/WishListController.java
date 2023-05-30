@@ -27,19 +27,16 @@ public class WishListController {
 
     @PostMapping("/add")
     public WishList addList(@RequestBody WishList wishList) {
-
         return wishListService.addList(wishList);
     }
 
     @PutMapping("/update")
     public WishList updateList(@RequestBody WishList wishList) {
-
         return wishListService.updateList(wishList);
     }
 
     @DeleteMapping("/delete")
     public void deleteList(@RequestBody WishList wishList) {
-
         wishListService.deleteList(wishList);
     }
 
