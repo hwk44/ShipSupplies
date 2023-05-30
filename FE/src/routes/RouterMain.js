@@ -6,13 +6,12 @@ import LoginPage from '../pages/LoginPage';
 import MyPage from '../pages/MyPage';
 import RegisterPage from '../pages/RegisterPage';
 import CartPage from '../pages/CartPage';
-import ItemDetailPage from '../pages/ItemDetailPage';
 import UserDelete from '../components/user/UserDelete';
 import UserPwdUpdate from '../components/user/UserPwdUpdate';
 import UserUpdate from '../components/user/UserUpdate';
 import SearchPage from '../pages/SearchPage';
 import PredictionPage from '../pages/PredictionPage';
-import BoardPage from '../pages/BoardPage';
+import RegressionPage from '../pages/RegressionPage';
 
 import { useState, useEffect } from 'react';
 
@@ -51,13 +50,12 @@ const RouterMain = () => {
                 < Route path="/mypage" element={<MyPage />} />
                 < Route path="/register" element={<RegisterPage />} />
                 < Route path="/cart" element={<CartPage />} />
-                < Route path="/itemdetail" element={<ItemDetailPage />} />
                 < Route path="/userdelete" element={<UserDelete />} />
                 < Route path="/userupdate" element={<UserUpdate />} />
                 < Route path="/userpwdupdate" element={<UserPwdUpdate />} />
                 < Route path="/search" element={<SearchPage />} />
                 < Route path="/prediction" element={<PredictionPage />} />
-                < Route path="/board" element={<BoardPage />} />
+                < Route path="/regression" element={<RegressionPage />} />
             </Routes>
         </>
 

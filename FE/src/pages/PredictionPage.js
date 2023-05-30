@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-
 const PredictionPage = () => {
   const [machinery, setMachinery] = useState('');
   const [assembly, setAssembly] = useState('');
@@ -46,52 +43,6 @@ const PredictionPage = () => {
 
   return (
     <>
-
-      {/* <h3>Classification Prediction</h3>
-      <form className="predictionform" onSubmit={handlePred}>
-        <div>
-          <TextField
-            id="machinery"
-            label="Machinery"
-            variant="outlined"
-            value={machinery}
-            onChange={(e) => setMachinery(e.target.value)}
-          />
-        </div>
-        <div>
-          <TextField
-            id="assembly"
-            label="Assembly"
-            variant="outlined"
-            value={assembly}
-            onChange={(e) => setAssembly(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            id="partno1"
-            label="Part No.1"
-            variant="outlined"
-            value={partno1}
-            onChange={(e) => setPartno1(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <TextField
-            id="item"
-            label="Item"
-            variant="outlined"
-            value={item}
-            onChange={(e) => setItem(e.target.value)}
-            required
-          />
-        </div>
-        <Button variant="contained" size="medium" type="submit">
-          분류 예측
-        </Button>
-      </form> */}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -163,19 +114,17 @@ const PredictionPage = () => {
             </div>
           </form>
         </div>
-      </div>
 
-
-      {prediction && (
-        <div className="sm:max-w-lg">
-          <h4>카테고리</h4>
-          <p className="mt-4 text-xl text-gray-500">
+        {prediction && (
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row">
+          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">카테고리 -</h3> &nbsp;
+          <h3 className="text-lg font-semibold leading-7 text-indigo-600">
             {prediction.pred}
-          </p>
+          </h3>
         </div>
-      )}
-
-
+        )}
+      
+      </div>
     </>
   );
 };

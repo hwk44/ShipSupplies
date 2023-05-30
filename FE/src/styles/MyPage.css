@@ -1,19 +1,18 @@
 /* pages/MyPage.js */
-.center {
-    height: 92vh;
+.container {
     display: flex;
-    flex-direction: row;
+    height: 100vh;
 }
-
-.side {
-    display: flex;
-    border-right: 1px solid #e0e0e0;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 20%;
+.sidebar{
+    width: 200px;
+    background-color: gray;
+    /* flex-grow: 1; */
 }
-
+.content{
+    flex-grow: 1;
+    padding: 20px;
+    background-color: wheat;
+}
 /* components/user/Sidebar.js */
 .side menu {
     margin-top: 30px;
