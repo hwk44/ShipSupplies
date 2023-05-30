@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import RouterNav from './RouterNav';
-import RouterLogo from './RouterLogo';
+import RouterLogin from './RouterLogin';
 import MainPage from '../pages/MainPage';
 import LoginPage from '../pages/LoginPage';
 import MyPage from '../pages/MyPage';
@@ -42,8 +42,8 @@ const RouterMain = () => {
     */    
     return(
         <>
+            <RouterLogin /> 
             <RouterNav />
-            <RouterLogo />
             <Routes>
                 < Route path="/" element={<MainPage />} />
                 < Route path="/login" element={<LoginPage />} />

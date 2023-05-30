@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Children } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
 
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
 
   const pathName = useLocation().pathname;
 
@@ -13,7 +13,9 @@ const Sidebar = () => {
       { name: "회원탈퇴", path: "/userdelete" },
   ];
   return (
-    <div className="sidebar">
+    <>
+    
+    {/* <div className="container">
         <h2>마이페이지</h2>
         {menus.map((menu, index) => {
           return (
@@ -27,7 +29,26 @@ const Sidebar = () => {
             </div>
           );
         })}
+    </div> */}
+
+    <div className="container">
+      <div className="sidebar">
+        <div className="top_section">
+          <h1 className="logo">MyPage</h1>
+        </div>
+        {
+          menus.map((item, index) => {
+            <NavLink to={item.path} key={index} className="link">
+              <div className="link_text">{item.name}</div>
+            </NavLink>
+          })
+        }
+      </div>
+      <main>{children}</main>
+      {/* 10:49 */}
+
     </div>
+    </>
   );
 }
 
