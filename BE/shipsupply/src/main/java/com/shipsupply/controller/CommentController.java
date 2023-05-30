@@ -31,7 +31,7 @@ public class CommentController {
 
     @PutMapping("/update/{id}")
     public Comment updateComment(@PathVariable Long id, @RequestBody Comment comment) {
-
+        logger.info("받은 댓글 정보 : {}", comment);
         return commentService.updateComment(id, comment);
     }
 
