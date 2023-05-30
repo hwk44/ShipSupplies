@@ -17,9 +17,9 @@ const UserPwdUpdate = () => {
             const response = await axios.post('/api/user/update', {
                 password: password,
                 changepwd: changepwd,
-                confirmChangePwd : confirmChangePwd,
+                confirmChangePwd: confirmChangePwd,
             });
-            console.log(response.data); 
+            console.log(response.data);
             alert('비밀번호 변경이 완료되었습니다.');
 
         }
@@ -31,7 +31,7 @@ const UserPwdUpdate = () => {
 
     return (
         <>
-            <h1>비밀번호 변경</h1>
+            {/* <h1>비밀번호 변경</h1>
             <form onSubmit={handlePwdUpdate}>
                 <div>
                     <label>현재 비밀번호:</label>
@@ -50,7 +50,61 @@ const UserPwdUpdate = () => {
                         onChange={(e) => setConfirmChangePwd(e.target.value)} />
                 </div>
                 <button type="submit">비밀번호 변경</button>
-            </form>
+            </form> */}
+            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <form className="space-y-6" onSubmit={handlePwdUpdate}>
+                        <div className="mt-2">
+                            <input
+                                id="password"
+                                name="password"
+                                value={password}
+                                type="password"
+                                required
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="현재 비밀번호"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+
+                        <div className="mt-2">
+                            <input
+                                id="changepwd"
+                                name="changepwd"
+                                value={changepwd}
+                                type="password"
+                                required
+                                onChange={(e) => setChangepwd(e.target.value)}
+                                placeholder="변경할 비밀번호"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+
+                        <div className="mt-2">
+                            <input
+                                id="confirmChangePwd"
+                                name="confirmChangePwd"
+                                value={confirmChangePwd}
+                                type="password"
+                                required
+                                onChange={(e) => setConfirmChangePwd(e.target.value)}
+                                placeholder="변경할 비밀번호 확인"
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+
+                        <div>
+                            <button
+                                type="submit"
+                                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                비밀번호 변경
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </>
     );
 }
