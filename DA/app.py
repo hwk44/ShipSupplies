@@ -54,7 +54,7 @@ def home():
     return jsonify({"datas": datas, "pred": pred[0]})
 
 @app.route('/api/item/predict/regression', methods=['POST'])
-def home():
+def home1():
     # loading pkl file
     # scaler
     scaler = joblib.load(open('./model/scaler.pkl', 'rb'))
@@ -86,7 +86,8 @@ def home():
     # 원래 스케일로 되돌리기
     pred = scaler.inverse_transform(pred)
 
-    return jsonify({"datas": datas, "pred": pred[0][0]})
+    return jsonify({"datas": datas, "pred": round(float(pred[0][0]))}) # 반올림
+
 
 
 # 플라스크 5000 번 에서 실행하는 코드. form 으로 4개 입력값을 받은 후에 결과값 확인

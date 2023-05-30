@@ -27,7 +27,7 @@ const RouterMain = () => {
         const storedIsLogged = localStorage.getItem('jwt');
         if (storedIsLogged === 'true') {
             // setIsLogged(true);   
-            isLogged(true);                     
+                             
         }
         
         checkLoginStatus();
