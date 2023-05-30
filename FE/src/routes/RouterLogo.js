@@ -1,42 +1,64 @@
-import {BrowserRouter, Route, Routes, useNavigate, Link} from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate, Link } from 'react-router-dom';
 import '../styles/RouterLogo.css';
-import Search from '../components/Search';
 import Logo from '../components/icon/Logo';
-import Cart from '../components/icon/Cart';
-import OrderHistory from '../components/icon/Orderhistory';
-
-
+import { BsPerson, BsCart3 } from 'react-icons/bs';
 
 const RouterLogo = () => {
     const navigate = useNavigate();
 
-    const goCategorySearch = () => {
-        navigate('/catesearch')
+    const goMypage = () => {
+        navigate('/mypage')
     }
 
-    const goPrediction = () => {
-        navigate('/prediction')
+    const goCart = () => {
+        navigate('/cart')
     }
 
-    const goBoard = () => {
-        navigate('board')
-    }
-    
-
-    /*if (window.location.pathname === '/login') return null;
-    if (window.location.pathname === '/register') return null;*/
-    return(
-        <div>
-            <div className="rlogodiv" >
+    return (
+        <nav class="bg-white border-gray-200 dark:bg-gray-900">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Logo />
-                <button className="btn" onClick={goCategorySearch}>카테고리 검색</button>
-                <button className="btn" onClick={goPrediction}>카테고리 분류 예측 </button>
-                <button className="btn" onClick={goBoard}>게시판</button>
-                <Search className="rlogosearch" />
-                <OrderHistory />
-                <Cart />
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li>
+                            <a href="/prediction" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                카테고리 분류
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/regression" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                리드타임 예측
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/search" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                선용품 선택
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                게시판
+                            </a>
+                        </li>
+                        
+                        <button
+                            type="button"
+                            className="rounded-fullp-1 text-gray-400 hover:text-black focus:outline-none focus:ring-white focus:ring-offset-2 "
+                            onClick={goMypage}
+                        >
+                            <BsPerson size={30}/>
+                        </button>
+                        <button
+                            type="button"
+                            className="rounded-fullp-1 text-gray-400 hover:text-black focus:outline-none focus:ring-white focus:ring-offset-2 "
+                            onClick={goCart}
+                        >
+                            <BsCart3 size={30}/>
+                        </button>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
     );
 }
 export default RouterLogo;
