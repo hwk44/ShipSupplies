@@ -2,7 +2,7 @@ import category from '../db/category.json';
 import items from '../db/items.json';
 import { useState, useEffect, useRef } from 'react';
 
-const CateSearchPage = () => {
+const SearchPage = () => {
   const [selcate, setSelcate] = useState();
   const txtC = useRef();
 
@@ -10,7 +10,7 @@ const CateSearchPage = () => {
   //console.log(cate);
 
   // 맨 처음 한번 실행될 때 useRef에 포커스
-  /*
+  
   useEffect(() => {
     txtC.current.focus();
   }, []);
@@ -29,18 +29,17 @@ const CateSearchPage = () => {
       temp.map((i) => (
         <li
           onClick={() => selItem(i)}
-          key={i}
-        >
+          key={i}>
           {i}
         </li>
       ))
     );
   };
-  */
+
 
   return (
     <>
-     {/* <div className="conleft">
+     <div className="conleft">
       <div>
         <input
           ref={txtC}
@@ -56,7 +55,7 @@ const CateSearchPage = () => {
           placeholder="물품" />
       </div>
       <ul>{ctag.map((item) => item)}</ul>
-    </div> */}
+    </div>
    
 <form>
     <div class="flex">
@@ -92,4 +91,4 @@ const CateSearchPage = () => {
   );
 
 }
-export default CateSearchPage;
+export default SearchPage;
