@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #060b26;
+    background-color: #fff;
     height: 80px;
     display: flex;
     justify-content: start;
@@ -12,9 +12,10 @@
     background: none;
 }
 
+/* 메뉴 텍스트 시작-하단 */
 .nav-menu {
-    background-color: #060b26;
-    width: 250px;
+    background-color: rgb(249, 249, 249);
+    width: 260px;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -38,9 +39,10 @@
     height: 60px;
 }
 
+/* 메뉴 텍스트 */
 .nav-text a {
     text-decoration: none;
-    color: #f5f5f5;
+    color: black;
     font-size: 18px;
     width: 95%;
     height: 100%;
@@ -51,15 +53,16 @@
 }
 
 .nav-text a:hover {
-    background-color: #1a83ff;
+    background-color: #dcb3dc;
 }
 
 .nav-menu-items {
     width: 100%;
 }
 
+/* 메뉴 상단 x */
 .navbar-toggle {
-    background-color: #060b26;
+    background-color: rgb(249, 249, 249);
     width: 100%;
     height: 80px;
     display: flex;

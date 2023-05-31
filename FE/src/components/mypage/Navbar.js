@@ -12,7 +12,7 @@ const Navbar = () => {
     const showSidebar = () => setSidebar(!sidebar)
     return(
         <>
-        <IconContext.Provider value={{color : '#fff'}}>
+        <IconContext.Provider value={{color : '#000'}}>
 
             <div className="navbar">
                 <Link to="#" className="menu-bars">
