@@ -18,17 +18,19 @@ import { useState, useEffect } from 'react';
 const RouterMain = () => {
     const [isLogged, setIsLogged] = useState(false);
 
-    useEffect(()=> {
+    useEffect(() => {
+        // 로그인 상태를 강제로 false로 설정(자동으로 로그인 되어있는 문제 해결)
+        setIsLogged(false);
         
         const storedIsLogged = localStorage.getItem('jwt');
         if (storedIsLogged === 'true') {
             // setIsLogged(true);   
-                             
+
         }
-        
-        checkLoginStatus();
+
+        // checkLoginStatus();
     }, []);
-    
+
     const checkLoginStatus = () => {
         const token = localStorage.getItem('jwt');
         setIsLogged(!!token); // 토큰이 존재하면 true, 없으면 false로 설정
@@ -39,8 +41,8 @@ const RouterMain = () => {
         if (accessToken && accessToken !== null){
             setIsLogged(false);
         }
-    */    
-    return(
+    */
+    return (
         <>
             <RouterNav />
             <RouterLogo />

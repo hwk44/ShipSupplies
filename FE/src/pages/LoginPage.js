@@ -18,7 +18,7 @@ const LoginPage = () => {
         try {
             const response = await axios.post("/api/user/login", { id, password });
             setShowErrorMessage(false);
-            // setIsLoggedIn(true);
+            setIsLoggedIn(true);
             console.log(isLoggedIn);
             console.log(response.data); // 서버에서 반환한 데이터 출력
             localStorage.setItem("jwt", response.data); // 로컬 스토리지에 로그인 상태 저장
