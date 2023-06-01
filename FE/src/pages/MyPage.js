@@ -21,7 +21,7 @@ const MyPage = () => {
                     <Route path="/userdelete" element={<UserDelete />} />
                 </Routes>
             </Sidebar> */}
-            {/* <Router> */}
+            
                 <Navbar />
                 <Routes>
                     {/* <Route exact path="/" element={<UserUpdate />} /> */}
@@ -29,7 +29,7 @@ const MyPage = () => {
                     <Route path="/userpwdupdate" component={UserPwdUpdate} />
                     <Route path="/userdelete" component={UserDelete} />
                 </Routes>
-            {/* </Router> */}
+           
         </>
     );
 }
