@@ -3,6 +3,8 @@ package com.shipsupply.service;
 import com.shipsupply.domain.Board;
 import com.shipsupply.domain.User;
 import com.shipsupply.persistence.BoardRepository;
+import com.shipsupply.persistence.CommentRepository;
+import com.shipsupply.persistence.HitRepository;
 import com.shipsupply.persistence.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
