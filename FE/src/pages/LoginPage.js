@@ -18,10 +18,14 @@ const LoginPage = () => {
         try {
             const response = await axios.post("/api/user/login", { id, password });
             setShowErrorMessage(false);
-            setIsLoggedIn(true);
+            // setIsLoggedIn(true);
             console.log(isLoggedIn);
             console.log(response.data); // 서버에서 반환한 데이터 출력
-            localStorage.setItem("jwt", response.data); // 로컬 스토리지에 로그인 상태 저장
+            localStorage.setItem("jwt", response.data.token); // 로컬 스토리지에 로그인 상태 저장
+            localStorage.setItem("userId", response.data.userId)
+            console.log("로컬스토리지에 저장된 토큰 : ",localStorage.getItem("jwt"))
+            console.log("로컬스토리지에 저장된 ID : ",localStorage.getItem("userId"))
+            
             navigate('/'); // 로그인 완료 후 메인 페이지로 이동
         } catch (error) {
             setShowErrorMessage(true);

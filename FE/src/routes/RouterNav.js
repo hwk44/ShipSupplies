@@ -3,7 +3,7 @@ import '../styles/RouterLogo.css';
 import Logo from '../components/icon/Logo';
 import { BsPerson, BsCart3 } from 'react-icons/bs';
 
-const RouterLogo = () => {
+const RouterNav = () => {
     const navigate = useNavigate();
 
     const goMypage = () => {
@@ -32,14 +32,14 @@ const RouterLogo = () => {
                         </li>
                         <li>
                             <a href="/search" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                                선용품 선택
+                                선용품 검색
                             </a>
                         </li>
-                        {/* <li>
-                            <a href="#" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                                게시판
+                        <li>
+                            <a href="/helpdesk" class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                고객센터
                             </a>
-                        </li> */}
+                        </li>
                         
                         <button
                             type="button"
@@ -61,4 +61,4 @@ const RouterLogo = () => {
         </nav>
     );
 }
-export default RouterLogo;
+export default RouterNav;
