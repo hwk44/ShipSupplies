@@ -12,6 +12,8 @@ import UserUpdate from '../components/user/UserUpdate';
 import SearchPage from '../pages/SearchPage';
 import PredictionPage from '../pages/PredictionPage';
 import RegressionPage from '../pages/RegressionPage';
+import HelpDesk from '../pages/HelpDesk';
+import PostDetail from '../pages/PostDetail';
 
 import { useState, useEffect } from 'react';
 
@@ -19,29 +21,12 @@ const RouterMain = () => {
     const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
-        // 로그인 상태를 강제로 false로 설정(자동으로 로그인 되어있는 문제 해결)
+
+        // 로그인 상태를 강제로 false로 설정
         setIsLogged(false);
         
-        const storedIsLogged = localStorage.getItem('jwt');
-        if (storedIsLogged === 'true') {
-            // setIsLogged(true);   
-
-        }
-
-        // checkLoginStatus();
     }, []);
 
-    const checkLoginStatus = () => {
-        const token = localStorage.getItem('jwt');
-        setIsLogged(!!token); // 토큰이 존재하면 true, 없으면 false로 설정
-    };
-
-    /*
-    const accessToken = localStorage.getItem("jwt");
-        if (accessToken && accessToken !== null){
-            setIsLogged(false);
-        }
-    */
     return (
         <>
             {/* <RouterLogin />  */}
@@ -58,6 +43,9 @@ const RouterMain = () => {
                 < Route path="/search" element={<SearchPage />} />
                 < Route path="/prediction" element={<PredictionPage />} />
                 < Route path="/regression" element={<RegressionPage />} />
+                < Route path="/helpdesk" element={<HelpDesk />} />
+                < Route path="/post/:id" element={<PostDetail />} />
+                
             </Routes>
         </>
 
