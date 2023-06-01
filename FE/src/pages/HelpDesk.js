@@ -37,7 +37,7 @@ const HelpDesk = () => {
         e.preventDefault(); // form이 새로고침을 유발하는 것을 방지
 
         try {
-            const response = await axios.post('/api/board/add', { title, text, user: { id:userId } },
+            const response = await axios.post('/api/board/add', { title, text, user: { id: userId } },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -61,17 +61,26 @@ const HelpDesk = () => {
     return (
         <div>
             {isWriting ? (
-                <form onSubmit={addBoard}>
-                    <label>
-                        제목:
-                        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                    </label>
-                    <label>
-                        본문:
-                        <textarea value={text} onChange={(e) => setText(e.target.value)} required />
-                    </label>
-                    <button type="submit">제출</button>
+                <form className='wrtTable' onSubmit={addBoard}>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>제목</th>
+                                <td>
+                                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>본문</th>
+                                <td>
+                                    <textarea value={text} onChange={(e) => setText(e.target.value)} required />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button className='wrtBtn' type="submit">제출</button>
                 </form>
+
             ) : (
                 <div className='boardList'>
                     <h1 className='h1'>1:1 문의 게시판</h1>
@@ -83,21 +92,21 @@ const HelpDesk = () => {
                                 <th>제목</th>
                                 <th>작성자</th>
                                 <th>작성일</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
-                        {posts.map((post, index) => {
-                            const date = new Date(post.date).toLocaleDateString();
-                            return (
-                                <tr key={post.id}>
-                                    <td><Link to={`/post/${post.id}`}>{index + 1}</Link></td>
-                                    <td><Link to={`/post/${post.id}`}>{post.title}</Link></td>
-                                    <td><Link to={`/post/${post.id}`}>{post.user.id}</Link></td>
-                                    <td><Link to={`/post/${post.id}`}>{date}</Link></td>
-                                </tr>
-                            )
-                        })}
+                            {posts.map((post, index) => {
+                                const date = new Date(post.date).toLocaleDateString();
+                                return (
+                                    <tr key={post.id}>
+                                        <td><Link to={`/post/${post.id}`}>{index + 1}</Link></td>
+                                        <td><Link to={`/post/${post.id}`}>{post.title}</Link></td>
+                                        <td><Link to={`/post/${post.id}`}>{post.user.id}</Link></td>
+                                        <td><Link to={`/post/${post.id}`}>{date}</Link></td>
+                                    </tr>
+                                )
+                            })}
                         </tbody>
                     </table>
                 </div>
