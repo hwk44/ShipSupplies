@@ -78,11 +78,10 @@ const RouterNav = () => {
                         {isLoggedIn ? (
                             <button
                                 type="button"
-                                className="rounded-fullp-1 text-gray-400 hover:text-black focus:outline-none focus:ring-white focus:ring-offset-2 flex flex-direction: row; "
+                                className="rounded-fullp-1 text-gray-400 hover:text-black focus:outline-none focus:ring-white focus:ring-offset-2 "
                                 onClick={handleLogout}
                             >
-                                로그아웃
-                                <LuLogOut size={20}/>
+                                <LuLogOut size={25}/>
                             </button>
                         ) : (
                             <div></div>

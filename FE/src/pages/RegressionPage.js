@@ -39,8 +39,8 @@ const RegressionPage = () => {
           }
         );
   
-        console.log("카테고리 값", response.data); 
-        setRegression(response.data); 
+        console.log("카테고리 값", response.data); // 서버에서 반환한 데이터 출력
+        setRegression(response.data); // 카테고리 값을 상태에 저장
       } catch (error) {
         console.log(error);
       }
@@ -136,6 +136,19 @@ const RegressionPage = () => {
               />
             </div>
 
+            <div className="mt-2">
+              <input
+                id="regression"
+                name="regression"
+                value={regression}
+                type="text"
+                required
+                onChange={(e) => setRegression(e.target.value)}
+                placeholder="Regression"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+
             <div>
               <button
                 type="submit"
@@ -151,7 +164,7 @@ const RegressionPage = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row">
           <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">예상 리드타임 -</h3> &nbsp;
           <h3 className="text-lg font-semibold leading-7 text-indigo-600">
-            {/* {regression.pred}일 */}
+            {regression.pred}일
           </h3>
         </div>
         )}

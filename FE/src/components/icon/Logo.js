@@ -11,7 +11,7 @@ const Logo = () => {
     return(
         <div className="logodiv" onClick={goHome}>
             <img className="logoimg" src={logoImage} alt="ship" /> 
-            <p className="logop1"></p>
+            <p className="logop1">ShipSupplies</p>
         </div>
     );
 }

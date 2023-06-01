@@ -57,3 +57,34 @@ table th, table td {
     padding: 1px;
     background-color: gainsboro;
 }
+
+.wrtTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.wrtBtn {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 80px;
+    padding: 1px;
+    background-color: gainsboro;
+    margin-top: 10px;
+}
+
+.deleteBtn {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.cancelBtn {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.cmtDeleteBtn {
+    margin-left: 10px;
+}
