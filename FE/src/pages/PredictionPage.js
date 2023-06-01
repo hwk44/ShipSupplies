@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 const PredictionPage = () => {
   const [machinery, setMachinery] = useState('');
   const [assembly, setAssembly] = useState('');

@@ -2,7 +2,7 @@ import {BrowserRouter, Route, Routes, useNavigate, Link} from 'react-router-dom'
 import '../styles/RouterNav.css';
 import axios from 'axios';
 
-const RouterNav = () => {
+const RouterLogin = () => {
     const navigate = useNavigate();
 
     const goLogin = () => {
@@ -52,4 +52,4 @@ const RouterNav = () => {
         </>
     );
 }
-export default RouterNav;
+export default RouterLogin;
