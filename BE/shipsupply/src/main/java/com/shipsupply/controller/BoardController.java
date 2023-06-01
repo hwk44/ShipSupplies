@@ -1,6 +1,7 @@
 package com.shipsupply.controller;
 
 import com.shipsupply.domain.Board;
+import com.shipsupply.domain.User;
 import com.shipsupply.service.BoardService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,11 +21,13 @@ public class BoardController {
 
     @GetMapping("/view")
     public List<Board> getList() {
+        logger.info("getList 호출");
         return bs.getList();
     }
 
     @GetMapping("/view/{id}")
     public Board getBoard(@PathVariable Long id) {
+        logger.info("글 번호 : " + id);
         return bs.getBoard(id);
     }
 
