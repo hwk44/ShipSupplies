@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-const Comment = ({ comments }) => {
-    const [hit, setHit] = useState(comments.hitCount || 0);
+const Comment = ({ comments: initialComments }) => {
+    const [comments, setComments] = useState(initialComments);
     const token = localStorage.getItem('jwt');
-    const userId = localStorage.getItem('userId');
 
-    const addHit = async () => {
+    const addHit = async (commentId) => {
+        const commentIndex = comments.findIndex((c) => c.id === commentId);
+        const comment = comments[commentIndex];
+
         const hitObj = {
-            user: { id: userId },
-            comment: { id: comments.id },
-            board: { id: comments.board.id },
+            user: { id: localStorage.getItem('userId') },
+            comment: { id: comment.id },
+            board: { id: comment.board.id },
         };
 
         try {
@@ -20,7 +22,15 @@ const Comment = ({ comments }) => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            setHit(hit + 1);
+
+            // Copy the comments array and update the comment with new hitCount.
+            const updatedComments = [...comments];
+            updatedComments[commentIndex] = {
+                ...comment,
+                hitCount: comment.hitCount + 1,
+            };
+
+            setComments(updatedComments);
         } catch (error) {
             console.error(error);
         }
@@ -42,7 +52,7 @@ const Comment = ({ comments }) => {
                         <td>{comment.text}</td>
                         <td>{new Date(comment.date).toLocaleString()}</td>
                         <td>
-                            <button onClick={addHit}>좋아요 {hit}</button>
+                            <button onClick={() => addHit(comment.id)}>좋아요 {comment.hitCount}</button>
                         </td>
                     </tr>
                 ))}
@@ -52,3 +62,4 @@ const Comment = ({ comments }) => {
 };
 
 export default Comment;
+
