@@ -4,6 +4,7 @@ import axios from 'axios';
 import Dropdown from './Dropdown';
 // import { useState, useEffect, useRef } from 'react';
 import React, { useState, useEffect, useRef } from 'react';
+import '../styles/Search.css';
 
 
 const SearchPage = () => {
@@ -126,67 +127,59 @@ const SearchPage = () => {
 
   return (
     <>
-      <button onClick={() => setDropdownVisibility(!dropdownVisibility)}>
-        {dropdownVisibility ? '닫기' : buttonText}
-      </button>
-
       <div className='app'>
-        <Dropdown visibility={dropdownVisibility}>
-          <ul>
-            <li onClick={() => handleItemClick("발주처")}>발주처</li>
-            <li onClick={() => handleItemClick("부품명(청구품목)")}>부품명(청구품목)</li>
-            <li onClick={() => handleItemClick("카테고리(key2)")}>카테고리(key2)</li>
-          </ul>
-        </Dropdown>
-        <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} />
-        <br /><br />
-        <button onClick={handleSubmit}>제출</button>
+        <div className='s1'>
+          <button className='bt1' onClick={() => setDropdownVisibility(!dropdownVisibility)}>
+            {dropdownVisibility ? '닫기' : buttonText}
+          </button>
+          <Dropdown visibility={dropdownVisibility}>
+            <ul>
+              <li onClick={() => handleItemClick("발주처")}>발주처</li>
+              <li onClick={() => handleItemClick("부품명(청구품목)")}>부품명(청구품목)</li>
+              <li onClick={() => handleItemClick("카테고리(key2)")}>카테고리(key2)</li>
+            </ul>
+          </Dropdown>
+          <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} />
+        </div>
+
+        <button onClick={handleSubmit}>검색</button>
+
         <div className="conleft">
           {txtC.current && txtC.current.value.length > 0 ? (
             <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
         </div>
-        {/* <div>
-          {seldata && seldata.map((item) => (
-            <div key={item.id}>
-              <p>ID: {item.id}</p>
-              <p>Item: {item.item}</p>
-              <p>Assembly: {item.assembly}</p>
-              <p>Company: {item.company}</p>
-            </div>
-          ))}
-        </div> */}
+
         {seldata && seldata.length > 0 && (
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <input type="checkbox" class="accent-pink-500" />
-                </th>
-                <th>No.</th>
-                <th>상품명</th>
-                {/* <th>수량</th> */}
-                <th>가격</th>
-                <th>통화</th>
-                <th>공급업체</th>
-                <th>카테고리</th>
-              </tr>
-            </thead>
-            <tbody>
-              {seldata && seldata.map((item) => (
-                <tr key={item.id}>
-                  <td>
+          <div className='tb1'>
+            <table>
+              <thead>
+                <tr>
+                  <th>
                     <input type="checkbox" class="accent-pink-500" />
-                  </td>
-                  <td>{item.id}</td>
-                  <td>{item.item}</td>
-                  <td>{item.price}</td>
-                  <td>{item.currency}</td>
-                  <td>{item.company}</td>
-                  <td>{item.category}</td>
+                  </th>
+                  <th>상품명</th>
+                  <th>공급업체</th>
+                  <th>카테고리</th>
+                  <th>화폐</th>
+                  <th>가격</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {seldata && seldata.map((item) => (
+                  <tr key={item.id}>
+                    <td>
+                      <input type="checkbox" class="accent-pink-500" />
+                    </td>
+                    <td>{item.item}</td>
+                    <td>{item.company}</td>
+                    <td>{item.category}</td>
+                    <td>{item.currency}</td>
+                    <td>{item.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
 
       </div>
