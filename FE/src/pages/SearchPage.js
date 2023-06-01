@@ -8,6 +8,10 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const SearchPage = () => {
 
+  // 토큰을 저장하는 변수
+  const token = localStorage.getItem('jwt');
+  console.log(token)
+
   // 드롭다운 가시화 변수
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
  
@@ -32,7 +36,7 @@ const SearchPage = () => {
 
   // key 값이 변할때 data를 다르게 불러오도록 하는 useEffect
   useEffect(() => {
-    // console.log(key)
+    console.log(key)
     const newList1 = data[key];
     setList1(newList1);
     // console.log(list1)
@@ -86,25 +90,35 @@ const SearchPage = () => {
       try {
         let requestUrl;
     
-        if (key === "카테고리") {
+        if (key === "key2") {
+          // requestUrl = "/api/item/findByCategory";
           requestUrl = "/api/item/findByCategory";
+          requestUrl = requestUrl + "?category=" +txtC.current.value;
+          console.log(requestUrl)
+          // /?category=cooler
         } else if (key === "청구품목") {
           requestUrl = "/api/item/findByItem";
+          requestUrl = requestUrl + "?item=" +txtC.current.value;
         } else if (key === "발주처") {
           requestUrl = "/api/item/findByCompany";
+          requestUrl = requestUrl + "?company=" +txtC.current.value;
         } else {
           console.error("Invalid key value:", key);
           return;
         }
     
-        const response = await axios.post(requestUrl, {
-          key: key,
-          txtCValue: txtC.current.value,
-        });
+        const response = await axios.get(requestUrl, 
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
     
         console.log(response.data);
       } catch (error) {
-        console.error("POST 요청 에러:", error);
+        console.error("GET 요청 에러:", error);
       }
     };
 
