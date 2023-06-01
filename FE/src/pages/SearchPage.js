@@ -11,6 +11,9 @@ const SearchPage = () => {
   // 드롭다운 선택 후 해당 데이터
   const [seldata, setSelData] = useState(null);
 
+  // 페이지네이션 변수
+  const [currentPage, setCurrentPage] = useState(1);
+
   // 토큰을 저장하는 변수
   const token = localStorage.getItem('jwt');
   console.log(token)
@@ -125,6 +128,16 @@ const SearchPage = () => {
     }
   };
 
+  // 페이지 전환 핸들러
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // 페이지네이션 시작과 끝 인덱스 설정
+  const ITEMS_PER_PAGE = 10;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
   return (
     <>
       <div className='app'>
@@ -151,34 +164,44 @@ const SearchPage = () => {
 
         {seldata && seldata.length > 0 && (
           <div className='tb1'>
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    <input type="checkbox" class="accent-pink-500" />
-                  </th>
-                  <th>상품명</th>
-                  <th>공급업체</th>
-                  <th>카테고리</th>
-                  <th>화폐</th>
-                  <th>가격</th>
-                </tr>
-              </thead>
-              <tbody>
-                {seldata && seldata.map((item) => (
-                  <tr key={item.id}>
-                    <td>
+            <div style={{ position: "relative" }}>
+              <table>
+                <thead>
+                  <tr>
+                    <th>
                       <input type="checkbox" class="accent-pink-500" />
-                    </td>
-                    <td>{item.item}</td>
-                    <td>{item.company}</td>
-                    <td>{item.category}</td>
-                    <td>{item.currency}</td>
-                    <td>{item.price}</td>
+                    </th>
+                    <th>상품명</th>
+                    <th>공급업체</th>
+                    <th>카테고리</th>
+                    <th>화폐</th>
+                    <th>가격</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {seldata && seldata.slice(startIndex, endIndex).map((item) => (
+                    <tr key={item.id}>
+                      <td>
+                        <input type="checkbox" className="accent-pink-500" />
+                      </td>
+                      <td>{item.item}</td>
+                      <td>{item.company}</td>
+                      <td>{item.category}</td>
+                      <td>{item.currency}</td>
+                      <td>{item.price}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <ul className="pagination">
+                {[...Array(Math.ceil(seldata.length / ITEMS_PER_PAGE)).keys()].map((pageNumber) => (
+                  <li key={pageNumber} onClick={() => handlePageChange(pageNumber + 1)}>{pageNumber + 1}
+                  </li>
+                )
+                )}
+              </ul>
+            </div>
           </div>
         )}
 
