@@ -18,23 +18,48 @@ const CartList = () => {
         //         </div>
         //     </div>
         // </div>
+        <>
+        <div className='flex justify-center'>
+          <table class="w-11/12 my-14 text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">
+                        <input type="checkbox" class="accent-indigo-400" />
+                      </th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">Machinery</th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">견적화폐</th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">견적단가</th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
+                      <th scope="col" class="px-6 py-3 rounded-l-lg">예측 리드타임</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                      <tr  class="bg-white dark:bg-gray-800">
+                        <td class="px-6 py-4"> 
+                          <input type="checkbox" className="accent-indigo-400" />
+                        </td>
+                        <td class="px-6 py-4">SEAL-O-RING-STOR</td>
+                        <td class="px-6 py-4">COOLER</td>
+                        <td class="px-6 py-4">NO.1 GENERATOR ENGINE</td>
+                        <td class="px-6 py-4">KRW</td>
+                        <td class="px-6 py-4">35,714</td>
+                        <td class="px-6 py-4">HAEIN Coporation_Cheonan</td>
+                        <td class="px-6 py-4">112일</td>
 
-       
+                      </tr>
+                  </tbody>
+                </table>
+          </div>
 
-<ul class="flex border-b">
-  <li class="-mb-px mr-1">
-    <a class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold" href="#">Active</a>
-  </li>
-  <li class="mr-1">
-    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#">Tab</a>
-  </li>
-  <li class="mr-1">
-    <a class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#">Tab</a>
-  </li>
-  <li class="mr-1">
-    <a class="bg-white inline-block py-2 px-4 text-gray-400 font-semibold" href="#">Tab</a>
-  </li>
-</ul>
+              <div className='float-right'>
+              <button className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2 px-4 rounded">
+                삭제
+              </button>
+              </div>   
+      </>
     );
 }
 export default CartList;

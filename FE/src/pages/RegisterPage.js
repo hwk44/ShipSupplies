@@ -74,31 +74,6 @@ const RegisterPage = () => {
 
   return (
 
-    // <div className="registerdiv1">
-    //   <Logo className="logo" />
-    //   <form className="registerform1" onSubmit={handleRegister}>
-    //     <label>아이디</label>
-    //     <input type="text" id="id" value={id} 
-    //       onChange={(e) => setId(e.target.value)} required/>
-    //     <label>비밀번호</label>
-    //     <input type="password" id="password" value={password} 
-    //       onChange={(e) => setPassword(e.target.value)} required />
-    //     <label>비밀번호 재확인</label>
-    //     <input type="password" id="confirmPassword" value={confirmPassword} 
-    //       onChange={(e) => setConfirmPassword(e.target.value)} required />
-    //     <label>이름</label>
-    //     <input type="text" id="userName" value={userName}
-    //       onChange={(e) => setUserName(e.target.value)} required/>
-    //     <label>이메일</label>
-    //     <input type="email" id="email" value={email} 
-    //       onChange={onChangeEmail} required/>
-    //     {email.length > 0 && <span className={`message ${isEmail ? 'success' : 'error'}`}>{emailMessage}</span>}
-    //     <br />
-    //     <button type="submit">회원가입</button>
-    //   </form>
-    //   <Link to="/login">로그인</Link>
-    // </div> 
-
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
