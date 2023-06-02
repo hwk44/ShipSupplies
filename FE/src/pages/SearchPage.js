@@ -218,6 +218,7 @@ const SearchPage = () => {
 
         </div>
 
+        {/* 드롭박스 내려오는 부분 */}
         <div className="conleft">
           {txtC.current && txtC.current.value.length > 0 ? (
             <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}

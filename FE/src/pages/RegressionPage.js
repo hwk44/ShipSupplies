@@ -10,6 +10,8 @@ const RegressionPage = () => {
   const [client, setClient] = useState(''); // 발주처
   const [regression, setRegression] = useState('');
 
+  const [item, setItem] = useState('');
+
   const token = localStorage.getItem('jwt');
   console.log('token', token);
 
@@ -136,6 +138,17 @@ const RegressionPage = () => {
               />
             </div>
 
+            <div className="mt-2">
+              <input
+                id="item"
+                type="text"
+                value={item}
+                required
+                onChange={(e) => setItem(e.target.value)}
+                placeholder="청구품목"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
             <div>
               <button
                 type="submit"
@@ -148,13 +161,23 @@ const RegressionPage = () => {
         </div>
 
         {regression && (
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row">
-            <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">예상 리드타임 -</h3> &nbsp;
-            <h3 className="text-lg font-semibold leading-7 text-indigo-600">
+        <>
+          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row justify-center">
+            <p className="text-xl font-semibold leading-7 tracking-tight text-indigo-500 ">{item}</p>
+            &nbsp;&nbsp;
+            <p className="text-xl leading-7 tracking-tight text-gray-900">의</p>
+            </div>
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-row justify-center">
+            <p className="text-xl  leading-7 tracking-tight text-gray-900">예상 리드타임은 </p> &nbsp;&nbsp; 
+            <p className="text-2xl font-semibold leading-7 text-indigo-500">
               {regression.pred}일
-            </h3>
+            </p>&nbsp;&nbsp;
+            <p className="text-xl ">입니다.</p> 
           </div>
-        )}
+          </>  
+          
+
+          )}
 
       </div>
     </>
