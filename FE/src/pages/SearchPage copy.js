@@ -4,7 +4,7 @@ import axios from 'axios';
 import Dropdown from './Dropdown';
 // import { useState, useEffect, useRef } from 'react';
 import React, { useState, useEffect, useRef } from 'react';
-
+import { BsChevronDown } from "react-icons/bs";
 
 const SearchPage = () => {
   // 드롭다운 선택 후 해당 데이터
@@ -126,10 +126,13 @@ const SearchPage = () => {
 
   return (
     <>
-      <button onClick={() => setDropdownVisibility(!dropdownVisibility)}>
+      <button onClick={() => setDropdownVisibility(!dropdownVisibility)}
+      className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"'>
         {dropdownVisibility ? '닫기' : buttonText}
+        <BsChevronDown />
       </button>
 
+    
       <div className='app'>
         <Dropdown visibility={dropdownVisibility}>
           <ul>
@@ -145,6 +148,8 @@ const SearchPage = () => {
           {txtC.current && txtC.current.value.length > 0 ? (
             <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
         </div>
+
+        
         {/* <div>
           {seldata && seldata.map((item) => (
             <div key={item.id}>

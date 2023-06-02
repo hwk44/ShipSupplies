@@ -10,15 +10,22 @@
 }
 
 .figure {
+    display: flex; /* 추가된 부분 */
+    justify-content: center; /* 추가된 부분 */
+    align-items: center; /* 추가된 부분 */
 	width: 100%;
 	height: 100%;
 	z-index: 1;
 }
 
-.figure img {
-	width: 100%;
-	height: 93vh;
-	object-fit: fill;
+.figure > img {
+
+    margin-top: 2vh;
+
+    justify-content: center;
+	width: 80%;
+	height: 83vh;
+	object-fit: cover; /*fill -> cover*/
     opacity: 0.5;
 
     image-rendering: -moz-crisp-edges;
