@@ -44,7 +44,7 @@ const PredictionPage = () => {
 
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="-my-20 flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Classification Prediction
@@ -117,12 +117,20 @@ const PredictionPage = () => {
         </div>
 
         {prediction && (
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row">
-          <h3 className="text-lg font-semibold leading-7 tracking-tight text-gray-900">카테고리 -</h3> &nbsp;
-          <h3 className="text-lg font-semibold leading-7 text-indigo-600">
-            {prediction.pred}
-          </h3>
+          <>
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row justify-center">
+        <p className="text-xl  leading-7 tracking-tight text-indigo-500">{item}</p> &nbsp;&nbsp;
+        <p className="text-xl  leading-7 tracking-tight text-gray-900"> 의</p>
         </div>
+
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-row justify-center">
+          <p className="text-xl  leading-7 tracking-tight text-gray-900">카테고리는 </p> &nbsp;&nbsp;
+          <p className="text-2xl font-semibold leading-7 text-indigo-500">
+            {prediction.pred}
+          </p>&nbsp;&nbsp;
+          <p className="text-xl  leading-7 tracking-tight text-gray-900">입니다.</p> 
+        </div>
+        </>
         )}
       
       </div>

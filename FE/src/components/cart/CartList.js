@@ -41,13 +41,13 @@ const CartList = () => {
                         <td class="px-6 py-4"> 
                           <input type="checkbox" className="accent-indigo-400" />
                         </td>
-                        <td class="px-6 py-4">SEAL-O-RING-STOR</td>
-                        <td class="px-6 py-4">COOLER</td>
-                        <td class="px-6 py-4">NO.1 GENERATOR ENGINE</td>
-                        <td class="px-6 py-4">KRW</td>
-                        <td class="px-6 py-4">35,714</td>
-                        <td class="px-6 py-4">HAEIN Coporation_Cheonan</td>
-                        <td class="px-6 py-4">112일</td>
+                        <td class="px-6 py-4">DOUBLE ANODES</td>
+                        <td class="px-6 py-4">ANODES</td>
+                        <td class="px-6 py-4">BOW THRUSTER</td>
+                        <td class="px-6 py-4">EUR</td>
+                        <td class="px-6 py-4">71</td>
+                        <td class="px-6 py-4">EURO KYTEX ENGINEERING BV</td>
+                        <td class="px-6 py-4">32일</td>
 
                       </tr>
                   </tbody>
