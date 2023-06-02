@@ -1,7 +1,6 @@
 import items from '../db/items.json';
 import data from '../db/datas.json'
 import axios from 'axios';
-// import Dropdown from './Dropdown';
 // import { useState, useEffect, useRef } from 'react';
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Search.css';
