@@ -36,9 +36,9 @@ const RouterNav = () => {
 
     return (
         <nav>
-            <div className='flex items-center justify-between my-4 mr-5'>
+            <div className='flex items-center justify-between my-4 mr-5 h-36'>
                 <Logo />
-                <ul className='flex flex-row space-x-4 items-center'>
+                <ul className='flex flex-row space-x-4 items-center mr-12'>
                         <li>
                             <a href="/prediction" className="hover:text-blue-700 ">
                                 카테고리 분류
