@@ -1,15 +1,19 @@
 import items from '../db/items.json';
 import data from '../db/datas.json'
 import axios from 'axios';
-import Dropdown from './Dropdown';
+// import Dropdown from './Dropdown';
 // import { useState, useEffect, useRef } from 'react';
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Search.css';
+import { BiSearch } from "react-icons/bi";
 
 
 const SearchPage = () => {
   // 드롭다운 선택 후 해당 데이터
   const [seldata, setSelData] = useState(null);
+
+  // 페이지네이션 변수
+  const [currentPage, setCurrentPage] = useState(1);
 
   // 토큰을 저장하는 변수
   const token = localStorage.getItem('jwt');
@@ -125,60 +129,147 @@ const SearchPage = () => {
     }
   };
 
+  // 페이지 전환 핸들러
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // 페이지네이션 시작과 끝 인덱스 설정
+  const ITEMS_PER_PAGE = 10;
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+
   return (
     <>
       <div className='app'>
-        <div className='s1'>
+      {/* <div className='s1'>
           <button className='bt1' onClick={() => setDropdownVisibility(!dropdownVisibility)}>
             {dropdownVisibility ? '닫기' : buttonText}
           </button>
-          <Dropdown visibility={dropdownVisibility}>
+          {dropdownVisibility && (
             <ul>
               <li onClick={() => handleItemClick("발주처")}>발주처</li>
               <li onClick={() => handleItemClick("부품명(청구품목)")}>부품명(청구품목)</li>
               <li onClick={() => handleItemClick("카테고리(key2)")}>카테고리(key2)</li>
             </ul>
-          </Dropdown>
+          )}
           <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} />
+        </div> */}
+{/* 
+        <select
+  value={selectedItem}
+  onChange={(e) => setSelectedItem(e.target.value)}
+>
+  <option value="">항목선택</option>
+  <option value="발주처">발주처</option>
+  <option value="부품명(청구품목)">부품명(청구품목)</option>
+  <option value="카테고리(key2)">카테고리(key2)</option>
+</select>
+<input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} /> */}
+
+{/* <div className='s1'>
+  <button className='bt1' onClick={() => setDropdownVisibility(!dropdownVisibility)}>
+    {dropdownVisibility ? '닫기' : buttonText}
+  </button>
+  {dropdownVisibility && (
+    <ul>
+      <li onClick={() => handleItemClick("발주처")}>발주처</li>
+      <li onClick={() => handleItemClick("부품명(청구품목)")}>부품명(청구품목)</li>
+      <li onClick={() => handleItemClick("카테고리(key2)")}>카테고리(key2)</li>
+    </ul>
+  )}
+  <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} />
+</div> */}
+
+        {/* <div className='s1'>
+          <select
+            value={selectedItem}
+            onChange={(e) => setSelectedItem(e.target.value)}
+          >
+            <option value="" selected hidden>선택</option>
+            <option value="발주처">발주처</option>
+            <option value="부품명(청구품목)">부품명(청구품목)</option>
+            <option value="카테고리(key2)">카테고리(key2)</option>
+          </select>
+          <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} /> 
+ 
+        <button onClick={handleSubmit}>검색</button>
+        </div> */}
+
+        <div className='flex flex-row justify-center my-7'>
+        <select value={selectedItem}
+            onChange={(e) => setSelectedItem(e.target.value)}
+        class="mx-2 h-10 border-2 border-indigo-400 focus:outline-none focus:border-indigo-600 text-indigo-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+            <option value="" selected hidden>선택</option>
+            <option value="발주처">발주처</option>
+            <option value="부품명(청구품목)">부품명(청구품목)</option>
+            <option value="카테고리(key2)">카테고리(key2)</option>
+        </select>
+
+        <div class="flex">
+            <input  ref={txtC} type="text" name="txt1" onChange={showC1} 
+            placeholder={key || "항목을 먼저 선택해주세요"}
+          class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
+          />
+            <button onClick={handleSubmit} class="bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1">
+              <BiSearch />
+            </button>
         </div>
 
-        <button onClick={handleSubmit}>검색</button>
+        </div>
 
         <div className="conleft">
           {txtC.current && txtC.current.value.length > 0 ? (
             <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
         </div>
+        
 
         {seldata && seldata.length > 0 && (
           <div className='tb1'>
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    <input type="checkbox" class="accent-pink-500" />
-                  </th>
-                  <th>상품명</th>
-                  <th>공급업체</th>
-                  <th>카테고리</th>
-                  <th>화폐</th>
-                  <th>가격</th>
-                </tr>
-              </thead>
-              <tbody>
-                {seldata && seldata.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <input type="checkbox" class="accent-pink-500" />
-                    </td>
-                    <td>{item.item}</td>
-                    <td>{item.company}</td>
-                    <td>{item.category}</td>
-                    <td>{item.currency}</td>
-                    <td>{item.price}</td>
+            <div style={{ position: "relative" }}>
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">
+                      <input type="checkbox" class="accent-indigo-400" />
+                    </th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">화폐</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">가격</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {seldata && seldata.slice(startIndex, endIndex).map((item) => (
+                    <tr key={item.id} class="bg-white dark:bg-gray-800">
+                      <td class="px-6 py-4"> 
+                        <input type="checkbox" className="accent-indigo-400" />
+                      </td>
+                      <td class="px-6 py-4">{item.item}</td>
+                      <td class="px-6 py-4">{item.company}</td>
+                      <td class="px-6 py-4">{item.category}</td>
+                      <td class="px-6 py-4">{item.currency}</td>
+                      <td class="px-6 py-4">{item.price.toLocaleString('ko-KR')}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <ul className="pagination">
+                {[...Array(Math.ceil(seldata.length / ITEMS_PER_PAGE)).keys()].map((pageNumber) => (
+                  <li key={pageNumber} onClick={() => handlePageChange(pageNumber + 1)}>{pageNumber + 1}
+                  </li>
+                )
+                )}
+              </ul>
+
+              <div className='float-right'>
+              <button className="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                저장
+              </button>
+              </div>      
+            </div>
           </div>
         )}
 
