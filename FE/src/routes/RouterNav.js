@@ -62,11 +62,11 @@ const RouterNav = () => {
                             </a>
                         </li>
                         
-                        <div className='flex flex-row justify-center items-center'>
+                        <div className="flex items-center">
                             <Dropdown1 className="my-1" />
                             <button
                                 type="button"
-                                className="mx-2.5 text-gray-400 hover:text-black"
+                                className="mx-2.5 text-gray-400 hover:text-black mb-3"
                                 onClick={goCart}
                             >
                                 <BsCart3 size={25}/>
@@ -75,12 +75,12 @@ const RouterNav = () => {
                             {/* 로그인 시 로그아웃 버튼 보이게 */}
                             {isLoggedIn ? (
                                 <button
-                                    type="button"
-                                    className="mx-2.5 text-gray-400 hover:text-black flex flex-direction: row; "
-                                    onClick={handleLogout}
+                                type="button"
+                                className="mx-2.5 mb-2.5 text-gray-400 hover:text-black flex flex-direction: row; "
+                                onClick={handleLogout}
                                 >
-                                    로그아웃
-                                    <LuLogOut size={20}/>
+                                로그아웃
+                                <LuLogOut size={20}/>
                                 </button>
                             ) : (
                                 <div></div>
