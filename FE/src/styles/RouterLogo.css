@@ -1,11 +1,3 @@
-.rlogodiv {
-    /* background: gray; */
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    clear: both;
-}
-
 /* components/Logo.js */
 
 .logodiv{
@@ -29,58 +21,4 @@
     font-family: "Pretendard ExtraBold";
     font-size: 1.5em;
     margin-top: 3%;
-}
-
-/* components/Cart.js  */
-
-.cartdiv{
-    /* background-color: red; */
-    cursor: pointer;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    /* justify-content: flex-end; */
-    flex-direction: column;
-    /* margin-left: 21vw; */
-    /* margin-top: 10px; */
-  
-}
-
-.cartimg{
-    width : 2.3em;
-    height : 2.3em;
-    /* margin-left: 0.5vw; */
-}
-
-.cartp1{
-    margin-top: 5px;
-    /* margin-left: 0.3vw; */
-    font-family: "Pretendard Regular";
-    font-size: 0.93em;
-}
-
-/* components/OrderHistory.js */
-
-.ohp1 {
-    font-family: "Pretendard Regular";
-    font-size: 0.93em;
-    margin-top: 5.3px;
-}
-
-.ordhisimg{
-    width : 2.3em;
-    height : 2.3em;
-}
-
-.ordhisdiv{
-    width: 70px;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* 버튼 */
-.rlogodiv .btn{
-    border: none;
-    background-color:transparent;
 }

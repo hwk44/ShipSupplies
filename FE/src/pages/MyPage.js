@@ -6,6 +6,7 @@ import UserDelete from '../components/user/UserDelete';
 import UserPwdUpdate from '../components/user/UserPwdUpdate';
 import UserUpdate from '../components/user/UserUpdate';
 import Navbar from "../components/mypage/Navbar";
+import Dropdown1 from "../components/Dropdown1";
 
 
 
@@ -29,7 +30,7 @@ const MyPage = () => {
                     <Route path="/userpwdupdate" component={UserPwdUpdate} />
                     <Route path="/userdelete" component={UserDelete} />
                 </Routes>
-           
+
         </>
     );
 }
