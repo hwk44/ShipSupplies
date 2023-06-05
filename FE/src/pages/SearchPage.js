@@ -28,6 +28,19 @@ const SearchPage = () => {
 
   const [list1, setList1] = useState([]);
 
+  // 체크박스 데이터 넣을 빈배열
+  const [checkedList, setCheckedList] = useState([]);
+
+  // 1️⃣ onChange함수를 사용하여 이벤트 감지, 필요한 값 받아오기
+  const onCheckedElement = (checked, item) => {
+    if (checked) {
+      setCheckedList([...checkedList, item]);
+      console.log("체크항목",checkedList)
+    } else if (!checked) {
+      setCheckedList(checkedList.filter(el => el !== item));
+    }
+  };
+
   useEffect(() => {
     // console.log('선택된 항목:', selectedItem);
     if (selectedItem.includes("카테고리")) {
@@ -59,6 +72,7 @@ const SearchPage = () => {
     setDropdownVisibility(false);
     // console.log(buttonText);
   };
+
 
   // 선택된 항목 buttonText
   const buttonText = selectedItem || '항목선택';
@@ -141,79 +155,25 @@ const SearchPage = () => {
   return (
     <>
       <div className='app'>
-      {/* <div className='s1'>
-          <button className='bt1' onClick={() => setDropdownVisibility(!dropdownVisibility)}>
-            {dropdownVisibility ? '닫기' : buttonText}
-          </button>
-          {dropdownVisibility && (
-            <ul>
-              <li onClick={() => handleItemClick("발주처")}>발주처</li>
-              <li onClick={() => handleItemClick("부품명(청구품목)")}>부품명(청구품목)</li>
-              <li onClick={() => handleItemClick("카테고리(key2)")}>카테고리(key2)</li>
-            </ul>
-          )}
-          <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} />
-        </div> */}
-{/* 
-        <select
-  value={selectedItem}
-  onChange={(e) => setSelectedItem(e.target.value)}
->
-  <option value="">항목선택</option>
-  <option value="발주처">발주처</option>
-  <option value="부품명(청구품목)">부품명(청구품목)</option>
-  <option value="카테고리(key2)">카테고리(key2)</option>
-</select>
-<input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} /> */}
-
-{/* <div className='s1'>
-  <button className='bt1' onClick={() => setDropdownVisibility(!dropdownVisibility)}>
-    {dropdownVisibility ? '닫기' : buttonText}
-  </button>
-  {dropdownVisibility && (
-    <ul>
-      <li onClick={() => handleItemClick("발주처")}>발주처</li>
-      <li onClick={() => handleItemClick("부품명(청구품목)")}>부품명(청구품목)</li>
-      <li onClick={() => handleItemClick("카테고리(key2)")}>카테고리(key2)</li>
-    </ul>
-  )}
-  <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} />
-</div> */}
-
-        {/* <div className='s1'>
-          <select
-            value={selectedItem}
+        <div className='flex flex-row justify-center my-7'>
+          <select value={selectedItem}
             onChange={(e) => setSelectedItem(e.target.value)}
-          >
+            class="mx-2 h-10 border-2 border-indigo-400 focus:outline-none focus:border-indigo-600 text-indigo-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
             <option value="" selected hidden>선택</option>
             <option value="발주처">발주처</option>
             <option value="부품명(청구품목)">부품명(청구품목)</option>
             <option value="카테고리(key2)">카테고리(key2)</option>
           </select>
-          <input ref={txtC} type="text" name="txt1" onChange={showC1} placeholder={key || "항목을 먼저 선택해 주세요"} /> 
- 
-        <button onClick={handleSubmit}>검색</button>
-        </div> */}
 
-        <div className='flex flex-row justify-center my-7'>
-        <select value={selectedItem}
-            onChange={(e) => setSelectedItem(e.target.value)}
-        class="mx-2 h-10 border-2 border-indigo-400 focus:outline-none focus:border-indigo-600 text-indigo-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
-            <option value="" selected hidden>선택</option>
-            <option value="발주처">발주처</option>
-            <option value="부품명(청구품목)">부품명(청구품목)</option>
-            <option value="카테고리(key2)">카테고리(key2)</option>
-        </select>
-
-        <div class="flex">
-            <input  ref={txtC} type="text" name="txt1" onChange={showC1} 
-            placeholder={key || "항목을 먼저 선택해주세요"}
-          class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
-          />
+          <div class="flex">
+            <input ref={txtC} type="text" name="txt1" onChange={showC1}
+              placeholder={key || "항목을 먼저 선택해주세요"}
+              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
+            />
             <button onClick={handleSubmit} class="bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1">
               <BiSearch />
             </button>
-        </div>
+          </div>
 
         </div>
 
@@ -222,35 +182,49 @@ const SearchPage = () => {
           {txtC.current && txtC.current.value.length > 0 ? (
             <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
         </div>
-        
+
 
         {seldata && seldata.length > 0 && (
           <div className='tb1'>
             <div style={{ position: "relative" }}>
-              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <table class="w-10/12 items-center text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" class="px-6 py-3 rounded-l-lg">
                       <input type="checkbox" class="accent-indigo-400" />
                     </th>
                     <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
-                    <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">Machinery</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">Assembly</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">Part No.1</th>
                     <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
                     <th scope="col" class="px-6 py-3 rounded-l-lg">화폐</th>
                     <th scope="col" class="px-6 py-3 rounded-l-lg">가격</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">출고운반선</th>
+                    <th scope="col" class="px-6 py-3 rounded-l-lg">Subject</th>
+
                   </tr>
                 </thead>
                 <tbody>
                   {seldata && seldata.slice(startIndex, endIndex).map((item) => (
                     <tr key={item.id} class="bg-white dark:bg-gray-800">
-                      <td class="px-6 py-4"> 
-                        <input type="checkbox" className="accent-indigo-400" />
+                      <td class="px-6 py-4">
+                        <input type="checkbox" className="accent-indigo-400" value={item.id}
+                        onChange={e => {onCheckedElement(e.target.checked, e.target.value); }}
+                        checked={checkedList.includes(item.data) ? true : false}
+                        />
                       </td>
                       <td class="px-6 py-4">{item.item}</td>
-                      <td class="px-6 py-4">{item.company}</td>
+                      <td class="px-6 py-4">{item.machinery}</td>
+                      <td class="px-6 py-4">{item.assembly}</td>
+                      <td class="px-6 py-4">{item.partNo1}</td>
                       <td class="px-6 py-4">{item.category}</td>
+                      <td class="px-6 py-4">{item.company}</td>
                       <td class="px-6 py-4">{item.currency}</td>
                       <td class="px-6 py-4">{item.price.toLocaleString('ko-KR')}</td>
+                      <td class="px-6 py-4">{item.ship}</td>
+                      <td class="px-6 py-4">{item.subject}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -265,10 +239,10 @@ const SearchPage = () => {
               </ul>
 
               <div className='float-right'>
-              <button className="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                저장
-              </button>
-              </div>      
+                <button className="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                  저장
+                </button>
+              </div>
             </div>
           </div>
         )}

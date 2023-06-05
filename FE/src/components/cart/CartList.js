@@ -1,5 +1,3 @@
-import CartListDetail from './CartListDetail';
-
 const CartList = () => {
     return (
 
