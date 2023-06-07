@@ -7,7 +7,7 @@ df["청구품목"] = df["청구품목"].str.strip()
 df["청구품목"] = df["청구품목"].str.replace('"', '')
 df["청구품목"] = df["청구품목"].str.replace("'", "")
 
-df_product = df[["Assembly" ,"key2", "발주처", "견적화폐","청구품목", '리드타임',"Machinery" ,"Part No.1", "견적단가",'Subject', '출고운반선']].copy()
+df_product = df[["Assembly" ,"key2", "발주처", "견적화폐","청구품목", '리드타임',"Machinery" ,"Part No.1", "견적단가", '출고운반선','Subject']].copy()
 df_product['id'] = df_product.index
 # 여러 컬럼명 변경
 df_product.rename(columns={'청구품목': 'item',
