@@ -17,7 +17,7 @@ const RouterLogin = () => {
         navigate('/mypage')
     }
 
-    const isLoggedIn = !!localStorage.getItem('jwt');
+    const isLoggedIn = !!localStorage.getItem('userId');
 
     const handleLogout = async () => {
         try{
