@@ -10,15 +10,13 @@ const HelpDesk = () => {
     const [isWriting, setIsWriting] = useState(false); // 글 작성 중인지 상태를 관리하는 state
     const [posts, setPosts] = useState([]);
 
-    const token = localStorage.getItem('jwt');
     const userId = localStorage.getItem('userId');
-    console.log('token', token);
 
     const fetchData = async () => {
         const response = await axios.get('/api/board/view', {
+            withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
             }
         });
 
@@ -41,7 +39,6 @@ const HelpDesk = () => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
                     }
                 }
             );

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '../styles/MainPage.css';
 
 const MainPage = () => {
-    const isLoggedIn = !!localStorage.getItem('jwt');
+    const isLoggedIn = !!localStorage.getItem('userId');
 
     const navigate = useNavigate();
 
@@ -26,6 +26,10 @@ const MainPage = () => {
                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                             <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             onClick={goLogin}>로그인</button>
+
+                            <button className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }}>구글 계정으로 로그인</button>
+                           
                             <button className="mt-3 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             onClick={goRegister}>회원가입</button>
                         </div>

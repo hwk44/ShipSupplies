@@ -17,14 +17,14 @@ const RouterNav = () => {
     }
 
 
-    const isLoggedIn = !!localStorage.getItem('jwt');
+    const isLoggedIn = !!localStorage.getItem('userId');
 
     const handleLogout = async () => {
         try{
             // 서버에 로그아웃 요청을 보냅니다.
             // await axios.post('/api/user/logout');
             // setIsLogged(false);
-            localStorage.removeItem('jwt');
+            localStorage.removeItem('userId');
             // localStorage.setItem("jwt", null);
             alert('로그아웃 되었습니다.');
             window.location.href = "/";
