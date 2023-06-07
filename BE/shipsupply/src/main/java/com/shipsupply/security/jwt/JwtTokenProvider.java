@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -52,21 +53,39 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
     }
 
     // Request의 Header에서 token 파싱
-    public String resolveToken(HttpServletRequest req) {
-        logger.info("resolveToken 호출");
-        String token = req.getHeader("Authorization");
-        logger.info("받은 토큰 : " + token);
-        if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
-            token = token.substring(7, token.length());
-            return token;
+//    public String resolveToken(HttpServletRequest req) {
+//        logger.info("resolveToken 호출");
+//        String token = req.getHeader("Authorization");
+//        logger.info("받은 토큰 : " + token);
+//        if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
+//            token = token.substring(7, token.length());
+//            return token;
+//        }
+//        return token;
+//    }
+
+    public String resolveTokenFromCookie(HttpServletRequest request) {
+        logger.info("resolveTokenFromCookie 호출");
+        logger.info("받은 쿠키 : " + request);
+        Cookie[] cookies = request.getCookies();
+        if(cookies != null) {
+            for(Cookie cookie : cookies) {
+                if("Authorization".equals(cookie.getName())) {
+                    logger.info("쿠키에 있는 토큰 : " + cookie.getValue());
+                    return cookie.getValue();
+                }
+            }
         }
-        return token;
+        return null;
     }
 
     // Jwt 토큰의 유효성 + 만료일자 확인
     public boolean validateToken(String jwtToken) {
         logger.info("validateToken 호출");
         try {
+            // parseClaimsHws 메서드가 디코딩 및 파싱
+            // setSigninKey로 넘어온 시크릿을 이용해 헤더와 페이로드를 서명한 후 token의 서명과 비교
+            // 위조되지 않았다면 페이로드(claims) 리턴
             Jws<Claims> claims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(jwtToken);
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
