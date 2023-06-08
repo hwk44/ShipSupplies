@@ -2,6 +2,23 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '../styles/MainPage.css';
 
 const MainPage = () => {
+
+    // getCookie 함수를 정의하여 쿠키를 읽어옴
+    
+    const getCookie = (name) => { 
+        const value = "; " + document.cookie;
+        const parts = value.split("; " + name + "=");
+        if (parts.length === 2) return parts.pop().split(";").shift();
+    }
+
+    // 쿠키 이름을 입력으로 받아 해당 쿠키의 값을 반환
+    // 그런 다음 userId 쿠키를 읽어 로컬 스토리지에 저장
+    const userId = getCookie('userId');
+    if (userId && !localStorage.getItem('userId')) {
+        localStorage.setItem('userId', userId);
+        console.log(localStorage.getItem(userId))
+    }
+    
     const isLoggedIn = !!localStorage.getItem('userId');
 
     const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/HelpDesk.css';
 
 const HelpDesk = () => {
@@ -14,7 +14,7 @@ const HelpDesk = () => {
 
     const fetchData = async () => {
         const response = await axios.get('/api/board/view', {
-            withCredentials: true,
+            // withCredentials: true, //없어도 됨
             headers: {
                 'Content-Type': 'application/json',
             }
