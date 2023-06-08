@@ -10,7 +10,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +30,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication) throws IOException {
         logger.info("onAuthenticationSuccess 호출");
         String userRole = ((GrantedAuthority) authentication.getAuthorities().toArray()[0]).getAuthority(); // 첫 번째 권한을 가져옴(문자열로)
         String token = JwtTokenProvider.createToken(authentication.getName(), userRole);
@@ -55,9 +54,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         userIdCookie.setDomain("localhost"); // 클라이언트 도메인 설정. 없어도 되는듯
         response.addCookie(userIdCookie);
 
-        clearAuthenticationAttributes(request);  //인증 과정에서 저장된 세션을 정리
-
-
+        clearAuthenticationAttributes(request); //인증 과정에서 저장된 세션을 정리
 
         String redirectUrl = "http://localhost:3000";
 
