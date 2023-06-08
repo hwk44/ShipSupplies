@@ -4,6 +4,8 @@ import Logo from '../components/icon/Logo';
 import { BsPerson, BsCart3 } from 'react-icons/bs';
 import { LuLogOut } from "react-icons/lu";
 import Dropdown1 from '../components/Dropdown1';
+import axios from 'axios';
+import { useState } from 'react';
 
 const RouterNav = () => {
     const navigate = useNavigate();
@@ -16,16 +18,20 @@ const RouterNav = () => {
         navigate('/cart')
     }
 
-
     const isLoggedIn = !!localStorage.getItem('userId');
+    const userId = localStorage.getItem('userId');
+    
 
     const handleLogout = async () => {
         try{
-            // 서버에 로그아웃 요청을 보냅니다.
-            // await axios.post('/api/user/logout');
-            // setIsLogged(false);
+            // 서버에 로그아웃 요청
+            const response = await axios.post('/api/user/logout', {
+                user: {id: userId}
+            });
+
+            console.log(response)
+
             localStorage.removeItem('userId');
-            // localStorage.setItem("jwt", null);
             alert('로그아웃 되었습니다.');
             window.location.href = "/";
         } catch (error) {
