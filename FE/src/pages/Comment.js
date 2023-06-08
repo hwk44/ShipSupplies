@@ -91,6 +91,7 @@ const Comment = ({ id }) => {
                 date: new Date(),
                 user: { id: userId },
                 board: { id: id },
+   
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,6 +104,7 @@ const Comment = ({ id }) => {
             await fetchComments();
         } catch (error) {
             console.error(error);
+            alert("권한이 없습니다.")
         }
     };
 
@@ -137,6 +139,7 @@ const Comment = ({ id }) => {
         }
         catch (error) {
             console.log(error)
+            alert("권한이 없습니다.")
         }
     }
 
