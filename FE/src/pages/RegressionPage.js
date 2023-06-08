@@ -20,10 +20,10 @@ const RegressionPage = () => {
 
     try {
       const requestBody = {
-        Subject: subject,
+        subject: subject,
         ship: shipcarrier,
         key2: key2,
-        Assembly: assembly,
+        assembly: assembly,
         currency: currency,
         company: client,
       };
