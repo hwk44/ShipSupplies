@@ -17,7 +17,7 @@ const SearchPage = () => {
 
   // 토큰을 저장하는 변수
   const token = localStorage.getItem('jwt');
-  console.log(token)
+  // console.log(token)
 
   // 드롭다운 가시화 변수
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
@@ -29,7 +29,7 @@ const SearchPage = () => {
 
   const [list1, setList1] = useState([]);
 
-  // 체크박스 데이터 넣을 빈배열
+  // 체크박스 데이터 저장할 빈배열
   const [checkedList, setCheckedList] = useState([]);
 
   const handleOnKeyPress = (e) => {
@@ -163,7 +163,7 @@ const SearchPage = () => {
   };
 
   // 저장버튼 클릭시
-  const handlePred = async (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
 
     try {
@@ -188,7 +188,7 @@ const SearchPage = () => {
   return (
     <>
       <div className='app'>
-        <div className='flex flex-row justify-center my-7'>
+        <div className='flex flex-row justify-center items-center my-7'>
           <select value={selectedItem}
             onChange={(e) => setSelectedItem(e.target.value)}
             class="mx-2 h-10 border-2 border-indigo-400 focus:outline-none focus:border-indigo-600 text-indigo-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
@@ -198,12 +198,13 @@ const SearchPage = () => {
             <option value="카테고리(key2)">카테고리(key2)</option>
           </select>
 
-          
-          <div class="flex">
+
+          {/* <div class="flex">
             <input ref={txtC} type="text" name="txt1" onChange={showC1}
               placeholder={key || "항목을 먼저 선택해주세요"}
               class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
             />
+            
             {txtC.current && txtC.current.value.length > 0 ? (
             <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
 
@@ -211,16 +212,51 @@ const SearchPage = () => {
               class="bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1">
               <BiSearch />
             </button>
+          </div> */}
+
+          <div>
+            <input
+              ref={txtC}
+              type="text"
+              name="txt1"
+              onChange={showC1}
+              placeholder={key || "항목을 먼저 선택해주세요"}
+              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
+            />
+            <select
+              value={txtC.current && txtC.current.value}
+              onChange={(e) => {
+                txtC.current.value = e.target.value;
+                showC1();
+              }}
+              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
+            >
+              <option value="" disabled className=''>
+                {key || "---------"}
+              </option>
+              {ctag.slice(0, 30).map((item) => (
+                <option value={item}>{item}</option>
+              ))}
+            </select>
+            <button
+              onClick={handleSubmit}
+              class="h-10 bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
+            >
+              <BiSearch />
+            </button>
           </div>
+
+
 
 
           {/* <div className="flex">
             <Select
-              ref={txtInput}
+              ref={txtC}
+              type="text"
               name="txt1"
               onChange={showC1}
               options={ctag
-                .filter((item) => item.includes(txtInput.current && txtInput.current.value))
+                .filter((item) => item.includes(txtC.current && txtC.current.value))
                 .slice(0, 30)
                 .map((item) => ({ value: item, label: item }))
               }
@@ -302,7 +338,7 @@ const SearchPage = () => {
           </div>
         )}
         <div className='float-right'>
-          <button onClick={handlePred}
+          <button onClick={handleSave}
             className="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-36">
             저장
           </button>
