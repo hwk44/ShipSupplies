@@ -59,6 +59,11 @@ const SearchPage = () => {
     }
   };
 
+  // 2️⃣ x를 누르면 리스팅 목록에서 카테고리가 삭제되며 체크도 해제 된다
+  const onRemove = item => {
+    setCheckedList(checkedList.filter(el => el !== item));
+  };
+
   useEffect(() => {
     // console.log('선택된 항목:', selectedItem);
     if (selectedItem.includes("카테고리")) {
@@ -308,14 +313,21 @@ const SearchPage = () => {
                   <tr key={item.id} class="bg-white dark:bg-gray-800">
                     <td class="px-6 py-4">
                       <input type="checkbox" className="accent-indigo-400"
-                        id={item.id} value={item.id}
-                        onChange={e => { onCheckedItem(e, item); }}
+                        id={item.id}
+                        // 이때 value값으로 data를 지정해준다.
+                        value={item.id}
+                        // onChange이벤트가 발생하면 check여부와 value(data)값을 전달하여 배열에 data를 넣어준다.
+                        onChange={e => {
+                          onCheckedElement(e.target.checked, e.target.value);
+                        }}
+                        // 3️⃣ 체크표시 & 해제를 시키는 로직. 배열에 item.item이 있으면 true, 없으면 false
+                        checked={checkedList.includes(item.item) ? true : false}
                       />
                     </td>
                     <td class="px-6 py-4">{item.item}</td>
                     <td class="px-6 py-4">{item.machinery}</td>
                     <td class="px-6 py-4">{item.assembly}</td>
-                    <td class="px-6 py-4">{item.partNo1}</td>z
+                    <td class="px-6 py-4">{item.partNo1}</td>
                     <td class="px-6 py-4">{item.category}</td>
                     <td class="px-6 py-4">{item.company}</td>
                     <td class="px-6 py-4">{item.currency}</td>
@@ -326,6 +338,26 @@ const SearchPage = () => {
                 ))}
               </tbody>
             </table>
+
+            <div>
+              {/* checkedList가 빈배열일 경우, 즉 아무 데이터도 없을땐 길이가0이므로 조건부 렌더링을 사용하여 "카테고리를 지정해주세요" 문구가 출력되게 한다. */}
+              {checkedList.length === 0 && (
+                <p>{'카테고리를 지정해 주세요.'}</p>
+              )}
+
+              {/* checkedList에 데이터가 들어가있을 경우 위와 마찬지로 map함수를 사용하여 데이터가 리스팅되도록 한다. */}
+              {checkedList.map(item => {
+                return (
+                  <div key={item}>
+                    <p>{item}</p>
+                    {/* 카테고리를 삭제하면 배열에서 데이터가 삭제돠게 만드는 이벤트 */}
+                    <div onClick={() => onRemove(item)}>
+                      X
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
             <ul className="pagination">
               {[...Array(Math.ceil(seldata.length / ITEMS_PER_PAGE)).keys()].map((pageNumber) => (

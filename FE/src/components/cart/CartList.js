@@ -1,4 +1,12 @@
+import { Link, useNavigate } from 'react-router-dom';
+
 const CartList = () => {
+
+  const navigate = useNavigate();
+
+  const handleLeadtime = () => {
+    navigate("/pastleadtime");
+  }
   return (
 
     // <div className="cartlistcontent">
@@ -18,7 +26,7 @@ const CartList = () => {
     // </div>
     <>
       <div className='flex justify-center'>
-        <table class="w-11/12 my-14 text-sm text-left text-gray-500 dark:text-gray-400">
+        <table class="w-11/12 my-14 text-sm text-left text-gray-500 dark:text-gray-400" >
           <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" class="px-6 py-3 rounded-l-lg">
@@ -35,7 +43,7 @@ const CartList = () => {
           </thead>
           <tbody>
 
-            <tr class="bg-white dark:bg-gray-800">
+            <tr class="bg-white dark:bg-gray-800" onClick={handleLeadtime}>
               <td class="px-6 py-4">
                 <input type="checkbox" className="accent-indigo-400" />
               </td>
