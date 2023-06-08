@@ -18,7 +18,7 @@ const MainPage = () => {
         localStorage.setItem('userId', userId);
         console.log(localStorage.getItem(userId))
     }
-    
+
     const isLoggedIn = !!localStorage.getItem('userId');
 
     const navigate = useNavigate();

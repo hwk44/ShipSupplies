@@ -55,7 +55,15 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         userIdCookie.setDomain("localhost"); // 클라이언트 도메인 설정. 없어도 되는듯
         response.addCookie(userIdCookie);
 
-        clearAuthenticationAttributes(request); //인증 과정에서 저장된 세션을 정리
+
+        Cookie userIdCookie = new Cookie("userId", authentication.getName());
+        userIdCookie.setHttpOnly(false);
+        tokenCookie.setPath("/");
+        response.addCookie(userIdCookie);
+
+        clearAuthenticationAttributes(request);  //인증 과정에서 저장된 세션을 정리
+
+
 
         String redirectUrl = "http://localhost:3000";
 
