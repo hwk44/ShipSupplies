@@ -12,7 +12,6 @@ const PostDetail = () => {
 
     const navigate = useNavigate();
 
-    const token = localStorage.getItem('jwt');
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
@@ -20,7 +19,6 @@ const PostDetail = () => {
             const response = await axios.get(`/api/board/view/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
                 }
             });
             setPost(response.data);
@@ -40,14 +38,12 @@ const PostDetail = () => {
             await axios.put(`/api/board/update/${id}`, updatedPost, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
                 }
             });
             setEditing(false);
             const response = await axios.get(`/api/board/view/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
                 }
             });
             setPost(response.data);
@@ -67,7 +63,6 @@ const PostDetail = () => {
             await axios.delete(`/api/board/delete/${id}`, {
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
                 },
                 data: data
             });
