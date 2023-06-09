@@ -7,11 +7,12 @@ const PredictionPage = () => {
   const [partno1, setPartno1] = useState('');
   const [item, setItem] = useState('');
   const [prediction, setPrediction] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const token = localStorage.getItem('jwt');
-  console.log('token', token);
 
   const handlePred = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     try {
@@ -30,7 +31,6 @@ const PredictionPage = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
           }
         }
       );
@@ -39,6 +39,8 @@ const PredictionPage = () => {
       setPrediction(response.data); // 카테고리 값을 상태에 저장
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -110,7 +112,7 @@ const PredictionPage = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                카테고리 예측
+                {isLoading ? '카테고리를 예측하고 있습니다...' : '카테고리 예측'}
               </button>
             </div>
           </form>

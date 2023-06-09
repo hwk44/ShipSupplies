@@ -29,6 +29,10 @@ const SearchPage = () => {
   // 체크박스 데이터 저장할 빈배열
   const [checkedList, setCheckedList] = useState([]);
 
+  // 저장 버튼 클릭 시 응답 기다리는 변수
+  const [isLoading, setIsLoading] = useState(false);
+
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -74,7 +78,6 @@ const SearchPage = () => {
 
   // key 값이 변할때 data를 다르게 불러오도록 하는 useEffect
   useEffect(() => {
-    console.log(key)
     const newList1 = data[key] || [];;
     setList1(newList1);
     // console.log(list1)
@@ -164,6 +167,7 @@ const SearchPage = () => {
 
   // 저장버튼 클릭시
   const handleSave = async (e) => {
+    setIsLoading(true); // 요청이 시작될 때 true로 변경
     console.log('Checked items:', checkedList);
 
     e.preventDefault();
@@ -171,16 +175,15 @@ const SearchPage = () => {
     try {
       // 필요한 데이터를 추출
       const selectedItems = seldata.filter((item) => checkedList.includes(item.id));
-      console.log('selectedItems',selectedItems)
+      console.log('selectedItems', selectedItems)
 
       if (selectedItems.length === 0) {
-        throw new Error('No items selected');
+        throw new Error('선택된 아이템 없음');
       }
 
-      // 선택된 각 아이템에 대해 요청을 보낸다.
-      for (const itemToSend of selectedItems) {
-        // POST 요청
-        const response = await axios.post(
+      // 선택된 아이템에 대한 요청을 모두 생성
+      const requests = selectedItems.map(itemToSend =>
+        axios.post(
           '/api/item/predict/regression',
           {
             subject: itemToSend.subject,
@@ -195,33 +198,32 @@ const SearchPage = () => {
               'Content-Type': 'application/json',
             }
           }
-        );
-        // 각 아이템의 응답을 콘솔에 출력
-        console.log(response.data);
+        ).then(response => ({ ...itemToSend, response: response.data }))
+      );
 
-        // 새로운 페이지로 이동하면서 데이터 전달
-        navigate('/cart', {
-          state: {
-            sentData: {
-              subject: itemToSend.subject,
-              ship: itemToSend.ship,
-              key2: itemToSend.category,
-              assembly: itemToSend.assembly,
-              currency: itemToSend.currency,
-              company: itemToSend.company,
-              item: itemToSend.item,
-              machinery: itemToSend.machinery,
-              price: itemToSend.price,
-            },
-            receivedData: response.data,
-          },
-        });
+      // 요청들을 병렬로 수행하고 결과를 배열로 저장
+      const results = await Promise.all(requests);
 
-      }
+      // 결과 배열을 sentData와 receivedData로 분리
+      const sentData = results.map(({ response, ...item }) => item);
+      const receivedData = results.map(({ response }) => response);
+
+      // 한 번에 페이지 이동
+      navigate('/cart', {
+        state: {
+          sentData: sentData,
+          receivedData: receivedData,
+        },
+      });
+
+      alert("저장되었습니다.");
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false) // 요청이 끝나면 다시 false로 변경
     }
   };
+
 
   // 페이지 전환 핸들러
   const handlePageChange = (pageNumber) => {
@@ -392,7 +394,7 @@ const SearchPage = () => {
         <div className='float-right'>
           <button onClick={handleSave}
             className="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-36">
-            저장
+            {isLoading ? 'Loading...' : '저장'}
           </button>
         </div>
 
