@@ -10,12 +10,13 @@ const RegressionPage = () => {
   const [client, setClient] = useState(''); // 발주처
   const [regression, setRegression] = useState('');
 
+  //응답 기다리는 변수
+  const [isLoading, setIsLoading] = useState(false);
+
   const [item, setItem] = useState('');
 
-  const token = localStorage.getItem('jwt');
-  console.log('token', token);
-
   const handlePred = async (e) => {
+    setIsLoading(true); // 요청이 시작될 때 true로 변경
     e.preventDefault();
 
     try {
@@ -36,7 +37,6 @@ const RegressionPage = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`
           }
         }
       );
@@ -45,6 +45,8 @@ const RegressionPage = () => {
       setRegression(response.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false); // 요청이 끝나면 false로 변경
     }
   };
 
@@ -154,7 +156,7 @@ const RegressionPage = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                리드타임 예측
+                {isLoading? '리드타임을 예측하고 있습니다...': '리드타임 예측'}
               </button>
             </div>
           </form>

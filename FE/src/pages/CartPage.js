@@ -31,7 +31,7 @@ const CartPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {sentData && Array.isArray(sentData) ? sentData.map((data, index) => (
+                        {sentData && Array.isArray(sentData) && receivedData ? sentData.map((data, index) => (
                             <tr key={index}>
                                 <td class="px-6 py-4">
                                     <input type="checkbox" className="accent-indigo-400" />
@@ -42,7 +42,9 @@ const CartPage = () => {
                                 <td>{data.currency}</td>
                                 <td>{data.price}</td>
                                 <td>{data.company}</td>
-                                <td>{receivedData[index]}</td>
+                                <td>{receivedData[index]?.pred}</td>
+                                {/* ?. 연산자는 옵셔널 체이닝(optional chaining) 연산자. 
+                                receivedData[index]가 undefined 또는 null이라면 전체 표현식이 undefined로 평가됨 */}
                             </tr>
                         )) : (
                             <tr>
@@ -55,10 +57,11 @@ const CartPage = () => {
                                 <td>{sentData?.currency}</td>
                                 <td>{sentData?.price}</td>
                                 <td>{sentData?.company}</td>
-                                <td>{receivedData['pred']}</td>
+                                <td>{receivedData?.pred}</td>
                             </tr>
                         )}
                     </tbody>
+
 
                 </table>
             </div>
