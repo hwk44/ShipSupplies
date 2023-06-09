@@ -14,8 +14,7 @@ const CartPage = () => {
     useEffect(() => {
         const fetchList = async () => {
             try {
-                const response = await axios.get(`/api/wish/get/${userId}`, {
-                })
+                const response = await axios.get(`/api/wish/get/?userId=${userId}`)
                 console.log('wishlist : ', response);
                 setWishList(response.data);
             } catch (error) {
@@ -35,7 +34,6 @@ const CartPage = () => {
                             <th scope="col" class="px-6 py-3 rounded-l-lg">
                                 <input type="checkbox" class="accent-indigo-400" />
                             </th>
-                            <th scope="col" class="px-6 py-3 rounded-l-lg">No.</th>
                             <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
                             <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
                             <th scope="col" class="px-6 py-3 rounded-l-lg">Machinery</th>
@@ -49,7 +47,6 @@ const CartPage = () => {
                         {wishList.map(item => (
                             <tr key={item.id}>
                                 <td scope="col" class="px-6 py-3 rounded-l-lg"><input type="checkbox" class="accent-indigo-400" /></td>
-                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.id}</td>
                                 <td scope="col" class="px-6 py-3 rounded-l-lg">{item.item}</td>
                                 <td scope="col" class="px-6 py-3 rounded-l-lg">{item.category}</td>
                                 <td scope="col" class="px-6 py-3 rounded-l-lg">{item.machinery}</td>
