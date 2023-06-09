@@ -1,16 +1,29 @@
+import userEvent from "@testing-library/user-event";
 import { useState, useEffect, useRef } from "react";
 import CartList from "../components/cart/CartList";
 import '../styles/Cart.css';
-import { useLocation } from 'react-router-dom';
+import axios from "axios";
+import { isCompositeComponent } from "react-dom/test-utils";
+
 
 const CartPage = () => {
 
-    const location = useLocation(); // useLocation hook을 사용해 현재 위치 정보를 가져옵니다.
-    const { state } = location || {}; // location 객체에서 state를 추출합니다. 
-    const { sentData, receivedData } = state || {}; // state에서 sentData와 receivedData를 추출합니다.
+    const [wishList, setWishList] = useState([]); // 서버로부터 받은 데이터 저장할 변수
+    const userId = localStorage.getItem('userId');
 
-    console.log("sentData", sentData)
-    console.log("received data", receivedData)
+    useEffect(() => {
+        const fetchList = async () => {
+            try {
+                const response = await axios.get(`/api/wish/get/?userId=${userId}`)
+                console.log('wishlist : ', response);
+                setWishList(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchList();
+    }, [])
+
 
     return (
         <>
@@ -31,35 +44,18 @@ const CartPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {sentData && Array.isArray(sentData) && receivedData ? sentData.map((data, index) => (
-                            <tr key={index}>
-                                <td class="px-6 py-4">
-                                    <input type="checkbox" className="accent-indigo-400" />
-                                </td>
-                                <td>{data.item}</td>
-                                <td>{data.category}</td>
-                                <td>{data.machinery}</td>
-                                <td>{data.currency}</td>
-                                <td>{data.price}</td>
-                                <td>{data.company}</td>
-                                <td>{receivedData[index]?.pred}</td>
-                                {/* ?. 연산자는 옵셔널 체이닝(optional chaining) 연산자. 
-                                receivedData[index]가 undefined 또는 null이라면 전체 표현식이 undefined로 평가됨 */}
+                        {wishList.map(item => (
+                            <tr key={item.id}>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg"><input type="checkbox" class="accent-indigo-400" /></td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.item}</td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.category}</td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.machinery}</td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.currency}</td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.price}</td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.company}</td>
+                                <td scope="col" class="px-6 py-3 rounded-l-lg">{item.leadtime}</td>
                             </tr>
-                        )) : (
-                            <tr>
-                                <td class="px-6 py-4">
-                                    <input type="checkbox" className="accent-indigo-400" />
-                                </td>
-                                <td>{sentData?.item}</td>
-                                <td>{sentData?.key2}</td>
-                                <td>{sentData?.machinery}</td>
-                                <td>{sentData?.currency}</td>
-                                <td>{sentData?.price}</td>
-                                <td>{sentData?.company}</td>
-                                <td>{receivedData?.pred}</td>
-                            </tr>
-                        )}
+                        ))}
                     </tbody>
 
 
