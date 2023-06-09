@@ -33,6 +33,7 @@ const LoginPage = () => {
             navigate('/'); // 로그인 완료 후 메인 페이지로 이동
         } catch (error) {
             setShowErrorMessage(true);
+            alert("ID 혹은 비밀번호가 일치하지 않습니다.")
             console.log(error);
         }
     };

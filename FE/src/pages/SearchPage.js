@@ -32,10 +32,10 @@ const SearchPage = () => {
   // 저장 버튼 클릭 시 응답 기다리는 변수
   const [isLoading, setIsLoading] = useState(false);
 
-
   const navigate = useNavigate();
   const location = useLocation();
 
+  const userId = localStorage.getItem('userId');
 
   const handleOnKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -182,43 +182,74 @@ const SearchPage = () => {
       }
 
       // 선택된 아이템에 대한 요청을 모두 생성
-      const requests = selectedItems.map(itemToSend =>
-        axios.post(
-          '/api/item/predict/regression',
-          {
-            subject: itemToSend.subject,
-            ship: itemToSend.ship,
-            key2: itemToSend.category,
-            assembly: itemToSend.assembly,
-            currency: itemToSend.currency,
-            company: itemToSend.company,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
+      const requests = selectedItems.map(async itemToSend => {
+        try {
+          // 첫 번째 요청
+          const response = await axios.post(
+            '/api/item/predict/regression',
+            {
+              subject: itemToSend.subject,
+              ship: itemToSend.ship,
+              key2: itemToSend.category,
+              assembly: itemToSend.assembly,
+              currency: itemToSend.currency,
+              company: itemToSend.company,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
             }
-          }
-        ).then(response => ({ ...itemToSend, response: response.data }))
-      );
+          );
+
+          const itemWithResponse = { ...itemToSend, response: response.data };
+
+          // 두 번째 요청
+          await axios.post(
+            '/api/wish/add',
+            {
+              item: itemWithResponse.item,
+              category: itemWithResponse.category,
+              machinery: itemWithResponse.machinery,
+              currency: itemWithResponse.currency,
+              price: itemWithResponse.price,
+              company: itemWithResponse.company,
+              leadtime: itemWithResponse.response.pred,
+              user: {id: userId}
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            }
+          );
+
+          return itemWithResponse;
+        } catch (error) {
+          console.error('Error during requests:', error);
+        }
+      });
 
       // 요청들을 병렬로 수행하고 결과를 배열로 저장
       const results = await Promise.all(requests);
+      console.log('results : ', results)
 
       // 결과 배열을 sentData와 receivedData로 분리
-      const sentData = results.map(({ response, ...item }) => item);
-      const receivedData = results.map(({ response }) => response);
+      // const sentData = results.map(({ response, ...item }) => item);
+      // const receivedData = results.map(({ response }) => response);
 
       // 한 번에 페이지 이동
       navigate('/cart', {
-        state: {
-          sentData: sentData,
-          receivedData: receivedData,
-        },
+      //   // state: {
+      //   //   sentData: sentData,
+      //   //   receivedData: receivedData,
+      //   // },
       });
 
       alert("저장되었습니다.");
     } catch (error) {
       console.log(error);
+      alert("저장 실패")
     } finally {
       setIsLoading(false) // 요청이 끝나면 다시 false로 변경
     }
