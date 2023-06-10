@@ -8,7 +8,6 @@ import '../styles/Search.css';
 import { BiSearch } from "react-icons/bi";
 import Select from 'react-select';
 
-
 const SearchPage = () => {
   // 드롭다운 선택 후 해당 데이터
   const [seldata, setSelData] = useState(null);
@@ -33,15 +32,8 @@ const SearchPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const userId = localStorage.getItem('userId');
-
-  const handleOnKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
-  }
 
   const onCheckedItem = useCallback(
     (checked, item) => {
@@ -97,7 +89,7 @@ const SearchPage = () => {
 
 
   // 선택된 항목 buttonText
-  const buttonText = selectedItem || '항목선택';
+  // const buttonText = selectedItem || '항목선택';
 
   const [selcate, setSelcate] = useState();
   const txtC = useRef();
@@ -116,18 +108,18 @@ const SearchPage = () => {
   // 초기값 빈배열[]
   const [ctag, setCTag] = useState([]);
 
-  const showC1 = (e) => {
-    console.log("txtC", txtC);
-    // txtC 값을 소문자로 바꾸고
-    const searchText = txtC.current.value.toLowerCase();
-    // 그 값을 포함하는 list filter로 거름 
-    const temp = list1.filter((i) => i.toLowerCase().includes(searchText));
-    setCTag(
-      temp.map((i) => (
-        <li onClick={() => selItem(i)} key={i}>{i}</li>
-      ))
-    );
-  };
+  // const showC1 = (e) => {
+  //   console.log("txtC", txtC);
+  //   // txtC 값을 소문자로 바꾸고
+  //   const searchText = txtC.current.value.toLowerCase();
+  //   // 그 값을 포함하는 list filter로 거름 
+  //   const temp = list1.filter((i) => i.toLowerCase().includes(searchText));
+  //   setCTag(
+  //     temp.map((i) => (
+  //       <li onClick={() => selItem(i)} key={i}>{i}</li>
+  //     ))
+  //   );
+  // };
 
   // 돋보기 버튼 클릭시 txtC, key 값을 넘기는 get 요청
   const handleSubmit = async () => {
@@ -137,15 +129,15 @@ const SearchPage = () => {
       if (key === "key2") {
         // requestUrl = "/api/item/findByCategory";
         requestUrl = "/api/item/findByCategory";
-        requestUrl = requestUrl + "?category=" + txtC.current.value;
+        requestUrl = requestUrl + "?category=" + selectSel1['value'];
         console.log(requestUrl)
         // /?category=cooler
       } else if (key === "청구품목") {
         requestUrl = "/api/item/findByItem";
-        requestUrl = requestUrl + "?item=" + txtC.current.value;
+        requestUrl = requestUrl + "?item=" + selectSel1['value'];
       } else if (key === "발주처") {
         requestUrl = "/api/item/findByCompany";
-        requestUrl = requestUrl + "?company=" + txtC.current.value;
+        requestUrl = requestUrl + "?company=" + selectSel1['value'];
       } else {
         console.error("Invalid key value:", key);
         return;
@@ -159,7 +151,7 @@ const SearchPage = () => {
         }
       );
       setSelData(response.data);
-      console.log("DATA", response.data);
+      // console.log("DATA", response.data);
     } catch (error) {
       console.error("GET 요청 에러:", error);
     }
@@ -167,6 +159,13 @@ const SearchPage = () => {
 
   // 저장버튼 클릭시
   const handleSave = async (e) => {
+
+    // seldata가 null일 때 에러 방지를 위한 체크
+    if (!seldata) {
+      console.error("seldata is null");
+      return;
+    }
+
     setIsLoading(true); // 요청이 시작될 때 true로 변경
     console.log('Checked items:', checkedList);
 
@@ -215,7 +214,7 @@ const SearchPage = () => {
               price: itemWithResponse.price,
               company: itemWithResponse.company,
               leadtime: itemWithResponse.response.pred,
-              user: {id: userId}
+              user: { id: userId }
             },
             {
               headers: {
@@ -239,12 +238,7 @@ const SearchPage = () => {
       // const receivedData = results.map(({ response }) => response);
 
       // 한 번에 페이지 이동
-      navigate('/cart', {
-      //   // state: {
-      //   //   sentData: sentData,
-      //   //   receivedData: receivedData,
-      //   // },
-      });
+      navigate('/cart');
 
       alert("저장되었습니다.");
     } catch (error) {
@@ -266,6 +260,40 @@ const SearchPage = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
+  // 페이지네이션 숫자 배열 생성
+  const pageNumbers = seldata
+    ? [...Array(Math.ceil(seldata.length / ITEMS_PER_PAGE)).keys()]
+    : [];
+
+  // 현재 페이지가 속한 페이지 그룹 인덱스 계산
+  const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
+
+  // n 개씩 페이지네이션 그룹으로 나누기
+  const pageGroups = [];
+  for (let i = 0; i < pageNumbers.length; i += 10) {
+    pageGroups.push(pageNumbers.slice(i, i + 10));
+  }
+
+
+  let sel1 = [];
+  if (key === '발주처' || key === '청구품목' || key === 'key2') {
+    if (Array.isArray(data[key])) {
+      sel1 = data[key].map((i) => ({
+        value: i,
+        label: i,
+      }));
+    }
+  }
+  sel1 = [{ value: '', label: '' }, ...sel1];
+  // console.log(sel1)
+  const [selectSel1, setSelectSel] = useState(sel1[0]);
+  //안에 들어가는 값을 받아야해서 state사용
+
+  useEffect(() => {
+    // console.log(selectSel1)
+  }, [selectSel1]);
+
+
   return (
     <>
       <div className='app'>
@@ -279,156 +307,108 @@ const SearchPage = () => {
             <option value="카테고리(key2)">카테고리(key2)</option>
           </select>
 
-
-          {/* <div class="flex">
-            <input ref={txtC} type="text" name="txt1" onChange={showC1}
-              placeholder={key || "항목을 먼저 선택해주세요"}
-              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
-            />
-            
-            {txtC.current && txtC.current.value.length > 0 ? (
-            <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
-
-            <button onClick={handleSubmit} onKeyDown={handleOnKeyPress}
-              class="bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1">
-              <BiSearch />
-            </button>
-          </div> */}
-
-          <div>
-            <input
-              ref={txtC}
-              type="text"
-              name="txt1"
-              onChange={showC1}
-              placeholder={key || "항목을 먼저 선택해주세요"}
-              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
-            />
-            <select
-              value={txtC.current && txtC.current.value}
-              onChange={(e) => {
-                txtC.current.value = e.target.value;
-                showC1();
-              }}
-              class="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
-            >
-              <option value="" disabled className=''>
-                {key || "---------"}
-              </option>
-              {ctag.slice(0, 30).map((item) => (
-                <option value={item}>{item}</option>
-              ))}
-            </select>
-            <button
-              onClick={handleSubmit}
-              class="h-10 bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
-            >
-              <BiSearch />
-            </button>
+          <div className='w-2/6'>
+            <Select options={sel1} //위에서 만든 배열을 select로 넣기
+              onChange={setSelectSel} //값이 바뀌면 setState되게
+              defaultValue={sel1[0]} />
           </div>
 
 
-
-
-          {/* <div className="flex">
-            <Select
-              ref={txtC}
-              type="text"
-              name="txt1"
-              onChange={showC1}
-              options={ctag
-                .filter((item) => item.includes(txtC.current && txtC.current.value))
-                .slice(0, 30)
-                .map((item) => ({ value: item, label: item }))
-              }
-              placeholder={key || "항목을 먼저 선택해주세요"}
-              className="w-full md:w-80 px-3 h-10 rounded-l border-2 border-indigo-400 focus:outline-none focus:border-indigo-600"
-            />
-            <button
-              onClick={handleSubmit}
-              // onKeyDown={handleOnKeyPress}
-              className="bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
-            >
-              <BiSearch />
-            </button>
-          </div> */}
-
-
-        </div>
-
-        {/* 검색창 드롭박스 내려오는 부분 */}
-        {/* <div>
-          {txtC.current && txtC.current.value.length > 0 ? (
-            <ul>{ctag.slice(0, 30).map((item) => item)}</ul>) : null}
-        </div> */}
-
-
-        {seldata && seldata.length > 0 && (
-          <div class="flex flex-col justify-center items-center">
-            <table class="w-10/12 items-center text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">
-                    <input type="checkbox" class="accent-indigo-400" />
-                  </th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">Machinery</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">Assembly</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">Part No.1</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">화폐</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">가격</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">출고운반선</th>
-                  <th scope="col" class="px-6 py-3 rounded-l-lg">Subject</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                {seldata && seldata.slice(startIndex, endIndex).map((item) => (
-                  <tr key={item.id} class="bg-white dark:bg-gray-800">
-                    <td class="px-6 py-4">
-                      <input
-                        type="checkbox"
-                        className="accent-indigo-400"
-                        id={item.id}
-                        value={item.id}
-                        onChange={(e) => onCheckedItem(e.target.checked, item.id)}
-                      />
-                    </td>
-                    <td class="px-6 py-4">{item.item}</td>
-                    <td class="px-6 py-4">{item.machinery}</td>
-                    <td class="px-6 py-4">{item.assembly}</td>
-                    <td class="px-6 py-4">{item.partNo1}</td>
-                    <td class="px-6 py-4">{item.category}</td>
-                    <td class="px-6 py-4">{item.company}</td>
-                    <td class="px-6 py-4">{item.currency}</td>
-                    <td class="px-6 py-4">{item.price.toLocaleString('ko-KR')}</td>
-                    <td class="px-6 py-4">{item.ship}</td>
-                    <td class="px-6 py-4">{item.subject}</td>
-                  </tr>
-                ))}
-
-              </tbody>
-            </table>
-
-            <ul className="pagination">
-              {[...Array(Math.ceil(seldata.length / ITEMS_PER_PAGE)).keys()].map((pageNumber) => (
-                <li key={pageNumber} onClick={() => handlePageChange(pageNumber + 1)}>{pageNumber + 1}
-                </li>
-              )
-              )}
-            </ul>
-
-          </div>
-        )}
-        <div className='float-right'>
-          <button onClick={handleSave}
-            className="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-36">
-            {isLoading ? 'Loading...' : '저장'}
+          <button
+            onClick={handleSubmit}
+            class="h-10 bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
+          >
+            <BiSearch />
           </button>
         </div>
+      </div>
 
+      {seldata && seldata.length > 0 && (
+        <div class="flex flex-col justify-center items-center">
+          <table class="w-10/12 items-center text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">
+                  <input type="checkbox" class="accent-indigo-400" />
+                </th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">Machinery</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">Assembly</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">Part No.1</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">화폐</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">가격</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">출고운반선</th>
+                <th scope="col" class="px-6 py-3 rounded-l-lg">Subject</th>
+              </tr>
+            </thead>
+            <tbody>
+              {seldata && seldata.slice(startIndex, endIndex).map((item) => (
+                <tr key={item.id} class="bg-white dark:bg-gray-800">
+                  <td class="px-6 py-4">
+                    <input
+                      type="checkbox"
+                      className="accent-indigo-400"
+                      id={item.id}
+                      value={item.id}
+                      onChange={(e) => onCheckedItem(e.target.checked, item.id)}
+                    />
+                  </td>
+                  <td class="px-6 py-4">{item.item}</td>
+                  <td class="px-6 py-4">{item.machinery}</td>
+                  <td class="px-6 py-4">{item.assembly}</td>
+                  <td class="px-6 py-4">{item.partNo1}</td>
+                  <td class="px-6 py-4">{item.category}</td>
+                  <td class="px-6 py-4">{item.company}</td>
+                  <td class="px-6 py-4">{item.currency}</td>
+                  <td class="px-6 py-4">{item.price.toLocaleString('ko-KR')}</td>
+                  <td class="px-6 py-4">{item.ship}</td>
+                  <td class="px-6 py-4">{item.subject}</td>
+                </tr>
+              ))}
+
+            </tbody>
+          </table>
+
+
+  <ul className="pagination">
+    {currentPageGroupIndex > 0 && (
+      <li>
+        <span onClick={() => handlePageChange((currentPageGroupIndex - 1) * 10 + 1)}>
+          &lt; 이전
+        </span>
+      </li>
+    )}
+    {pageGroups[currentPageGroupIndex]?.map((pageNumber) => (
+      <li key={pageNumber}>
+        <span
+          onClick={() => handlePageChange(pageNumber + 1)}
+          className={currentPage === pageNumber + 1 ? "active" : ""}
+        >
+          {pageNumber + 1}
+        </span>
+      </li>
+    ))}
+    {currentPageGroupIndex < pageGroups.length - 1 && (
+      <li>
+        <span onClick={() => handlePageChange((currentPageGroupIndex + 1) * 10 + 1)}>
+          다음 &gt;
+        </span>
+      </li>
+    )}
+  </ul>
+
+
+
+
+        </div>
+      )}
+      <div className='float-right'>
+        <button onClick={handleSave}
+          className="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-36">
+          {isLoading ? 'Loading...' : '저장'}
+        </button>
       </div>
     </>
   );
