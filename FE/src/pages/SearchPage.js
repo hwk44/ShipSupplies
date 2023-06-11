@@ -266,6 +266,7 @@ const SearchPage = () => {
     : [];
 
   // 현재 페이지가 속한 페이지 그룹 인덱스 계산
+
   const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
 
   // n 개씩 페이지네이션 그룹으로 나누기
@@ -372,35 +373,32 @@ const SearchPage = () => {
           </table>
 
 
-  <ul className="pagination">
-    {currentPageGroupIndex > 0 && (
-      <li>
-        <span onClick={() => handlePageChange((currentPageGroupIndex - 1) * 10 + 1)}>
-          &lt; 이전
-        </span>
-      </li>
-    )}
-    {pageGroups[currentPageGroupIndex]?.map((pageNumber) => (
-      <li key={pageNumber}>
-        <span
-          onClick={() => handlePageChange(pageNumber + 1)}
-          className={currentPage === pageNumber + 1 ? "active" : ""}
-        >
-          {pageNumber + 1}
-        </span>
-      </li>
-    ))}
-    {currentPageGroupIndex < pageGroups.length - 1 && (
-      <li>
-        <span onClick={() => handlePageChange((currentPageGroupIndex + 1) * 10 + 1)}>
-          다음 &gt;
-        </span>
-      </li>
-    )}
-  </ul>
-
-
-
+          <ul className="pagination">
+            {currentPageGroupIndex > 0 && (
+              <li>
+                <span onClick={() => handlePageChange((currentPageGroupIndex - 1) * 10 + 1)}>
+                  &lt; 이전
+                </span>
+              </li>
+            )}
+            {pageGroups[currentPageGroupIndex]?.map((pageNumber) => (
+              <li key={pageNumber}>
+                <span
+                  onClick={() => handlePageChange(pageNumber + 1)}
+                  className={currentPage === pageNumber + 1 ? "active" : ""}
+                >
+                  {pageNumber + 1}
+                </span>
+              </li>
+            ))}
+            {currentPageGroupIndex < pageGroups.length - 1 && (
+              <li>
+                <span onClick={() => handlePageChange((currentPageGroupIndex + 1) * 10 + 1)}>
+                  다음 &gt;
+                </span>
+              </li>
+            )}
+          </ul>
 
         </div>
       )}
