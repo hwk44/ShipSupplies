@@ -34,6 +34,7 @@ const Comment = ({ id }) => {
             ));
         } catch (error) {
             console.error(error);
+            alert("좋아요는 한 번만 가능합니다.")
         }
     };
 
