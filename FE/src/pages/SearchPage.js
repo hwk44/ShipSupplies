@@ -32,15 +32,8 @@ const SearchPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   const userId = localStorage.getItem('userId');
-
-  const handleOnKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
-  }
 
   const onCheckedItem = useCallback(
     (checked, item) => {
@@ -96,7 +89,7 @@ const SearchPage = () => {
 
 
   // 선택된 항목 buttonText
-  const buttonText = selectedItem || '항목선택';
+  // const buttonText = selectedItem || '항목선택';
 
   const [selcate, setSelcate] = useState();
   const txtC = useRef();
@@ -115,18 +108,18 @@ const SearchPage = () => {
   // 초기값 빈배열[]
   const [ctag, setCTag] = useState([]);
 
-  const showC1 = (e) => {
-    console.log("txtC", txtC);
-    // txtC 값을 소문자로 바꾸고
-    const searchText = txtC.current.value.toLowerCase();
-    // 그 값을 포함하는 list filter로 거름 
-    const temp = list1.filter((i) => i.toLowerCase().includes(searchText));
-    setCTag(
-      temp.map((i) => (
-        <li onClick={() => selItem(i)} key={i}>{i}</li>
-      ))
-    );
-  };
+  // const showC1 = (e) => {
+  //   console.log("txtC", txtC);
+  //   // txtC 값을 소문자로 바꾸고
+  //   const searchText = txtC.current.value.toLowerCase();
+  //   // 그 값을 포함하는 list filter로 거름 
+  //   const temp = list1.filter((i) => i.toLowerCase().includes(searchText));
+  //   setCTag(
+  //     temp.map((i) => (
+  //       <li onClick={() => selItem(i)} key={i}>{i}</li>
+  //     ))
+  //   );
+  // };
 
   // 돋보기 버튼 클릭시 txtC, key 값을 넘기는 get 요청
   const handleSubmit = async () => {
@@ -273,11 +266,13 @@ const SearchPage = () => {
     : [];
 
   // 현재 페이지가 속한 페이지 그룹 인덱스 계산
-  const currentPageGroupIndex = Math.floor((currentPage - 1) / 5);
-  // 5개씩 페이지네이션 그룹으로 나누기
+
+  const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
+
+  // n 개씩 페이지네이션 그룹으로 나누기
   const pageGroups = [];
-  for (let i = 0; i < pageNumbers.length; i += 5) {
-    pageGroups.push(pageNumbers.slice(i, i + 5));
+  for (let i = 0; i < pageNumbers.length; i += 10) {
+    pageGroups.push(pageNumbers.slice(i, i + 10));
   }
 
 
@@ -290,8 +285,6 @@ const SearchPage = () => {
       }));
     }
   }
-
-
   sel1 = [{ value: '', label: '' }, ...sel1];
   // console.log(sel1)
   const [selectSel1, setSelectSel] = useState(sel1[0]);
@@ -379,8 +372,16 @@ const SearchPage = () => {
             </tbody>
           </table>
 
+
           <ul className="pagination">
-            {pageGroups[currentPageGroupIndex].map((pageNumber) => (
+            {currentPageGroupIndex > 0 && (
+              <li>
+                <span onClick={() => handlePageChange((currentPageGroupIndex - 1) * 10 + 1)}>
+                  &lt; 이전
+                </span>
+              </li>
+            )}
+            {pageGroups[currentPageGroupIndex]?.map((pageNumber) => (
               <li key={pageNumber}>
                 <span
                   onClick={() => handlePageChange(pageNumber + 1)}
@@ -390,6 +391,13 @@ const SearchPage = () => {
                 </span>
               </li>
             ))}
+            {currentPageGroupIndex < pageGroups.length - 1 && (
+              <li>
+                <span onClick={() => handlePageChange((currentPageGroupIndex + 1) * 10 + 1)}>
+                  다음 &gt;
+                </span>
+              </li>
+            )}
           </ul>
 
         </div>

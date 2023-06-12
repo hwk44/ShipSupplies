@@ -19,3 +19,14 @@
 .pagination > li {
   margin-left: 5px;
 }
+
+.t1{
+  width: 80%;
+  align-items: center;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.th { 
+  border-left: 0;
+}
