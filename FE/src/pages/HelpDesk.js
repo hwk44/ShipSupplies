@@ -12,20 +12,49 @@ const HelpDesk = () => {
 
     const userId = localStorage.getItem('userId');
 
-    const fetchData = async () => {
-        const response = await axios.get('/api/board/view', {
-            // withCredentials: true, //없어도 됨
+    // 페이지 번호에 대한 상태 변수 추가
+    const [page, setPage] = useState(0);
+
+    // 페이지별 게시글 개수
+    const pageSize = 10;
+
+    // 최대 페이지 버튼 수
+    const maxPageButtons = 5;
+
+    const fetchData = async (page, size) => {
+        const response = await axios.get(`/api/board/view?page=${page}&size=${size}`, {
             headers: {
                 'Content-Type': 'application/json',
             }
         });
 
-        setPosts(response.data);
+        setPosts(response.data.content); // 'content'는 페이지에 대한 데이터를 담고있는 속성
+    }
+
+    // 페이지 버튼 클릭 이벤트 핸들러
+    const pageClick = (pageNumber) => {
+        setPage(pageNumber);
+    }
+
+    // 이전 버튼 클릭
+    const prevClick = () => {
+        if (page > 0) {
+            setPage(page - 1);
+        }
+    }
+
+    // 다음 버튼 클릭
+    const nextClick = () => {
+        const totalPages = 100;
+        if (page < totalPages - 1) {
+            setPage(page + 1);
+        }
+
     }
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        fetchData(page, pageSize); // 첫 번째 페이지, 페이지당 10개의 게시글 불러옴  
+    }, [page]);
 
     const handleWriteButton = () => {
         setIsWriting(true); // 글 작성 시작
@@ -48,7 +77,7 @@ const HelpDesk = () => {
             setText("");
             setId("");
             setIsWriting(false);
-            await fetchData(); // 게시글을 추가한 후 게시글 목록을 다시 불러옴
+            await fetchData(page, pageSize); // 게시글을 추가한 후 게시글 목록을 다시 불러옴
 
         } catch (error) {
             console.log(error);
@@ -105,7 +134,15 @@ const HelpDesk = () => {
                                 )
                             })}
                         </tbody>
+                        
                     </table>
+                    <div>
+                        <button onClick={prevClick}>[이전] &nbsp; </button>
+                        {[...Array(maxPageButtons).keys()].map((i) =>
+                            <button key={i} onClick={() => pageClick(i)}>{i + 1} &nbsp;</button>
+                        )}
+                        <button onClick={nextClick}>[다음]</button>
+                    </div>
                 </div>
             )}
         </div>
