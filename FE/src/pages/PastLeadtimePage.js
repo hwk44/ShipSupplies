@@ -9,10 +9,10 @@ const PastLeadtimePage = () => {
     const [foundItems, setFoundItems] = useState([]);
 
     useEffect(() => {
-        const fetchItemsByItem = async () => {
+        const fetchPastLeadtime = async () => {
             try {
-                const response = await axios.get(`/api/item/pastleadtime?category=${selectedItem.category}?company=${selectedItem.company}?item=${selectedItem.item}`);
-                console.log("pastleadtime 결과:", response.data);
+                const response = await axios.get(`/api/item/pastLeadtime?item=${selectedItem.item}&category=${selectedItem.category}&machinery=${selectedItem.machinery}&company=${selectedItem.company}`);
+                console.log("pastleadtime 결과:", response);
                 setFoundItems(response.data);
             } catch (error) {
                 console.log(error);
@@ -20,7 +20,7 @@ const PastLeadtimePage = () => {
         };
 
         if (selectedItem) {
-            fetchItemsByItem();
+          fetchPastLeadtime();
         }
     }, [selectedItem]);
 
