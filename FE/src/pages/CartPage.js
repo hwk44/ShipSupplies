@@ -19,7 +19,7 @@ const CartPage = () => {
     const handleClick = (item) => {
         setSelectedItem(item);
         navigate("/pastleadtime", { state: { selectedItem: item } });
-      };
+    };
 
     useEffect(() => {
         const fetchList = async () => {
@@ -37,40 +37,48 @@ const CartPage = () => {
 
 
     return (
-        <div className='flex justify-center'>
-            <table class="w-11/12 my-14 text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">
-                            <input type="checkbox" class="accent-indigo-400" />
-                        </th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">상품명</th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">카테고리</th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">Machinery</th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">견적화폐</th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">견적단가</th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">공급업체</th>
-                        <th scope="col" class="px-6 py-3 rounded-l-lg">예측 리드타임</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {wishList.map(item => (
-                        <tr key={item.id}>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg"><input type="checkbox" class="accent-indigo-400" /></td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg" onClick={() => handleClick(item)}>
-                                {item.item}
-                            </td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg">{item.category}</td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg">{item.machinery}</td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg">{item.currency}</td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg">{item.price}</td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg">{item.company}</td>
-                            <td scope="col" class="px-6 py-3 rounded-l-lg">{item.leadtime}</td>
+        <article>
+            <div className='flex justify-center'>
+                <table className="t1">
+                    <thead>
+                        <tr>
+                            <th>
+                                <input type="checkbox" class="accent-indigo-400" />
+                            </th>
+                            <th>상품명</th>
+                            <th>카테고리</th>
+                            <th>Machinery</th>
+                            <th>견적화폐</th>
+                            <th>견적단가</th>
+                            <th>공급업체</th>
+                            <th>예측 리드타임</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {wishList.map(item => (
+                            <tr key={item.id}>
+                                <td></td>
+                                <td onClick={() => handleClick(item)}>
+                                    {item.item}
+                                </td>
+                                <td>{item.category}</td>
+                                <td>{item.machinery}</td>
+                                <td>{item.currency}</td>
+                                <td>{item.price}</td>
+                                <td>{item.company}</td>
+                                <td>{item.leadtime}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="float-right">
+                <button className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded">
+                    삭제
+                </button>
+            </div>
+        </article>
+
     );
 }
 

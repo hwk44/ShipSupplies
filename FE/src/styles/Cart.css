@@ -1,0 +1,28 @@
+article {
+    padding: 5vw 10vh;
+}
+.t1 {
+    border-spacing: 0;
+    width: 100%;
+    background-color: white;
+    border-right: none;
+    border-left: none;
+    
+}
+
+.t1 > thead > tr > th {
+    line-height: 3rem; /* 세로 간격*/
+    border-bottom: 1px solid #aaa;
+    font-size:  1rem;
+    border-right: none;
+    border-left: none;
+    
+}
+
+.t1 > tbody > tr > td {
+    line-height: 2rem;
+    text-align: center;
+    border-top: 1px solid #aaa;
+    border-right: none;
+    border-left: none;
+}
