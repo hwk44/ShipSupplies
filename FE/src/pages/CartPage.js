@@ -52,21 +52,25 @@ const CartPage = () => {
                             <th>견적단가</th>
                             <th>공급업체</th>
                             <th>예측 리드타임</th>
+                            <th>과거 리드타임</th>
                         </tr>
                     </thead>
                     <tbody>
                         {wishList.map(item => (
                             <tr key={item.id}>
                                 <td></td>
-                                <td onClick={() => handleClick(item)}>
+                                <td>
                                     {item.item}
                                 </td>
                                 <td>{item.category}</td>
                                 <td>{item.machinery}</td>
                                 <td>{item.currency}</td>
-                                <td>{item.price}</td>
+                                <td>{item.price.toLocaleString('ko-KR')}</td>
                                 <td>{item.company}</td>
                                 <td>{item.leadtime}</td>
+                                <td>
+                                    <button onClick={() => handleClick(item)}>보기</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
