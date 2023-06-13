@@ -63,7 +63,9 @@ public class ItemService {
 
     // 과거 리드타임 추이
     public List<LeadtimeDTO> getPastLeadtime(String item, String category, String company) {
-        return itemRepository.findByItemAndCategoryAndCompanyOrderByDate(item, category,  company);
+        List<LeadtimeDTO> getList = itemRepository.findByItemAndCategoryAndCompanyOrderByDate(item, category,  company);
+        log.info("getList : " + getList);
+        return getList;
     }
 
     // 카테고리 예측
