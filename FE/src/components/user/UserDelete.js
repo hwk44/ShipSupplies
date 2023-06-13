@@ -18,7 +18,7 @@ const UserDelete = () => {
     event.preventDefault();
 
     // 회원 탈퇴 요청을 백엔드로 전송
-    axios.post('/api/user/delete', { username, password })
+    axios.delete('/api/user/delete', { username, password })
       .then((response) => {
         // 회원 탈퇴 성공 시 처리
         console.log('회원 탈퇴 성공:', response.data);

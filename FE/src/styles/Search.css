@@ -30,3 +30,15 @@
 .th { 
   border-left: 0;
 }
+
+.pagination li span {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent; /* 초기에는 선이 표시되지 않도록 투명한 선으로 설정 */
+}
+
+.pagination li span.active {
+  border-bottom-color: darkgray; /* 선택한 페이지에 선의 색상을 지정 */
+}
