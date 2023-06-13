@@ -9,40 +9,37 @@ const Chart = ({ foundItems }) => {
         new Date(item.date).toLocaleDateString('ko-KR')
     ))
 
-    date.concat(new Date())
-
-    
     var options = {
         series: [{
-            name: "Desktops",
             data: leadtime
         }],
         chart: {
-            height: 350,
+            height: 550,
             type: 'line',
             zoom: {
                 enabled: false
             }
         },
-        dataLabels: {
-            enabled: false
-        },
         stroke: {
             curve: 'straight'
-        },
-        title: {
-            text: '과거 리드타임 내역',
-            align: 'left'
         },
         grid: {
             row: {
                 colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                opacity: 0.5
+                opacity: 0
             },
         },
         xaxis: {
-            categories: date
-        }
+            categories: date,
+            title: {
+                text: '발주일'
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'leadtime'
+            }
+        },
     };
 
     var chart = new ApexCharts(document.querySelector("#chart"), options);
@@ -53,15 +50,14 @@ const Chart = ({ foundItems }) => {
     return (
         <>
             {/* API에서 가져온 결과를 렌더링 */}
-            {foundItems.map((item) => (
+            {/* {foundItems.map((item) => (
                 <div key={item.leadtime}>
                     <p>리드타임 : {item.leadtime}</p>
                     <p>날짜 : {new Date(item.date).toLocaleDateString('ko-KR')}</p>
                 </div>
-            ))}
-
-            <div id='chart'>
-
+            ))} */}
+            <div className="flex justify-center">
+                <div id='chart' className="w-6/12"></div>
             </div>
 
         </>

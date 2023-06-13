@@ -15,11 +15,17 @@ const CartPage = () => {
     const userId = localStorage.getItem('userId');
     const [selectedItem, setSelectedItem] = useState(null); // 클릭한 항목 정보 저장
     const navigate = useNavigate();
+    const [seldata, setSelData] = useState(null);
 
     const handleClick = (item) => {
         setSelectedItem(item);
         navigate("/pastleadtime", { state: { selectedItem: item } });
     };
+
+    // 삭제버튼 클릭시
+    const handleDelete = async (e) => {
+
+    }
 
     useEffect(() => {
         const fetchList = async () => {
@@ -58,7 +64,9 @@ const CartPage = () => {
                     <tbody>
                         {wishList.map(item => (
                             <tr key={item.id}>
-                                <td></td>
+                                <td> <input
+                                    type="checkbox"
+                                    className="accent-indigo-400" /></td>
                                 <td>
                                     {item.item}
                                 </td>
@@ -77,7 +85,8 @@ const CartPage = () => {
                 </table>
             </div>
             <div className="float-right">
-                <button className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded">
+                <button onClick={handleDelete}
+                    className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded">
                     삭제
                 </button>
             </div>
