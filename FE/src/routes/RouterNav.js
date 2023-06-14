@@ -67,6 +67,11 @@ const RouterNav = () => {
                                 고객센터
                             </a>
                         </li>
+                        <li>
+                            <a href="/data" className="hover:text-blue-700">
+                                데이터
+                            </a>
+                        </li>
                         
                         <div className="flex items-center">
                             <Dropdown1 className="my-1" />

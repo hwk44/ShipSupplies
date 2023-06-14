@@ -15,6 +15,7 @@ import RegressionPage from '../pages/RegressionPage';
 import HelpDesk from '../pages/HelpDesk';
 import PostDetail from '../pages/PostDetail';
 import PastLeadtimePage from '../pages/PastLeadtimePage';
+import DataPage from '../pages/DataPage';
 
 import { useState, useEffect } from 'react';
 
@@ -53,6 +54,8 @@ const RouterMain = () => {
                 < Route path="/helpdesk" element={<HelpDesk />} />
                 < Route path="/post/:id" element={<PostDetail />} />
                 < Route path="/pastleadtime" element={<PastLeadtimePage />} />
+                < Route path="/data" element={<DataPage />} />
+
             </Routes>
         </>
 
