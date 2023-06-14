@@ -19,14 +19,20 @@ import PastLeadtimePage from '../pages/PastLeadtimePage';
 import { useState, useEffect } from 'react';
 
 const RouterMain = () => {
-    const [isLogged, setIsLogged] = useState(false);
+    
+    // const [isLogged, setIsLogged] = useState(false);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        // 로그인 상태를 강제로 false로 설정
-        setIsLogged(false);
+    //     // 로그인 상태를 강제로 false로 설정
+    //     setIsLogged(false);
         
-    }, []);
+    // }, []);
+
+    // useEffect(() => {
+    // localStorage.removeItem('userId')
+    // },[isLogged])
+
 
     return (
         <>

@@ -42,7 +42,7 @@ public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈
         claims.put("role", role); // 토큰에 role을 추가. 나중에 토큰을 디코딩할 때 role을 검증하려고
 
         Date now = new Date();
-        // 1시간 토큰 유효
+        // 1시간 토큰 유효(1000L * 60 * 60) - 1000밀리초 * 60분 * 60초
         long tokenValidMillisecond = 1000L * 60 * 60;
         return Jwts.builder()
                 .setClaims(claims) // 데이터

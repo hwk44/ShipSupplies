@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Navbar from '../mypage/Navbar';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const UserDelete = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  
+
+  const userId = localStorage.getItem('userId')
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -14,23 +20,38 @@ const UserDelete = () => {
     setPassword(event.target.value);
   };
 
-  const handleDelete = (event) => {
+  const handlePasswordChangeComfirm = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const handleDelete = async (event) => {
     event.preventDefault();
 
+    const data = {
+        id: userId,
+        password: password,
+        confirmPassword: confirmPassword
+    }
     // 회원 탈퇴 요청을 백엔드로 전송
-    axios.delete('/api/user/delete', { username, password })
-      .then((response) => {
-        // 회원 탈퇴 성공 시 처리
-        console.log('회원 탈퇴 성공:', response.data);
-      })
-      .catch((error) => {
-        // 회원 탈퇴 실패 시 처리
-        console.error('회원 탈퇴 실패:', error.response.data);
+    try{
+      await axios.delete('api/user/delete', {
+        data: data,
+        headers: {
+          'Content-Type': 'application/json',
+        }
       });
+      alert('회원 탈퇴가 완료되었습니다.')
+      navigate('/')
+      localStorage.removeItem('userId')
+    } catch(error) {
+      alert('다시 시도해주세요.')
+      console.log(error)
+  } 
 
     // 폼 초기화
     setUsername('');
     setPassword('');
+    setConfirmPassword('');
   };
 
   return (
@@ -68,10 +89,10 @@ const UserDelete = () => {
             <input
               id="password"
               name="password"
-              value={password}
+              value={confirmPassword}
               type="password"
               required
-              onChange={handlePasswordChange}
+              onChange={handlePasswordChangeComfirm}
               placeholder="비밀번호 확인"
               className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
