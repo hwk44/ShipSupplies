@@ -17,6 +17,7 @@ const CartPage = () => {
     const [selectedItem, setSelectedItem] = useState(null); // 클릭한 항목 정보 저장
     const navigate = useNavigate();
 
+
     // 체크박스 데이터 저장할 빈배열
     const [checkedList, setCheckedList] = useState([]);
 
@@ -35,53 +36,6 @@ const CartPage = () => {
         },
         [checkedList]
     );
-
-    // 삭제버튼 클릭시
-    // const handleDelete = async (e) => {
-    //     if (!seldata) {
-    //         console.error("seldata is null");
-    //         return;
-    //     }
-
-    //     e.preventDefault();
-    //     console.log("선택된 데이터 :" , seldata);
-
-    //     try {
-    //         const response = await axios.delete("/api/wish/delete", { data: { id: seldata.id } });
-    //         console.log(response);
-
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //         alert("삭제 중 오류가 발생했습니다.");
-    //     }
-
-
-    // }
-
-    // 삭제버튼 클릭시
-    // const handleDelete = async (e) => {
-
-    //     e.preventDefault();
-
-    //     try {
-    //         await axios.delete("/api/wish/delete", {
-    //         },
-    //         {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //         }
-    //         );
-
-    //         // 선택된 항목을 제외한 새로운 wishList 생성
-    //         console.log("삭제되었습니다.");
-
-    //     } catch (error) {
-    //         console.log(error);
-    //         alert("삭제 중 오류가 발생했습니다.");
-    //     }
-    // }
 
     // 삭제버튼 클릭시
     const handleDelete = async (e) => {
@@ -109,8 +63,6 @@ const CartPage = () => {
         }
     }
 
-
-
     useEffect(() => {
         const fetchList = async () => {
             try {
@@ -125,66 +77,74 @@ const CartPage = () => {
         fetchList();
     }, [])
 
+    const getUniqueCategories = () => {
+        const categories = wishList.map((item) => item.category);
+        return [...new Set(categories)];
+    };
 
     return (
         <article>
-            <div className='flex justify-center'>
-                <table className="t1">
-                    <thead>
-                        <tr>
-                            <th>
-                                <input type="checkbox" class="accent-indigo-400" />
-                            </th>
-                            <th>상품명</th>
-                            <th>카테고리</th>
-                            <th>Machinery</th>
-                            <th>견적화폐</th>
-                            <th>견적단가</th>
-                            <th>공급업체</th>
-                            <th>예측 리드타임</th>
-                            <th>과거 리드타임</th>
-                            {/* <th></th> */}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {wishList.map(item => (
-                            <tr key={item.id}>
-                                <td> <input
-                                    type="checkbox"
-                                    className="accent-indigo-400"
-                                    id={item.id}
-                                    value={item.id}
-                                    onChange={(e) => onCheckedItem(e.target.checked, item.id)} />
-                                </td>
-                                <td>
-                                    {item.item}
-                                </td>
-                                <td>{item.category}</td>
-                                <td>{item.machinery}</td>
-                                <td>{item.currency}</td>
-                                <td>{item.price.toLocaleString('ko-KR')}</td>
-                                <td>{item.company}</td>
-                                <td>{item.leadtime}</td>
-                                <td>
-                                    <button onClick={() => handleClick(item)}>보기</button>
-                                </td>
-                                {/* <td>
-                                    <MdClose onClick={handleDelete} />
-                                </td> */}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            {getUniqueCategories().map((category) => (
+                <div key={category}>
+                    <p className="text-xl  leading-7 tracking-tight text-indigo-500 font-semibold">{category}</p>
+                    <div className="flex justify-center mb-6 mt-3 ">
+                        <table className="t1">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" class="accent-indigo-400" />
+                                    </th>
+                                    <th>상품명</th>
+                                    <th>카테고리</th>
+                                    <th>Machinery</th>
+                                    <th>견적화폐</th>
+                                    <th>견적단가</th>
+                                    <th>공급업체</th>
+                                    <th>예측 리드타임</th>
+                                    <th>과거 리드타임</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {wishList
+                                    .filter((item) => item.category === category)
+                                    .map((item) => (
+                                        <tr key={item.id}>
+                                            <td>
+                                                <input
+                                                    type="checkbox"
+                                                    className="accent-indigo-400"
+                                                    id={item.id}
+                                                    value={item.id}
+                                                    onChange={(e) => onCheckedItem(e.target.checked, item.id)}
+                                                />
+                                            </td>
+                                            <td>{item.item}</td>
+                                            <td>{item.category}</td>
+                                            <td>{item.machinery}</td>
+                                            <td>{item.currency}</td>
+                                            <td>{item.price.toLocaleString('ko-KR')}</td>
+                                            <td>{item.company}</td>
+                                            <td>{item.leadtime}</td>
+                                            <td>
+                                                <button onClick={() => handleClick(item)}>보기</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            ))}
             <div className="float-right">
-                <button onClick={handleDelete}
-                    className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded">
+                <button
+                    onClick={handleDelete}
+                    className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded"
+                >
                     삭제
                 </button>
             </div>
         </article>
-
     );
-}
+};
 
 export default CartPage;
