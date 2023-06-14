@@ -37,7 +37,7 @@ const Chart = ({ foundItems }) => {
         },
         yaxis: {
             title: {
-                text: 'leadtime'
+                text: 'leadtime(일)'
             }
         },
     };

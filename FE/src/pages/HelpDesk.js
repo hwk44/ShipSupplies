@@ -87,63 +87,83 @@ const HelpDesk = () => {
     return (
         <div>
             {isWriting ? (
-                <form className='wrtTable' onSubmit={addBoard}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>제목</th>
-                                <td>
-                                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>본문</th>
-                                <td>
-                                    <textarea value={text} onChange={(e) => setText(e.target.value)} required />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button className='wrtBtn' type="submit">제출</button>
-                </form>
+                <div className='wrtTable'>
+                    <form onSubmit={addBoard}>
+                        <div className='float-right'>
+                            <button onClick={handleWriteButton}
+                                className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded ">
+                                제출
+                            </button>
+                        </div>
+                        <table className="h-96">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input className="block w-full h-full border-0 border-b-2 border-gray-200 outline-none px-11 py-3 text-2xl"
+                                            type="text" placeholder="제목"
+                                            value={title} onChange={(e) => setTitle(e.target.value)} required />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <textarea className="w-full h-full outline-none p-11 text-lg"
+                                            placeholder="내용을 입력해주세요."
+                                            value={text} onChange={(e) => setText(e.target.value)} required />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
 
             ) : (
-                <div className='boardList'>
-                    <h1 className='h1'>1:1 문의 게시판</h1>
-                    <button className='writebtn' onClick={handleWriteButton}>글쓰기</button>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th>작성일</th>
+                <>
+                    <div className='boardList'>
+                        <h1 className='h1'>1:1 문의 게시판</h1>
+                        <table className="t1">
+                            <thead>
+                                <tr>
+                                    <th>번호</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>작성일</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {posts.map((post, index) => {
-                                const date = new Date(post.date).toLocaleDateString();
-                                return (
-                                    <tr key={post.id}>
-                                        <td><Link to={`/post/${post.id}`}>{index + 1}</Link></td>
-                                        <td><Link to={`/post/${post.id}`}>{post.title}</Link></td>
-                                        <td><Link to={`/post/${post.id}`}>{post.user.id}</Link></td>
-                                        <td><Link to={`/post/${post.id}`}>{date}</Link></td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                        
-                    </table>
-                    <div>
-                        <button onClick={prevClick}>[이전] &nbsp; </button>
-                        {[...Array(maxPageButtons).keys()].map((i) =>
-                            <button key={i} onClick={() => pageClick(i)}>{i + 1} &nbsp;</button>
-                        )}
-                        <button onClick={nextClick}>[다음]</button>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {posts.map((post, index) => {
+                                    const date = new Date(post.date).toLocaleDateString();
+                                    return (
+                                        <tr key={post.id}>
+                                            <td><Link to={`/post/${post.id}`}>{index + 1}</Link></td>
+                                            <td><Link to={`/post/${post.id}`}>{post.title}</Link></td>
+                                            <td><Link to={`/post/${post.id}`}>{post.user.id}</Link></td>
+                                            <td><Link to={`/post/${post.id}`}>{date}</Link></td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+
+                        </table>
+                        <div className="mt-10">
+                            <button onClick={prevClick}>
+                                &lt; 이전 &nbsp;
+                            </button>
+                            {[...Array(maxPageButtons).keys()].map((i) =>
+                                <button key={i} onClick={() => pageClick(i)}>{i + 1} &nbsp;</button>
+                            )}
+                            <button onClick={nextClick}>
+                                다음 &gt;
+                            </button>
+                        </div>
                     </div>
-                </div>
+                    <div className="float-right mr-28">
+                        <button onClick={handleWriteButton}
+                            className="mx-14 mt-3 bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded">
+                            글쓰기
+                        </button>
+                    </div>
+                </>
             )}
         </div>
     )
