@@ -38,6 +38,7 @@ const PredictionPage = () => {
       console.log("카테고리 값", response.data); // 서버에서 반환한 데이터 출력
       setPrediction(response.data); // 카테고리 값을 상태에 저장
     } catch (error) {
+      alert("예측할 수 없는 조합입니다.")
       console.log(error);
     } finally {
       setIsLoading(false);
