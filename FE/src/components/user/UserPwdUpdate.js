@@ -5,20 +5,18 @@ import Navbar from '../mypage/Navbar';
 const UserPwdUpdate = () => {
 
     const [password, setPassword] = useState('');
-    const [changepwd, setChangepwd] = useState('');
-    const [confirmChangePwd, setConfirmChangePwd] = useState('');
+    const [confirmPwd, setConfirmPwd] = useState('');
 
     const handlePwdUpdate = async (e) => {
         e.preventDefault();
-        if (changepwd !== confirmChangePwd) {
-            alert('변경할 비밀번호가 일치하지 않습니다.');
+        if (password !== confirmPwd) {
+            alert('비밀번호가 일치하지 않습니다.');
             return;
         }
         try {
             const response = await axios.post('/api/user/update', {
                 password: password,
-                changepwd: changepwd,
-                confirmChangePwd: confirmChangePwd,
+                confirmPwd: confirmPwd,
             });
             console.log(response.data);
             alert('비밀번호 변경이 완료되었습니다.');
@@ -32,26 +30,6 @@ const UserPwdUpdate = () => {
 
     return (
         <>
-            {/* <h1>비밀번호 변경</h1>
-            <form onSubmit={handlePwdUpdate}>
-                <div>
-                    <label>현재 비밀번호:</label>
-                    <input type="password" value={password}
-                        onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <div>
-                    <label>변경할 비밀번호:</label>
-                    <input type="password" value={changepwd}
-                        onChange={(e) => setChangepwd(e.target.value)} />
-                </div>
-                <div>
-                    <label>변경할 비밀번호 확인:</label>
-                    <input
-                        type="password" value={confirmChangePwd}
-                        onChange={(e) => setConfirmChangePwd(e.target.value)} />
-                </div>
-                <button type="submit">비밀번호 변경</button>
-            </form> */}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={handlePwdUpdate}>
@@ -70,25 +48,12 @@ const UserPwdUpdate = () => {
 
                         <div className="mt-2">
                             <input
-                                id="changepwd"
-                                name="changepwd"
-                                value={changepwd}
+                                id="confirmPwd"
+                                name="confirmPwd"
+                                value={confirmPwd}
                                 type="password"
                                 required
-                                onChange={(e) => setChangepwd(e.target.value)}
-                                placeholder="변경할 비밀번호"
-                                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
-
-                        <div className="mt-2">
-                            <input
-                                id="confirmChangePwd"
-                                name="confirmChangePwd"
-                                value={confirmChangePwd}
-                                type="password"
-                                required
-                                onChange={(e) => setConfirmChangePwd(e.target.value)}
+                                onChange={(e) => setConfirmPwd(e.target.value)}
                                 placeholder="변경할 비밀번호 확인"
                                 className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />

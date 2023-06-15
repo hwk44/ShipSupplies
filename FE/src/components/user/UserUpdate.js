@@ -31,21 +31,6 @@ const UserUpdate = () => {
 
     return (
         <>
-            {/* <h1>회원정보 변경</h1>
-            <form onSubmit={handleUpdate}>
-                <div>
-                    <label>이름:</label>
-                    <input type="text" value={userName}
-                        onChange={(e) => setUserName(e.target.value)} />
-                </div>
-                <div>
-                    <label>이메일:</label>
-                    <input type="email" value={email}
-                        onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <button type="submit">정보수정</button>
-
-            </form> */}
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                     <form className="space-y-6" onSubmit={handleUpdate}>

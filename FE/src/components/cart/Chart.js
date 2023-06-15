@@ -1,4 +1,4 @@
-import ApexCharts from 'apexcharts'
+import ApexCharts from 'apexcharts';
 
 const Chart = ({ foundItems }) => {
 
@@ -11,6 +11,7 @@ const Chart = ({ foundItems }) => {
 
     var options = {
         series: [{
+            name: "leadtime",
             data: leadtime
         }],
         chart: {
@@ -19,6 +20,7 @@ const Chart = ({ foundItems }) => {
             zoom: {
                 enabled: false
             }
+            
         },
         stroke: {
             curve: 'straight'
@@ -39,6 +41,7 @@ const Chart = ({ foundItems }) => {
             title: {
                 text: 'leadtime(일)'
             }
+            
         },
     };
 
@@ -57,7 +60,7 @@ const Chart = ({ foundItems }) => {
                 </div>
             ))} */}
             <div className="flex justify-center">
-                <div id='chart' className="w-6/12"></div>
+                <div id="chart" className="w-6/12"></div>
             </div>
 
         </>
