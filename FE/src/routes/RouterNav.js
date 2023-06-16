@@ -3,7 +3,7 @@ import '../styles/RouterLogo.css';
 import Logo from '../components/icon/Logo';
 import { BsPerson, BsCart3 } from 'react-icons/bs';
 import { LuLogOut } from "react-icons/lu";
-import Dropdown1 from '../components/Dropdown1';
+import Dropdown from '../components/Dropdown';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -74,7 +74,7 @@ const RouterNav = () => {
                         </li>
                         
                         <div className="flex items-center">
-                            <Dropdown1 className="my-1" />
+                            <Dropdown className="my-1" />
                             <button
                                 type="button"
                                 className="mx-2.5 text-gray-400 hover:text-black mb-3"

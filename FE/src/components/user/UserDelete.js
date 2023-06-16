@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-import Navbar from '../mypage/Navbar';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const UserDelete = () => {
@@ -55,19 +54,6 @@ const UserDelete = () => {
   };
 
   return (
-    // <form onSubmit={handleDelete}>
-    //   <div>
-    //     <label htmlFor="username">사용자명:</label>
-    //     <input type="text" id="username" value={username}
-    //       onChange={handleUsernameChange} />
-    //   </div>
-    //   <div>
-    //     <label htmlFor="password">비밀번호:</label>
-    //     <input type="password" id="password" value={password}
-    //       onChange={handlePasswordChange} />
-    //   </div>
-    //   <button type="submit">회원 탈퇴</button>
-    // </form>
     <>
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
