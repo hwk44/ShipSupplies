@@ -239,6 +239,7 @@ const SearchPage = () => {
 
       // 한 번에 페이지 이동
       navigate('/cart');
+      
 
       alert("저장되었습니다.");
     } catch (error) {

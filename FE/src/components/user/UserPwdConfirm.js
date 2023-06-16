@@ -18,10 +18,13 @@ const UserPwdConfirm = () => {
             return;
         }
         try {
-            const response = await axios.put('/api/user/update', {
+            const requestBody = {
                 password: password,
-                confirmPwd: confirmPwd,
-            });
+                confirmPassword: confirmPwd,
+                id: localStorage.getItem("userId")
+            };
+
+            const response = await axios.put('/api/user/update', requestBody );
             console.log(response.data);
             // 비밀번호 일치하면 정보변경 페이지로
             setIsAuthenticated(true);
