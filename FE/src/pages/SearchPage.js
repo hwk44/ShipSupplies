@@ -266,7 +266,6 @@ const SearchPage = () => {
     : [];
 
   // 현재 페이지가 속한 페이지 그룹 인덱스 계산
-
   const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
 
   // n 개씩 페이지네이션 그룹으로 나누기

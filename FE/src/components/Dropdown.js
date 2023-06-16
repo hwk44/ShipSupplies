@@ -31,14 +31,7 @@ const Dropdown1 = () => {
               <span style={{ whiteSpace: 'nowrap' }}>정보수정</span>
             </a>
           </li>
-          <li>
-            <a
-              href="/userpwdupdate"
-              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 flex items-center"
-            >
-              <span style={{ whiteSpace: 'nowrap' }}>비밀번호 변경</span>
-            </a>
-          </li>
+          
           <li>
             <a
               href="/userdelete"

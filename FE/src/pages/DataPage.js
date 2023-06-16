@@ -1,8 +1,13 @@
+// import LeadtimeCount from '../components/data/LeadtimeCount';
+import CategoryCount from '../components/data/CategoryCount';
+
 const DataPage = () => {
-    return(
-        <>
-        <p>data</p>
-        </>
-    );
+  
+  return (
+    <>
+      {/* <LeadtimeCount /> */}
+      <CategoryCount />
+    </>
+  );
 }
 export default DataPage;

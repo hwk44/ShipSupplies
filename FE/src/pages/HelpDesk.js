@@ -21,6 +21,16 @@ const HelpDesk = () => {
     // 최대 페이지 버튼 수
     const maxPageButtons = 5;
 
+    // 페이지네이션 변수
+    const [currentPage, setCurrentPage] = useState(1);
+
+    // 현재 페이지가 속한 페이지 그룹 인덱스 계산
+    const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
+
+    // n 개씩 페이지네이션 그룹으로 나누기
+    const pageGroups = [];
+    
+
     const fetchData = async (page, size) => {
         const response = await axios.get(`/api/board/view?page=${page}&size=${size}`, {
             headers: {
@@ -146,15 +156,19 @@ const HelpDesk = () => {
 
                         </table>
                         <div className="mt-10">
-                            <button onClick={prevClick}>
-                                &lt; 이전 &nbsp;
-                            </button>
+                            {currentPageGroupIndex > 0 && (
+                                <button onClick={prevClick}>
+                                    &lt; 이전 &nbsp;
+                                </button>
+                            )}
                             {[...Array(maxPageButtons).keys()].map((i) =>
                                 <button key={i} onClick={() => pageClick(i)}>{i + 1} &nbsp;</button>
                             )}
-                            <button onClick={nextClick}>
-                                다음 &gt;
-                            </button>
+                            {currentPageGroupIndex < pageGroups.length - 1 && (
+                                <button onClick={nextClick}>
+                                    다음 &gt;
+                                </button>
+                            )}
                         </div>
                     </div>
                     <div className="float-right mr-28">
