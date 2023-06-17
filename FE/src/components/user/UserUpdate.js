@@ -1,23 +1,33 @@
 import axios from 'axios';
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 const UserUpdate = () => {
 
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [newPwd, setNewPwd] = useState('');
+    const navigate = useNavigate();
+
 
     const handleUpdate = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.put('/api/user/update', {
-                userName: userName,
+            const requestBody = {
+                username: userName,
                 email: email,
-                newPwd : newPwd,
-            });
+                password: password,
+                newPassword: newPwd,
+                id: localStorage.getItem("userId")
+            };
+
+            const response = await axios.put('/api/user/update', requestBody);
             console.log(response.data);
             alert('회원정보 변경이 완료되었습니다.');
+            navigate('/');
 
         }
         catch (error) {
@@ -59,6 +69,19 @@ const UserUpdate = () => {
 
                         <div className="mt-2">
                             <input
+                                id="password"
+                                name="password"
+                                value={password}
+                                type="password"
+                                required
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="현재 비밀번호"
+                                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+
+                        <div className="mt-2">
+                            <input
                                 id="newPwd"
                                 name="newPwd"
                                 value={newPwd}
@@ -75,7 +98,7 @@ const UserUpdate = () => {
                                 type="submit"
                                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                               정보수정
+                                정보수정
                             </button>
                         </div>
                     </form>
