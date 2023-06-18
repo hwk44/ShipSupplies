@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '../styles/MainPage.css';
+import bgimg from '../images/banner.jpg';
 
 const MainPage = () => {
 
@@ -33,9 +34,9 @@ const MainPage = () => {
     return (
         <>
             <figure className="figure">
-                <img src="../images/banner.jpg" alt="이미지" />  
                 <article className="txt">
-                    <h1 className="h1">선용품 최적 구매발주 서비스</h1>
+                        <img src={bgimg} alt="bgImage" />
+                        <h1 className="h1">선용품 최적 구매발주 서비스</h1>
                     {isLoggedIn ? (
                         <div></div>
                     ) : (
