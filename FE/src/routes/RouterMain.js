@@ -7,7 +7,7 @@ import MyPage from '../pages/MyPage';
 import RegisterPage from '../pages/RegisterPage';
 import CartPage from '../pages/CartPage';
 import UserDelete from '../components/user/UserDelete';
-import UserPwdUpdate from '../components/user/UserPwdUpdate';
+import UserPwdConfirm from '../components/user/UserPwdConfirm';
 import UserUpdate from '../components/user/UserUpdate';
 import SearchPage from '../pages/SearchPage';
 import PredictionPage from '../pages/PredictionPage';
@@ -15,7 +15,7 @@ import RegressionPage from '../pages/RegressionPage';
 import HelpDesk from '../pages/HelpDesk';
 import PostDetail from '../pages/PostDetail';
 import PastLeadtimePage from '../pages/PastLeadtimePage';
-
+import DataPage from '../pages/DataPage';
 import { useState, useEffect } from 'react';
 
 const RouterMain = () => {
@@ -45,14 +45,14 @@ const RouterMain = () => {
                 < Route path="/register" element={<RegisterPage />} />
                 < Route path="/cart" element={<CartPage />} />
                 < Route path="/userdelete" element={<UserDelete />} />
-                < Route path="/userupdate" element={<UserUpdate />} />
-                < Route path="/userpwdupdate" element={<UserPwdUpdate />} />
+                < Route path="/userupdate" element={<UserPwdConfirm />} />
                 < Route path="/search" element={<SearchPage />} />
                 < Route path="/prediction" element={<PredictionPage />} />
                 < Route path="/regression" element={<RegressionPage />} />
                 < Route path="/helpdesk" element={<HelpDesk />} />
                 < Route path="/post/:id" element={<PostDetail />} />
                 < Route path="/pastleadtime" element={<PastLeadtimePage />} />
+                < Route path="/data" element={<DataPage />} />
             </Routes>
         </>
 

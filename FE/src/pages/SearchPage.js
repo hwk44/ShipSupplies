@@ -239,6 +239,7 @@ const SearchPage = () => {
 
       // 한 번에 페이지 이동
       navigate('/cart');
+      
 
       alert("저장되었습니다.");
     } catch (error) {
@@ -266,7 +267,6 @@ const SearchPage = () => {
     : [];
 
   // 현재 페이지가 속한 페이지 그룹 인덱스 계산
-
   const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
 
   // n 개씩 페이지네이션 그룹으로 나누기

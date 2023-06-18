@@ -33,7 +33,7 @@ const MainPage = () => {
     return (
         <>
             <figure className="figure">
-
+                <img src="../images/banner.jpg" alt="이미지" />  
                 <article className="txt">
                     <h1 className="h1">선용품 최적 구매발주 서비스</h1>
                     {isLoggedIn ? (
