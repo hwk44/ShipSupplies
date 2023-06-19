@@ -35,7 +35,7 @@ const MainPage = () => {
         <>
             <figure className="figure">
                 <article className="txt">
-                        <img src={bgimg} alt="bgImage" />
+                        {/* <img src={bgimg} alt="bgImage" /> */}
                         <h1 className="h1">선용품 최적 구매발주 서비스</h1>
                     {isLoggedIn ? (
                         <div></div>

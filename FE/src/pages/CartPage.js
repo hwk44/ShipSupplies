@@ -1,7 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Link, Route } from 'react-router-dom';
-import CartList from "../components/cart/CartList";
 import '../styles/Cart.css';
 import axios from "axios";
 import { isCompositeComponent } from "react-dom/test-utils";
