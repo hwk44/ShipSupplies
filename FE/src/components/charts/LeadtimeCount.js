@@ -345,6 +345,7 @@ const LeadtimeCount = () => {
         <div id="chart3" style={{ gridColumn: '1 / span 1', gridRow: '2 / span 1' }}></div>
         <div id="chart4" style={{ gridColumn: '2 / span 1', gridRow: '2 / span 1' }}></div>
       </div>
+    
   );
 }
 export default LeadtimeCount;

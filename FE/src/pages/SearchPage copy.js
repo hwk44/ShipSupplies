@@ -1,7 +1,6 @@
 import items from '../db/items.json';
 import data from '../db/datas.json'
 import axios from 'axios';
-// import { useState, useEffect, useRef } from 'react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Search.css';
@@ -19,9 +18,9 @@ const SearchPage = () => {
   const [dropdownVisibility, setDropdownVisibility] = useState(false);
 
   // 드롭다운에서 선택된 항목 정보 저장하는 변수
-  const [selectedItem, setSelectedItem] = useState(''); // 추가된 코드
-  // 
-  const [key, setKey] = useState(false); //
+  const [selectedItem, setSelectedItem] = useState(''); 
+
+  const [key, setKey] = useState(false); 
 
   const [list1, setList1] = useState([]);
 
@@ -46,16 +45,6 @@ const SearchPage = () => {
     [checkedList]
   );
 
-  // 1️⃣ onChange함수를 사용하여 이벤트 감지, 필요한 값 받아오기
-  const onCheckedElement = (checked, item) => {
-    if (checked) {
-      setCheckedList([...checkedList, item]);
-      console.log("체크항목", checkedList)
-    } else if (!checked) {
-      setCheckedList(checkedList.filter(el => el !== item));
-    }
-  };
-
   useEffect(() => {
     // console.log('선택된 항목:', selectedItem);
     if (selectedItem.includes("카테고리")) {
@@ -74,22 +63,6 @@ const SearchPage = () => {
     setList1(newList1);
     // console.log(list1)
   }, [key]);
-
-  // useEffect(() => {
-  //   console.log(list1)
-  // }, [list1]);
-
-
-  // 드롭박스 항목 클릭 함수
-  const handleItemClick = (item) => {
-    setSelectedItem(item);
-    setDropdownVisibility(false);
-    // console.log(buttonText);
-  };
-
-
-  // 선택된 항목 buttonText
-  // const buttonText = selectedItem || '항목선택';
 
   const [selcate, setSelcate] = useState();
   const txtC = useRef();

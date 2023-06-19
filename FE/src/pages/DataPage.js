@@ -1,5 +1,5 @@
-import LeadtimeCount from '../components/data/LeadtimeCount';
-import CategoryCount from '../components/data/CategoryCount';
+import LeadtimeCount from '../components/charts/LeadtimeCount';
+import CategoryCount from '../components/charts/CategoryCount';
 
 const DataPage = () => {
 
