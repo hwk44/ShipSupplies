@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Route, Routes, useNavigate, Link, Switch, NavLink, Router } from 'react-router-dom';
 import '../styles/MyPage.css';
-import UserDelete from '../components/user/UserDelete';
-import UserPwdUpdate from '../components/user/UserPwdConfirm';
-import UserUpdate from '../components/user/UserUpdate';
+import UserDelete from '../components/mypage/UserDelete';
+import UserPwdUpdate from '../components/mypage/UserPwdConfirm';
+import UserUpdate from '../components/mypage/UserUpdate';
 
 const MyPage = () => {
     return (

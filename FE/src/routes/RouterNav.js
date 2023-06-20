@@ -3,7 +3,7 @@ import '../styles/RouterLogo.css';
 import Logo from '../components/icon/Logo';
 import { BsCart3 } from 'react-icons/bs';
 import { LuLogOut } from "react-icons/lu";
-import Dropdown from '../components/user/Dropdown';
+import Dropdown from '../components/mypage/Dropdown';
 import axios from 'axios';
 
 const RouterNav = () => {
@@ -37,7 +37,7 @@ const RouterNav = () => {
 
     return (
         <nav>
-            <div className='flex items-center justify-between my-4 mr-5 h-36'>
+            <div className='flex items-center justify-between my-4 mr-5 h-14'>
                 <Logo />
                 <ul className='flex flex-row space-x-4 items-center mr-12'>
                     <li>

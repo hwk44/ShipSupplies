@@ -71,7 +71,7 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setSubject(e.target.value)}
                 placeholder="Subject"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
 
@@ -84,7 +84,7 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setShipcarrier(e.target.value)}
                 placeholder="출고운반선"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
 
@@ -97,7 +97,7 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setKey2(e.target.value)}
                 placeholder="Key2"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
 
@@ -110,7 +110,7 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setAssembly(e.target.value)}
                 placeholder="Assembly"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
 
@@ -123,7 +123,7 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setCurrency(e.target.value)}
                 placeholder="견적화폐"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
 
@@ -136,7 +136,7 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setClient(e.target.value)}
                 placeholder="발주처"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
 
@@ -148,13 +148,13 @@ const RegressionPage = () => {
                 required
                 onChange={(e) => setItem(e.target.value)}
                 placeholder="청구품목"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
                 {isLoading? '리드타임을 예측하고 있습니다...': '리드타임 예측'}
               </button>
@@ -165,13 +165,13 @@ const RegressionPage = () => {
         {regression && (
         <>
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-row justify-center">
-            <p className="text-xl font-semibold leading-7 tracking-tight text-indigo-500 ">{item}</p>
+            <p className="text-xl font-semibold leading-7 tracking-tight text-blue-500 ">{item}</p>
             &nbsp;&nbsp;
             <p className="text-xl leading-7 tracking-tight text-gray-900">의</p>
             </div>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-row justify-center">
             <p className="text-xl  leading-7 tracking-tight text-gray-900">예상 리드타임은 </p> &nbsp;&nbsp; 
-            <p className="text-2xl font-semibold leading-7 text-indigo-500">
+            <p className="text-2xl font-semibold leading-7 text-blue-500">
               {regression.pred}일
             </p>&nbsp;&nbsp;
             <p className="text-xl ">입니다.</p> 

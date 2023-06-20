@@ -88,7 +88,7 @@ const SearchBar = () => {
       <div className='flex flex-row justify-center items-center my-7'>
         <select value={selectedItem}
           onChange={(e) => setSelectedItem(e.target.value)}
-          class="mx-2 h-10 border-2 border-indigo-400 focus:outline-none focus:border-indigo-600 text-indigo-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
+          class="mx-2 h-10 border-2 border-blue-500 focus:outline-none focus:border-blue-600 text-blue-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">
           <option value="" selected hidden>선택</option>
           <option value="발주처">발주처</option>
           <option value="부품명(청구품목)">부품명(청구품목)</option>
@@ -106,7 +106,7 @@ const SearchBar = () => {
 
         <button
           onClick={handleSubmit}
-          class="h-10 bg-indigo-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
+          class="h-10 bg-blue-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
         >
           <BiSearch />
         </button>
