@@ -85,7 +85,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <div className='flex flex-row justify-center items-center my-7'>
+      <div className='mt-24 flex flex-row justify-center items-center my-7'>
         <select value={selectedItem}
           onChange={(e) => setSelectedItem(e.target.value)}
           class="mx-2 h-10 border-2 border-blue-500 focus:outline-none focus:border-blue-600 text-blue-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider">

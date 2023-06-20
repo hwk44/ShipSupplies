@@ -42,7 +42,7 @@ const RouterNav = () => {
                 <ul className='flex flex-row space-x-4 items-center mr-12'>
                     <li>
                         <a href="/data" className="hover:text-blue-700">
-                            데이터
+                            데이터 통계
                         </a>
                     </li>
                     

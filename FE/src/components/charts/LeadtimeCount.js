@@ -339,12 +339,13 @@ const LeadtimeCount = () => {
 
 
   return (
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '20px' }}>
-        <div id="chart1" style={{ gridColumn: '1 / span 1', gridRow: '1 / span 1' }}></div>
-        <div id="chart2" style={{ gridColumn: '2 / span 1', gridRow: '1 / span 1' }}></div>
-        <div id="chart3" style={{ gridColumn: '1 / span 1', gridRow: '2 / span 1' }}></div>
-        <div id="chart4" style={{ gridColumn: '2 / span 1', gridRow: '2 / span 1' }}></div>
-      </div>
+      // <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '20px' }}>
+      //   <div id="chart1" style={{ gridColumn: '1 / span 1', gridRow: '1 / span 1' }}></div>
+      //   <div id="chart2" style={{ gridColumn: '2 / span 1', gridRow: '1 / span 1' }}></div>
+      //   <div id="chart3" style={{ gridColumn: '1 / span 1', gridRow: '2 / span 1' }}></div>
+      //   <div id="chart4" style={{ gridColumn: '2 / span 1', gridRow: '2 / span 1' }}></div>
+      // </div>
+      <div id="chart1" />
     
   );
 }

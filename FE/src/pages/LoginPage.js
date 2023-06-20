@@ -40,26 +40,7 @@ const LoginPage = () => {
 
     return (
         <>
-            {/* <div className="logindiv1">
-                <Logo />
-                <form className="loginform1" onSubmit={handleLogin}>
-                    <div>
-                        < input type="text" id="id" value={id} placeholder="아이디"
-                            onChange={(e) => setId(e.target.value)} required />
-                    </div>
-                    <div>
-                        < input type="password" id="password" value={password} placeholder="비밀번호"
-                            onChange={(e) => setPassword(e.target.value)} required />
-                    </div>
-                    <button type="submit">로그인</button>
-                    {showErrorMessage && (
-                        <div className="logindiverror">ID 혹은 비밀번호가 일치하지 않습니다.</div>
-                    )}
-                </form>
-                <Link to="/register">회원가입</Link>
-            </div> */}
-
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                         로그인
