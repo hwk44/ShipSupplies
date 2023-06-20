@@ -1,7 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Link, Route } from 'react-router-dom';
-import CartList from "../components/cart/CartList";
 import '../styles/Cart.css';
 import axios from "axios";
 import { isCompositeComponent } from "react-dom/test-utils";
@@ -86,13 +85,13 @@ const CartPage = () => {
         <article>
             {getUniqueCategories().map((category) => (
                 <div key={category}>
-                    <p className="text-xl  leading-7 tracking-tight text-indigo-500 font-semibold">{category}</p>
+                    <p className="text-xl  leading-7 tracking-tight text-blue-500 font-semibold">{category}</p>
                     <div className="flex justify-center mb-6 mt-3 ">
                         <table className="t1">
                             <thead>
                                 <tr>
                                     <th>
-                                        <input type="checkbox" class="accent-indigo-400" />
+                                        <input type="checkbox" class="accent-blue-400" />
                                     </th>
                                     <th>상품명</th>
                                     <th>카테고리</th>
@@ -112,7 +111,7 @@ const CartPage = () => {
                                             <td>
                                                 <input
                                                     type="checkbox"
-                                                    className="accent-indigo-400"
+                                                    className="accent-blue-400"
                                                     id={item.id}
                                                     value={item.id}
                                                     onChange={(e) => onCheckedItem(e.target.checked, item.id)}

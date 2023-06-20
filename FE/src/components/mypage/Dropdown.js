@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BsPerson } from 'react-icons/bs';
 
-const Dropdown1 = () => {
+const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false); // 드롭다운 상태를 관리하는 state
 
   const toggleDropdown = () => {
@@ -46,4 +46,4 @@ const Dropdown1 = () => {
   );
 };
 
-export default Dropdown1;
+export default Dropdown;
