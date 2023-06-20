@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect, useRef } from "react";
-import Chart from '../components/cart/Chart';
+import { useState, useEffect } from "react";
+import PastLeadtime from '../components/charts/PastLeadtime';
 
 
 const PastLeadtimePage = () => {
@@ -52,7 +52,7 @@ const PastLeadtimePage = () => {
         </div>
       )}
 
-      <Chart foundItems={foundItems} />
+      <PastLeadtime foundItems={foundItems} />
     </>
   );
 };
