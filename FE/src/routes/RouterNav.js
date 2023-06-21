@@ -1,17 +1,13 @@
-import { BrowserRouter, Route, Routes, useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/RouterLogo.css';
 import Logo from '../components/icon/Logo';
-import { BsPerson, BsCart3 } from 'react-icons/bs';
+import { BsCart3 } from 'react-icons/bs';
 import { LuLogOut } from "react-icons/lu";
-import Dropdown from '../components/Dropdown';
+import Dropdown from '../components/mypage/Dropdown';
 import axios from 'axios';
 
 const RouterNav = () => {
     const navigate = useNavigate();
-
-    const goMypage = () => {
-        navigate('/mypage')
-    }
 
     const goCart = () => {
         navigate('/cart')
@@ -49,8 +45,9 @@ const RouterNav = () => {
 
     return (
         <nav>
-            <div className='flex items-center justify-between my-4 mr-5 h-36'>
+            <div className='flex items-center justify-between my-4 mr-5 h-14'>
                 <Logo />
+
                     <ul className='flex flex-row space-x-4 items-center mr-12'>
 
                         <li>
