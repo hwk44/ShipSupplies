@@ -77,11 +77,15 @@ const SearchBar = () => {
       );
       setSelData(response.data);
       console.log("DATA", response.data);
-      console.log("setData => ", seldata);
+      // console.log("setData => ", seldata);
     } catch (error) {
       console.error("GET 요청 에러:", error);
     }
   };
+
+  useEffect(() => {
+    console.log("setData => ", seldata);
+  }, [seldata]);
 
   return (
     <>

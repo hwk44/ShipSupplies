@@ -35,36 +35,44 @@ const RouterNav = () => {
         }
     };
 
+    const handleLinkClick = (event) => {
+        if(userId == null) {
+            alert('로그인이 필요한 서비스입니다.')
+            event.preventDefault();
+            navigate('/login');
+        }
+    }
+
     return (
         <nav>
             <div className='flex items-center justify-between my-4 mr-5 h-14'>
                 <Logo />
                 <ul className='flex flex-row space-x-4 items-center mr-12'>
                     <li>
-                        <a href="/data" className="hover:text-blue-700">
+                        <a href="/data" className="hover:text-blue-700" onClick={handleLinkClick}>
                             데이터 통계
                         </a>
                     </li>
                     
                     <li>
-                        <a href="/prediction" className="hover:text-blue-700 ">
+                        <a href="/prediction" className="hover:text-blue-700" onClick={handleLinkClick}>
                             카테고리 분류
                         </a>
                     </li>
 
                     <li>
-                        <a href="/regression" className="hover:text-blue-700">
+                        <a href="/regression" className="hover:text-blue-700" onClick={handleLinkClick}>
                             리드타임 예측
                         </a>
                     </li>
 
                     <li>
-                        <a href="/search" className="hover:text-blue-700">
+                        <a href="/search" className="hover:text-blue-700" onClick={handleLinkClick}>
                             선용품 검색
                         </a>
                     </li>
                     <li>
-                        <a href="/helpdesk" className="hover:text-blue-700">
+                        <a href="/helpdesk" className="hover:text-blue-700" onClick={handleLinkClick}>
                             고객센터
                         </a>
                     </li>
