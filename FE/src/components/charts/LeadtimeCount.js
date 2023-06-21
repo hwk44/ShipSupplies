@@ -1,9 +1,20 @@
 import ApexCharts from 'apexcharts';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 
 const LeadtimeCount = () => {
   const [data, setData] = useState([]);
+
+  const [currentChartIndex, setCurrentChartIndex] = useState(0);
+  const totalCharts = 4;
+
+  const handlePrev = () => {
+    setCurrentChartIndex((prevIndex) => (prevIndex === 0 ? totalCharts - 1 : prevIndex - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentChartIndex((prevIndex) => (prevIndex === totalCharts - 1 ? 0 : prevIndex + 1));
+  };
 
   const fetchData = async () => {
     try {
@@ -91,7 +102,7 @@ const LeadtimeCount = () => {
         },
         yaxis: {
           title: {
-            text: '개수', 
+            text: '개수',
           },
           axisBorder: {
             show: false
@@ -336,16 +347,22 @@ const LeadtimeCount = () => {
     }
 
   }, [data]);
+  
 
 
   return (
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '20px' }}>
-        <div id="chart1" style={{ gridColumn: '1 / span 1', gridRow: '1 / span 1' }}></div>
-        <div id="chart2" style={{ gridColumn: '2 / span 1', gridRow: '1 / span 1' }}></div>
-        <div id="chart3" style={{ gridColumn: '1 / span 1', gridRow: '2 / span 1' }}></div>
-        <div id="chart4" style={{ gridColumn: '2 / span 1', gridRow: '2 / span 1' }}></div>
+    <>
+      <div id="chart1" className={currentChartIndex === 0 ? 'active' : ''} />
+      <div id="chart2" className={currentChartIndex === 1 ? 'active' : ''} />
+      <div id="chart3" className={currentChartIndex === 2 ? 'active' : ''} />
+      <div id="chart4" className={currentChartIndex === 3 ? 'active' : ''} />
+
+      <div className="chart-controls">
+        <button onClick={handlePrev}>Prev</button>
+        <button onClick={handleNext}>Next</button>
       </div>
-    
+    </>
+
   );
 }
 export default LeadtimeCount;
