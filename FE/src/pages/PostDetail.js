@@ -67,7 +67,7 @@ const PostDetail = () => {
                 data: data
             });
             navigate('/helpdesk');
-        } catch(error) {
+        } catch (error) {
             console.log(error);
             alert("권한이 없습니다.")
         }
@@ -78,22 +78,26 @@ const PostDetail = () => {
             {post && (
                 <div className='border p-6'>
                     {!editing ? (
-                        <div className='float-right space-x-3 mr-4'>
-                            <button onClick={() => setEditing(true)} 
-                            className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
-                            수정</button>
-                            <button onClick={deleteBoard} 
-                            className="bg-transparent hover:bg-red-100 text-red-500 py-2 px-4 border border-gray-300 hover:border-red-400 rounded">
-                                삭제</button>
-                        </div>
+                        userId === post.user.id && (
+                            <div className='float-right space-x-3 mr-4'>
+                                <button onClick={() => setEditing(true)}
+                                    className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
+                                    수정
+                                </button>
+                                <button onClick={deleteBoard}
+                                    className="bg-transparent hover:bg-red-100 text-red-500 py-2 px-4 border border-gray-300 hover:border-red-400 rounded">
+                                    삭제
+                                </button>
+                            </div>
+                        ) 
                     ) : (
                         <div className='float-right space-x-3 mr-4'>
-                            <button onClick={updateBoard} 
-                            className="bg-transparent hover:bg-blue-100 text-blue-500 py-2 px-4 border border-gray-300 hover:border-blue-400 rounded">
+                            <button onClick={updateBoard}
+                                className="bg-transparent hover:bg-blue-100 text-blue-500 py-2 px-4 border border-gray-300 hover:border-blue-400 rounded">
                                 제출
                             </button>
-                            <button onClick={() => setEditing(false)} 
-                            className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
+                            <button onClick={() => setEditing(false)}
+                                className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
                                 취소
                             </button>
                         </div>
@@ -104,13 +108,13 @@ const PostDetail = () => {
                             <tr>
                                 {/* 제목 */}
                                 <td>
-                                    {editing ? <input type="text" 
-                                    className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
-                                    value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} required /> : 
-                                    <input type='text'
-                                    className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
-                                    value={post.title}
-                                    readOnly />}
+                                    {editing ? <input type="text"
+                                        className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
+                                        value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} required /> :
+                                        <input type='text'
+                                            className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
+                                            value={post.title}
+                                            readOnly />}
                                 </td>
                             </tr>
                             <div className="text-sm -mt-8 ml-10 text-gray-500">
@@ -119,17 +123,17 @@ const PostDetail = () => {
                                 {/* 작성일 */}
                                 <td>{new Date(post.date).toLocaleString('ko-KR')}</td>
                             </div>
-                          
+
                             <tr>
                                 {/* 본문 */}
                                 <td>
-                                    {editing ? 
-                                    <textarea className="w-full h-full outline-none p-11 text-lg"
-                                    value={updatedText} onChange={(e) => setUpdatedText(e.target.value)} required /> : 
-                                    <textarea className="w-full h-full outline-none p-11 text-lg"
-                                    value={post.text} readOnly />}
+                                    {editing ?
+                                        <textarea className="w-full h-full outline-none p-11 text-lg"
+                                            value={updatedText} onChange={(e) => setUpdatedText(e.target.value)} required /> :
+                                        <textarea className="w-full h-full outline-none p-11 text-lg"
+                                            value={post.text} readOnly />}
                                 </td>
-                                </tr>
+                            </tr>
                         </tbody>
                     </table>
                     <br></br>

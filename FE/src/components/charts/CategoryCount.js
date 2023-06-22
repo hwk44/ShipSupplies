@@ -103,14 +103,14 @@ const CategoryCount = () => {
 
             };
 
-            var chart = new ApexCharts(document.querySelector("#chart2"), options);
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
             chart.render();
         }
     }, [data]); // 상태가 업데이트될 때마다 실행되는 useEffect
 
 
 
-    return <div id="chart2" />;
+    return <div id="chart" className="w-full"/>;
 };
 
 export default CategoryCount;
