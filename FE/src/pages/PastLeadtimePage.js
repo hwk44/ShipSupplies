@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect, useRef } from "react";
-import Chart from '../components/cart/Chart';
+import { useState, useEffect } from "react";
+import PastLeadtime from '../components/charts/PastLeadtime';
 
 
 const PastLeadtimePage = () => {
@@ -35,24 +35,24 @@ const PastLeadtimePage = () => {
   return (
     <>
       {selectedItem && (
-        <div className="flex flex-col items-center pt-7">
+        <div className="flex flex-col items-center pt-9">
           <div className="text-xl  leading-7 tracking-tight text-gray-900 flex flex-row">
             카테고리 &nbsp;
-            <p className="text-2xl font-semibold leading-7 text-indigo-500">{selectedItem.category}</p>
+            <p className="text-2xl font-semibold leading-7 text-blue-500">{selectedItem.category}</p>
           </div>
 
           <div className="text-xl  leading-7 tracking-tight text-gray-900 flex flex-row">
             상품명 &nbsp;
-            <p className="text-2xl font-semibold leading-7 text-indigo-500">{selectedItem.item}</p>
+            <p className="text-2xl font-semibold leading-7 text-blue-500">{selectedItem.item}</p>
           </div>
           <div className="text-xl  leading-7 tracking-tight text-gray-900 flex flex-row">
             발주처 &nbsp;
-            <p className="text-2xl font-semibold leading-7 text-indigo-500">{selectedItem.company}</p>
+            <p className="text-2xl font-semibold leading-7 text-blue-500">{selectedItem.company}</p>
           </div>
         </div>
       )}
 
-      <Chart foundItems={foundItems} />
+      <PastLeadtime foundItems={foundItems} />
     </>
   );
 };

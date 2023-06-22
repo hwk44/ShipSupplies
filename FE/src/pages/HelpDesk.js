@@ -101,7 +101,7 @@ const HelpDesk = () => {
                     <form onSubmit={addBoard}>
                         <div className='float-right'>
                             <button onClick={handleWriteButton}
-                                className="bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded ">
+                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ">
                                 제출
                             </button>
                         </div>
@@ -171,9 +171,9 @@ const HelpDesk = () => {
                             )}
                         </div>
                     </div>
-                    <div className="float-right mr-28">
+                    <div className="float-right mr-32">
                         <button onClick={handleWriteButton}
-                            className="mx-14 mt-3 bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded">
+                            className="mx-14 mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
                             글쓰기
                         </button>
                     </div>

@@ -1,77 +1,91 @@
-.maindiv1{
-    /* background-color: aquamarine; */
-}
-
-.maindiv2 {
-    /* background-color: aliceblue; */
-    justify-content: center;
-    align-items: center; 
-    text-align: center;
-}
-
 .figure {
-    display: flex; /* 추가된 부분 */
-    justify-content: center; /* 추가된 부분 */
-    align-items: center; /* 추가된 부분 */
-	width: 100%;
-	height: 100%;
-	z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
-.figure > img {
+/* .bgimg {
 
+    background-size: cover;
+    background-repeat: no-repeat;
     margin-top: 2vh;
-
     justify-content: center;
-	width: 80%;
-	height: 83vh;
-	object-fit: cover; /*fill -> cover*/
-    opacity: 0.5;
+    width: 100%;
+    max-width: fit-content;
+    max-height: auto;
+    height: 83vh;
+    object-fit: cover;
 
     image-rendering: -moz-crisp-edges;
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
     -ms-interpolation-mode: nearest-neighbor;
     image-rendering: crisp-edges;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+} */
+
+.div {
+    margin-right: 50vw;
 }
 
 .figure article {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 
-	left: 50vw;
-	top: 25%;
+    /* left: 50vw;
+    top: 25%;
     position: absolute;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 
     /* position:relative;  */
-    height: 100%;
-}
+    /* height: 100%; */
 
-.figure h1{
-    margin-top: 300px;
-    color: black;
-    font-size: 3em;
-}
+    /* background-image: url(../images/main_01.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
 
-.figure div{
     display: flex;
     flex-direction: column;
-    position:absolute; 
-    bottom:0px; 
+    /* justify-content: left; */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* float: left; */
+    /* margin-right: 80vw; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 90px;
+    /* background-image: url(../images/main_01.png); */
+    background-image: url(../images/main.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.btn{
-    background-color: darkblue;
+.figure h1 {
+    margin-top: 00px;
+    margin-left: -1200px;
     color: white;
-    padding: 10px;
-    border-radius: 7px;
-    width: 30vw;
-    margin-bottom: 15px;
-    font-size: 15px;
+    font-size: 3em;
+    z-index: 1;
 }
+
+/* .figure div {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0px;
+} */
 
 .googleBtn {
     margin-top: 5px;
