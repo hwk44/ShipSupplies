@@ -320,7 +320,7 @@ const SearchPage = () => {
       {seldata && seldata.length > 0 && (
         <>
           <div class="flex flex-col justify-center items-center">
-            <table className="t1">
+            <table className="t1 mb-6">
               <thead>
                 <tr>
                   <th>
