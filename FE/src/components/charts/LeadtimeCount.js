@@ -1,6 +1,7 @@
 import ApexCharts from 'apexcharts';
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 const LeadtimeCount = () => {
   const [data, setData] = useState([]);
@@ -141,13 +142,19 @@ const LeadtimeCount = () => {
   }
 
   return (
-    <>
-      <div id="chart1" />
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-        <button onClick={handlePrevious}>{'[이전]'}</button>
-        <button onClick={handleNext} style={{marginLeft: '10px'}}>{'[다음]'}</button>
-      </div>
-    </>
+    <div className="flex flex-row w-full">
+      {currentIndex > 0 && (
+        <button onClick={handlePrevious}>
+          <GrPrevious />
+        </button>
+      )}
+      <div id="chart1" className="w-full" />
+      {currentIndex < 3 && (
+        <button onClick={handleNext} style={{ marginLeft: '10px' }}>
+          <GrNext />
+        </button>
+      )}
+    </div>
 
   );
 }

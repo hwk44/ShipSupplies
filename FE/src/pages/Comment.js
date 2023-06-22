@@ -145,43 +145,77 @@ const Comment = ({ id }) => {
     }
 
     return (
-        <>
-            <table style={{ width: '100%', marginBottom: '20px' }}>
-                <thead>
-                    <tr>
-                        <th>작성자</th>
-                        <th>댓글</th>
-                        <th>작성일</th>
-                    </tr>
-                </thead>
+        <div className="bg-gray-100 p-8 flex flex-col justify-items-center items-left rounded-lg">
+            {/* <table style={{ width: '100%', marginBottom: '20px' }}> */}
                 <tbody>
                     {comments.map((comment, index) => (
-                        <tr key={index}>
-                            <td>{comment.user ? comment.user.id : 'Unknown'}</td>
-                            <td>
-                                {comment.text}
-                            </td>
-                            <td>{new Date(comment.date).toLocaleString()}</td>
-                            <td>
-                                <button onClick={() => addHit(comment)}>좋아요 {comment.hitCount}</button>
-                            </td>
-                            <td>
-                                <button onClick={() => startEditing(comment)}>수정</button>
-                                &nbsp;&nbsp;&nbsp;<button onClick={() => deleteComment(comment)}>삭제</button>
-                            </td>
+                        <div key={index} className='mt-10'>
+                            {/* <td> */}
+                                <div className="-mt-8 flex flex-row space-x-3 mb-3.5">
+                                    {/* 작성자 */}
+                                    <div className="text-black text-base">{comment.user ? comment.user.id : 'Unknown'}</div> 
+                                    {/* 작성일 */}
+                                    <div className="text-gray-500 text-sm">{new Date(comment.date).toLocaleString()}</div>
+                                </div>
+                            {/* </td> */}
+                                {/* 댓글 */}
+                                {/* <td className="ml-24 text-black text-base"> */}
+                                    <div className="mb-2.5">
+                                        {comment.text}
+                                    </div>
+                                {/* </td> */}
 
-                        </tr>
+                               
+                                <div className="space-x-3 flex flex-row">
+                                    <button onClick={() => addHit(comment)}
+                                    className="bg-transparent hover:bg-gray-200 text-black py-2 px-4 border border-gray-300 rounded">
+                                        👍 {comment.hitCount}
+                                    </button>
+                                    <button onClick={() => startEditing(comment)}
+                                    className="bg-transparent hover:bg-gray-200 text-black py-2 px-4 border border-gray-300 rounded">
+                                        수정
+                                    </button>
+                                    <button onClick={() => deleteComment(comment)}
+                                    className="bg-transparent hover:bg-red-100 text-red-500 py-2 px-4 border border-gray-300 hover:border-red-400 rounded">
+                                        삭제
+                                    </button>
+                                </div>
+                        </div>
                     ))}
                 </tbody>
-            </table>
+            {/* </table> */}
             <form onSubmit={editingComment ? updateComment : addComment}>
-                <label>
-                    댓글:
-                    <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} required />
-                </label>
-                <button className='rpbtn' type="submit">{editingComment ? "수정 완료" : "댓글 작성"}</button>
+                {/* <div className="border w-full bg-white mt-5">
+                    
+                    
+                  
+                    <textarea className="w-full h-full outline-none p-11 text-base"
+                        maxLength={255}
+                    value={comment} onChange={(e) => setComment(e.target.value)} required /> 
+                    
+                    <button className="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mr-36" 
+                    type="submit">{editingComment ? "수정" : "등록"}</button>
+                </div> */}
+    <div className="bg-white border w-full mt-5 flex flex-col rounded-lg">
+        <label className="flex-grow">
+            {/* 댓글작성 */}
+            {/* <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} required /> */}
+            <textarea
+            className="w-full h-full outline-none p-11 text-lg rounded-lg"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            required
+            />
+        </label>
+
+        <button className="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded self-end mb-1 mr-1">
+            {editingComment ? "수정" : "등록"}
+        </button>
+    </div>
+
+
             </form>
-        </>
+        </div>
     );
 };
 

@@ -46,16 +46,11 @@ const MainPage = () => {
 
                                 <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm "
                                     onClick={goRegister}>회원가입</button>
-                                    
-                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm"
-                                >
-                                   <img src={googleLogo} alt="google" style={{width : '20px', height : '20px', marginRight : '10px'}} />
-                                    구글 로그인
-                                </button>
 
-                                <button className="googleBtn"
+                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm"
                                     onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }}>
-                                    <img src="/btn_google_signin_light_normal_web.png" alt="Google 로그인" onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }} />
+                                    <img src={googleLogo} alt="google" style={{ width: '20px', height: '20px', marginRight: '10px' }} />
+                                    구글 로그인
                                 </button>
                             </div>
                         </div>
