@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Login.css';
-import Logo from '../components/icon/Logo';
 
 const LoginPage = () => {
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
-    const [showErrorMessage, setShowErrorMessage] = useState(false);
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,7 +21,6 @@ const LoginPage = () => {
 
         try {
             const response = await axios.post("/api/user/login", { id, password });
-            setShowErrorMessage(false);
             // setIsLoggedIn(true);
             console.log(isLoggedIn);
             console.log(response.data); // 서버에서 반환한 데이터 출력
@@ -32,7 +29,6 @@ const LoginPage = () => {
             
             navigate('/'); // 로그인 완료 후 메인 페이지로 이동
         } catch (error) {
-            setShowErrorMessage(true);
             alert("ID 혹은 비밀번호가 일치하지 않습니다.")
             console.log(error);
         }

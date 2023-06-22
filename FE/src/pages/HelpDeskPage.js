@@ -29,7 +29,7 @@ const HelpDesk = () => {
 
     // n 개씩 페이지네이션 그룹으로 나누기
     const pageGroups = [];
-    
+
 
     const fetchData = async (page, size) => {
         const response = await axios.get(`/api/board/view?page=${page}&size=${size}`, {
@@ -97,33 +97,36 @@ const HelpDesk = () => {
     return (
         <div>
             {isWriting ? (
-                <div className='wrtTable'>
-                    <form onSubmit={addBoard}>
-                        <div className='float-right'>
-                            <button onClick={handleWriteButton}
-                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ">
-                                제출
-                            </button>
-                        </div>
-                        <table className="h-96">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input className="block w-full h-full border-0 border-b-2 border-gray-200 outline-none px-11 py-3 text-2xl"
-                                            type="text" placeholder="제목"
-                                            value={title} onChange={(e) => setTitle(e.target.value)} required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <textarea className="w-full h-full outline-none p-11 text-lg"
-                                            placeholder="내용을 입력해주세요."
-                                            value={text} onChange={(e) => setText(e.target.value)} required />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                <div className='w-1/2'>
+
+                    <div className='border p-6'>
+                        <form onSubmit={addBoard}>
+                            <div className='space-x-3 w-full border-b-2 flex justify-end'>
+                                <button onClick={handleWriteButton}
+                                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ">
+                                    제출
+                                </button>
+                            </div>
+                            <table className="h-96 clear-both">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <input className="block w-full h-full border-0 border-b-2 border-gray-200 outline-none px-11 py-3 text-2xl"
+                                                type="text" placeholder="제목"
+                                                value={title} onChange={(e) => setTitle(e.target.value)} required />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <textarea className="w-full h-full outline-none p-11 text-lg"
+                                                placeholder="내용을 입력해주세요."
+                                                value={text} onChange={(e) => setText(e.target.value)} required />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
                 </div>
 
             ) : (
