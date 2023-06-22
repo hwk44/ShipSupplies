@@ -76,31 +76,63 @@ const PostDetail = () => {
     return (
         <div className='writingDetail'>
             {post && (
-                <div>
-                    <h1 className='postDetail'>글 상세보기</h1>
+                <div className='border p-6'>
                     {!editing ? (
-                        <>
-                            <button onClick={() => setEditing(true)} className='updateBtn'>수정</button>
-                            <button onClick={deleteBoard} className='deleteBtn'>삭제</button>
-                        </>
+                        <div className='float-right space-x-3 mr-4'>
+                            <button onClick={() => setEditing(true)} 
+                            className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
+                            수정</button>
+                            <button onClick={deleteBoard} 
+                            className="bg-transparent hover:bg-red-100 text-red-500 py-2 px-4 border border-gray-300 hover:border-red-400 rounded">
+                                삭제</button>
+                        </div>
                     ) : (
-                        <>
-                            <button onClick={updateBoard} className='updateBtnSubmit'>제출</button>
-                            <button onClick={() => setEditing(false)} className='cancelBtn'>취소</button>
-                        </>
+                        <div className='float-right space-x-3 mr-4'>
+                            <button onClick={updateBoard} 
+                            className="bg-transparent hover:bg-blue-100 text-blue-500 py-2 px-4 border border-gray-300 hover:border-blue-400 rounded">
+                                제출
+                            </button>
+                            <button onClick={() => setEditing(false)} 
+                            className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
+                                취소
+                            </button>
+                        </div>
                     )}
 
-                    <table>
+                    <table className="h-96 clear-both" >
                         <tbody>
-                            <tr><td>글 번호</td><td>{post.id}</td></tr>
-                            <tr><td>제목</td><td>{editing ? <input type="text" value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} required /> : post.title}</td></tr>
-                            <tr><td>작성일</td><td>{new Date(post.date).toLocaleString('ko-KR')}</td></tr>
-                            <tr><td>작성자</td><td>{post.user.id}</td></tr>
-                            <tr><td>본문</td><td>{editing ? <textarea value={updatedText} onChange={(e) => setUpdatedText(e.target.value)} required /> : post.text}</td></tr>
+                            <tr>
+                                {/* 제목 */}
+                                <td>
+                                    {editing ? <input type="text" 
+                                    className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
+                                    value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} required /> : 
+                                    <input type='text'
+                                    className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
+                                    value={post.title}
+                                    readOnly />}
+                                </td>
+                            </tr>
+                            <div className="text-sm -mt-8 ml-10 text-gray-500">
+                                {/* 작성자 */}
+                                <td>{post.user.id}</td>
+                                {/* 작성일 */}
+                                <td>{new Date(post.date).toLocaleString('ko-KR')}</td>
+                            </div>
+                          
+                            <tr>
+                                {/* 본문 */}
+                                <td>
+                                    {editing ? 
+                                    <textarea className="w-full h-full outline-none p-11 text-lg"
+                                    value={updatedText} onChange={(e) => setUpdatedText(e.target.value)} required /> : 
+                                    <textarea className="w-full h-full outline-none p-11 text-lg"
+                                    value={post.text} readOnly />}
+                                </td>
+                                </tr>
                         </tbody>
                     </table>
                     <br></br>
-                    <h1 className='postDetail'>댓글 모음</h1>
                     <Comment id={id} />
                 </div>
             )}

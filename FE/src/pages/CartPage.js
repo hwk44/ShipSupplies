@@ -124,8 +124,8 @@ const CartPage = () => {
             {getUniqueCategories().length > 0 ?
                 getUniqueCategories().map((category) => (
                     <div key={category}>
-                        <p className="text-xl leading-7 tracking-tight text-blue-500 font-semibold">{category}</p>
-                        <div className="flex justify-center mb-6 mt-3 ">
+                        <div className="flex flex-col justify-center items-center mb-6 mt-3 ">
+                        <p className="mr-auto ml-32 mb-5 text-xl leading-7 tracking-tight text-blue-500 font-semibold">{category}</p>
                             <table className="t1">
                                 <thead>
                                     <tr>
@@ -198,7 +198,7 @@ const CartPage = () => {
                         <th>과거 리드타임</th>
                     </tr>
                 </thead>
-                <p>위시리스트가 비어있습니다.</p>
+                <p className="text-lg p-6">위시리스트가 비어있습니다.</p>
                 </table>
                 </div>
             }
