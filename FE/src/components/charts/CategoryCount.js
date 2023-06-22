@@ -110,10 +110,7 @@ const CategoryCount = () => {
 
 
 
-
-
-
-    return <div id="chart" />;
+    return <div id="chart" className="w-full"/>;
 };
 
 export default CategoryCount;

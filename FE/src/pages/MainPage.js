@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '../styles/MainPage.css';
 import googleLogo from '../images/googleLogo.svg';
+import { useEffect } from 'react';
 
 const MainPage = () => {
 
     // getCookie 함수를 정의하여 쿠키를 읽어옴
-
     const getCookie = (name) => {
         const value = "; " + document.cookie;
         const parts = value.split("; " + name + "=");
@@ -17,6 +17,7 @@ const MainPage = () => {
     const userId = getCookie('userId');
     if (userId && !localStorage.getItem('userId')) {
         localStorage.setItem('userId', userId);
+        window.location.reload(); // 로그인 성공 후 페이지 새로고침
     }
 
     const isLoggedIn = !!localStorage.getItem('userId');
@@ -45,16 +46,11 @@ const MainPage = () => {
 
                                 <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm "
                                     onClick={goRegister}>회원가입</button>
-                                    
-                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm"
-                                >
-                                   <img src={googleLogo} alt="google" style={{width : '20px', height : '20px', marginRight : '10px'}} />
-                                    구글 로그인
-                                </button>
 
-                                <button className="googleBtn"
+                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm"
                                     onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }}>
-                                    <img src="/btn_google_signin_light_normal_web.png" alt="Google 로그인" onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }} />
+                                    <img src={googleLogo} alt="google" style={{ width: '20px', height: '20px', marginRight: '10px' }} />
+                                    구글 로그인
                                 </button>
                             </div>
                         </div>

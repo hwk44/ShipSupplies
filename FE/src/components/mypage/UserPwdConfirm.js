@@ -40,8 +40,8 @@ const UserPwdConfirm = () => {
         <>
             {isAuthenticated ?
                 <UserUpdate /> :
-                <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <div className="flex w-full h-96 flex-col justify-center items-center">
+                    <div className="mx-auto w-full max-w-sm">
                         <form className="space-y-6" onSubmit={handleconfirmPwd}>
                             <div className="mt-2">
                                 <input
