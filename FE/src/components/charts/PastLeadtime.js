@@ -68,3 +68,4 @@ const Chart = ({ foundItems }) => {
 };
 
 export default Chart;
+

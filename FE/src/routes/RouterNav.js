@@ -71,37 +71,40 @@ const RouterNav = () => {
                             선용품 검색
                         </a>
                     </li>
+
                     <li>
                         <a href="/helpdesk" className="hover:text-blue-700" onClick={handleLinkClick}>
                             고객센터
                         </a>
                     </li>
 
-                    <div className="flex items-center">
-                        <Dropdown className="my-1" />
-                        <button
-                            type="button"
-                            className="mx-2.5 text-gray-400 hover:text-black mb-3"
-                            onClick={goCart}
-                        >
-                            <BsCart3 size={25} />
-                        </button>
 
-                        {/* 로그인 시 로그아웃 버튼 보이게 */}
-                        {isLoggedIn ? (
+                        <div className="flex items-center">
+                            <Dropdown className="my-1" />
                             <button
                                 type="button"
-                                className="mx-2.5 mb-2.5 text-gray-400 hover:text-black flex flex-direction: row; "
-                                onClick={handleLogout}
+                                className="mx-2.5 text-gray-400 hover:text-black mb-3"
+                                onClick={goCart}
                             >
-                                로그아웃
-                                <LuLogOut size={20} />
+                                <BsCart3 size={25} />
                             </button>
-                        ) : (
-                            <div></div>
-                        )}
-                    </div>
-                </ul>
+
+                            {/* 로그인 시 로그아웃 버튼 보이게 */}
+                            {isLoggedIn ? (
+                                <button
+                                    type="button"
+                                    className="mx-2.5 mb-2.5 text-gray-400 hover:text-black flex flex-direction: row; "
+                                    onClick={handleLogout}
+                                >
+                                    로그아웃
+                                    <LuLogOut size={20} />
+                                </button>
+                            ) : (
+                                <div></div>
+                            )}
+                        </div>
+                    </ul>
+               
             </div>
         </nav>
     );
