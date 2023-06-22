@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '../styles/MainPage.css';
-import bgimg from '../images/banner.jpg';
+import googleLogo from '../images/googleLogo.svg';
 
 const MainPage = () => {
 
@@ -35,24 +35,30 @@ const MainPage = () => {
         <>
             <figure className="figure">
                 <article className="txt">
-                        {/* <img src={bgimg} alt="bgImage" /> */}
-                        <h1 className="h1">선용품 최적 구매발주 서비스</h1>
                     {isLoggedIn ? (
                         <div></div>
                     ) : (
-                        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <button className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                onClick={goLogin}>로그인</button>
+                        <div className="div">
+                            <div className="flex flex-col sm:mx-auto w-60 sm:max-w-sm space-y-7">
+                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm"
+                                    onClick={goLogin}>로그인</button>
 
-                            <button className="mt-3 flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                onClick={goRegister}>회원가입</button>
+                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm "
+                                    onClick={goRegister}>회원가입</button>
+                                    
+                                <button className="flex w-full h-12 items-center justify-center rounded-md bg-white px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm"
+                                >
+                                   <img src={googleLogo} alt="google" style={{width : '20px', height : '20px', marginRight : '10px'}} />
+                                    구글 로그인
+                                </button>
 
-                            <button className='googleBtn'
-                                onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }}>
-                                <img src="/btn_google_signin_light_normal_web.png" alt="Google 로그인" onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }} />
-                            </button>
-
+                                <button className="googleBtn"
+                                    onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }}>
+                                    <img src="/btn_google_signin_light_normal_web.png" alt="Google 로그인" onClick={() => { window.location.href = 'http://localhost:8080/oauth2/authorization/google'; }} />
+                                </button>
+                            </div>
                         </div>
+
                     )}
                 </article>
             </figure>

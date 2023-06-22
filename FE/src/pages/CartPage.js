@@ -134,7 +134,7 @@ const CartPage = () => {
                     </div>
                 </div>
             ))}
-            <div className="float-right">
+            <div className="float-right mr-28">
                 <button
                     onClick={handleDelete}
                     className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded"
