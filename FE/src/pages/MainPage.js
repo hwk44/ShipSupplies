@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import '../styles/MainPage.css';
 import googleLogo from '../images/googleLogo.svg';
+import { useEffect } from 'react';
 
 const MainPage = () => {
 
     // getCookie 함수를 정의하여 쿠키를 읽어옴
-
     const getCookie = (name) => {
         const value = "; " + document.cookie;
         const parts = value.split("; " + name + "=");
@@ -17,6 +17,7 @@ const MainPage = () => {
     const userId = getCookie('userId');
     if (userId && !localStorage.getItem('userId')) {
         localStorage.setItem('userId', userId);
+        window.location.reload(); // 로그인 성공 후 페이지 새로고침
     }
 
     const isLoggedIn = !!localStorage.getItem('userId');
