@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Comment from './Comment';
+import Comment from '../components/helpdesk/Comment';
 
 const PostDetail = () => {
     const { id } = useParams();
@@ -79,25 +79,25 @@ const PostDetail = () => {
                 <div className='border p-6'>
                     {!editing ? (
                         userId === post.user.id && (
-                            <div className='float-right space-x-3 mr-4'>
+                            <div className='space-x-3 w-full border-b-2 flex justify-end'>
                                 <button onClick={() => setEditing(true)}
-                                    className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
+                                    className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded mb-3">
                                     수정
                                 </button>
                                 <button onClick={deleteBoard}
-                                    className="bg-transparent hover:bg-red-100 text-red-500 py-2 px-4 border border-gray-300 hover:border-red-400 rounded">
-                                    삭제
+                                    className="bg-transparent hover:bg-red-100 text-red-500 py-2 px-4 border border-gray-300 hover:border-red-400 rounded mb-3">
+                                    삭제 
                                 </button>
                             </div>
                         ) 
                     ) : (
-                        <div className='float-right space-x-3 mr-4'>
+                        <div className='space-x-3 w-full border-b-2 flex justify-end'>
                             <button onClick={updateBoard}
-                                className="bg-transparent hover:bg-blue-100 text-blue-500 py-2 px-4 border border-gray-300 hover:border-blue-400 rounded">
+                                className="bg-transparent hover:bg-blue-100 text-blue-500 py-2 px-4 border border-gray-300 hover:border-blue-400 rounded mb-3">
                                 제출
                             </button>
                             <button onClick={() => setEditing(false)}
-                                className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded">
+                                className="bg-transparent hover:bg-gray-100 text-black py-2 px-4 border border-gray-300 rounded mb-3">
                                 취소
                             </button>
                         </div>
@@ -109,10 +109,10 @@ const PostDetail = () => {
                                 {/* 제목 */}
                                 <td>
                                     {editing ? <input type="text"
-                                        className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
+                                        className="block w-full h-full border-0 outline-none px-11 py-3 text-2xl"
                                         value={updatedTitle} onChange={(e) => setUpdatedTitle(e.target.value)} required /> :
                                         <input type='text'
-                                            className="block w-full h-full border-0 border-t-2 outline-none px-11 py-3 text-2xl"
+                                            className="block w-full h-full border-0 outline-none px-11 py-3 text-2xl"
                                             value={post.title}
                                             readOnly />}
                                 </td>
@@ -136,7 +136,6 @@ const PostDetail = () => {
                             </tr>
                         </tbody>
                     </table>
-                    <br></br>
                     <Comment id={id} />
                 </div>
             )}

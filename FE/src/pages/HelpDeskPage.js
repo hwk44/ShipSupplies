@@ -18,18 +18,33 @@ const HelpDesk = () => {
     // 페이지별 게시글 개수
     const pageSize = 10;
 
-    // 최대 페이지 버튼 수
-    const maxPageButtons = 5;
-
     // 페이지네이션 변수
     const [currentPage, setCurrentPage] = useState(1);
+
+    // 페이지네이션 시작과 끝 인덱스 설정
+    const ITEMS_PER_PAGE = 10;
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+
+    // 페이지네이션 숫자 배열 생성
+    // 이 부분 오류?
+    const pageNumbers = posts
+        ? [...Array(Math.ceil(posts.length / ITEMS_PER_PAGE)).keys()]
+        : [];
 
     // 현재 페이지가 속한 페이지 그룹 인덱스 계산
     const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
 
     // n 개씩 페이지네이션 그룹으로 나누기
     const pageGroups = [];
-    
+    for (let i = 0; i < pageNumbers.length; i += 10) {
+        pageGroups.push(pageNumbers.slice(i, i + 10));
+    }
+
+    // 페이지 전환 핸들러
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
 
     const fetchData = async (page, size) => {
         const response = await axios.get(`/api/board/view?page=${page}&size=${size}`, {
@@ -39,27 +54,6 @@ const HelpDesk = () => {
         });
 
         setPosts(response.data.content); // 'content'는 페이지에 대한 데이터를 담고있는 속성
-    }
-
-    // 페이지 버튼 클릭 이벤트 핸들러
-    const pageClick = (pageNumber) => {
-        setPage(pageNumber);
-    }
-
-    // 이전 버튼 클릭
-    const prevClick = () => {
-        if (page > 0) {
-            setPage(page - 1);
-        }
-    }
-
-    // 다음 버튼 클릭
-    const nextClick = () => {
-        const totalPages = 100;
-        if (page < totalPages - 1) {
-            setPage(page + 1);
-        }
-
     }
 
     useEffect(() => {
@@ -97,40 +91,45 @@ const HelpDesk = () => {
     return (
         <div>
             {isWriting ? (
-                <div className='wrtTable'>
-                    <form onSubmit={addBoard}>
-                        <div className='float-right'>
-                            <button onClick={handleWriteButton}
-                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ">
-                                제출
-                            </button>
+                <div className="flex justify-center">
+
+                    <div className='wrtTable'>
+                        <div className="border p-6 h-full">
+                            <form onSubmit={addBoard}>
+                                <div className='float-right'>
+                                    <button onClick={handleWriteButton}
+                                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ">
+                                        제출
+                                    </button>
+                                </div>
+                                <table className="h-96">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <input className="block w-full h-full border-0 border-b-2 border-gray-200 outline-none px-11 py-3 text-2xl"
+                                                    type="text" placeholder="제목"
+                                                    value={title} onChange={(e) => setTitle(e.target.value)} required />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <textarea className="w-full h-full outline-none p-11 text-lg"
+                                                    placeholder="내용을 입력해주세요."
+                                                    value={text} onChange={(e) => setText(e.target.value)} required />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
                         </div>
-                        <table className="h-96">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <input className="block w-full h-full border-0 border-b-2 border-gray-200 outline-none px-11 py-3 text-2xl"
-                                            type="text" placeholder="제목"
-                                            value={title} onChange={(e) => setTitle(e.target.value)} required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <textarea className="w-full h-full outline-none p-11 text-lg"
-                                            placeholder="내용을 입력해주세요."
-                                            value={text} onChange={(e) => setText(e.target.value)} required />
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
+                    </div>
                 </div>
 
             ) : (
                 <>
                     <div className='boardList'>
                         <h1 className='h1'>1:1 문의 게시판</h1>
-                        <table className="t1">
+                        <table className="t1 mb-6">
                             <thead>
                                 <tr>
                                     <th>번호</th>
@@ -141,7 +140,7 @@ const HelpDesk = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {posts.map((post, index) => {
+                                {posts && posts.slice(startIndex, endIndex).map((post, index) => {
                                     const date = new Date(post.date).toLocaleDateString();
                                     return (
                                         <tr key={post.id}>
@@ -155,23 +154,35 @@ const HelpDesk = () => {
                             </tbody>
 
                         </table>
-                        <div className="mt-10">
+
+                        <ul className="pagination">
                             {currentPageGroupIndex > 0 && (
-                                <button onClick={prevClick}>
-                                    &lt; 이전 &nbsp;
-                                </button>
+                                <li>
+                                    <span onClick={() => handlePageChange((currentPageGroupIndex - 1) * 10 + 1)}>
+                                        &lt; 이전
+                                    </span>
+                                </li>
                             )}
-                            {[...Array(maxPageButtons).keys()].map((i) =>
-                                <button key={i} onClick={() => pageClick(i)}>{i + 1} &nbsp;</button>
-                            )}
+                            {pageGroups[currentPageGroupIndex]?.map((pageNumber) => (
+                                <li key={pageNumber}>
+                                    <span
+                                        onClick={() => handlePageChange(pageNumber + 1)}
+                                        className={currentPage === pageNumber + 1 ? "active" : ""}
+                                    >
+                                        {pageNumber + 1}
+                                    </span>
+                                </li>
+                            ))}
                             {currentPageGroupIndex < pageGroups.length - 1 && (
-                                <button onClick={nextClick}>
-                                    다음 &gt;
-                                </button>
+                                <li>
+                                    <span onClick={() => handlePageChange((currentPageGroupIndex + 1) * 10 + 1)}>
+                                        다음 &gt;
+                                    </span>
+                                </li>
                             )}
-                        </div>
+                        </ul>
                     </div>
-                    <div className="float-right mr-32">
+                    <div className="float-right mr-32 mt-10">
                         <button onClick={handleWriteButton}
                             className="mx-14 mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
                             글쓰기
