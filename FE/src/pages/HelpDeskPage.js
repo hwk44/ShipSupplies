@@ -18,9 +18,6 @@ const HelpDesk = () => {
     // 페이지별 게시글 개수
     const pageSize = 10;
 
-    // 최대 페이지 버튼 수
-    const maxPageButtons = 5;
-
     // 페이지네이션 변수
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -43,12 +40,12 @@ const HelpDesk = () => {
     for (let i = 0; i < pageNumbers.length; i += 10) {
         pageGroups.push(pageNumbers.slice(i, i + 10));
     }
-    
+
     // 페이지 전환 핸들러
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
-    
+
     const fetchData = async (page, size) => {
         const response = await axios.get(`/api/board/view?page=${page}&size=${size}`, {
             headers: {
@@ -143,7 +140,7 @@ const HelpDesk = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {posts.map((post, index) => {
+                                {posts && posts.slice(startIndex, endIndex).map((post, index) => {
                                     const date = new Date(post.date).toLocaleDateString();
                                     return (
                                         <tr key={post.id}>
