@@ -9,8 +9,15 @@ import axios from 'axios';
 const RouterNav = () => {
     const navigate = useNavigate();
 
-    const goCart = () => {
-        navigate('/cart')
+    const goCart = (event) => {
+        if(userId == null) {
+            alert('로그인이 필요한 서비스입니다.')
+            event.preventDefault();
+            navigate('/login');
+        }
+        else{
+            navigate('/cart')
+        }
     }
 
     const isLoggedIn = !!localStorage.getItem('userId');

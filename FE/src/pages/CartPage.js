@@ -125,7 +125,7 @@ const CartPage = () => {
                 getUniqueCategories().map((category) => (
                     <div key={category}>
                         <div className="flex flex-col justify-center items-center mb-6 mt-3 ">
-                        <p className="mr-auto ml-32 mb-5 text-xl leading-7 tracking-tight text-blue-500 font-semibold">{category}</p>
+                        <p className="mr-auto ml-40 mb-5 text-xl leading-7 tracking-tight text-blue-500 font-semibold">{category}</p>
                             <table className="t1">
                                 <thead>
                                     <tr>
@@ -203,7 +203,7 @@ const CartPage = () => {
                 </div>
             }
             {getUniqueCategories().length > 0 && (
-                <div className="float-right">
+                <div className="flex justify-end mr-28">
                     <button
                         onClick={handleDelete}
                         className="mx-14 mt-3 bg-rose-500 hover:bg-rose-600 text-white py-2 px-4 rounded"

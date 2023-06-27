@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import RouterNav from './RouterNav';
-import RouterLogin from './RouterLogin';
+// import RouterLogin from './RouterLogin';
 import MainPage from '../pages/MainPage';
 import LoginPage from '../pages/LoginPage';
 import MyPage from '../pages/MyPage';
@@ -8,15 +8,13 @@ import RegisterPage from '../pages/RegisterPage';
 import CartPage from '../pages/CartPage';
 import UserDelete from '../components/mypage/UserDelete';
 import UserPwdConfirm from '../components/mypage/UserPwdConfirm';
-import UserUpdate from '../components/mypage/UserUpdate';
 import SearchPage from '../pages/SearchPage';
 import PredictionPage from '../pages/PredictionPage';
 import RegressionPage from '../pages/RegressionPage';
-import HelpDesk from '../pages/HelpDesk';
-import PostDetail from '../pages/PostDetail';
+import HelpDeskPage from '../pages/HelpDeskPage';
+import PostDetailPage from '../pages/PostDetailPage';
 import PastLeadtimePage from '../pages/PastLeadtimePage';
 import DataPage from '../pages/DataPage';
-import { useState, useEffect } from 'react';
 
 const RouterMain = () => {
     
@@ -49,8 +47,8 @@ const RouterMain = () => {
                 < Route path="/search" element={<SearchPage />} />
                 < Route path="/prediction" element={<PredictionPage />} />
                 < Route path="/regression" element={<RegressionPage />} />
-                < Route path="/helpdesk" element={<HelpDesk />} />
-                < Route path="/post/:id" element={<PostDetail />} />
+                < Route path="/helpdesk" element={<HelpDeskPage />} />
+                < Route path="/post/:id" element={<PostDetailPage />} />
                 < Route path="/pastleadtime" element={<PastLeadtimePage />} />
                 < Route path="/data" element={<DataPage />} />
             </Routes>

@@ -1,7 +1,8 @@
+import items from '../db/items.json';
 import data from '../db/datas.json'
 import axios from 'axios';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Search.css';
 import { BiSearch } from "react-icons/bi";
 import Select from 'react-select';
@@ -12,6 +13,9 @@ const SearchPage = () => {
 
   // 페이지네이션 변수
   const [currentPage, setCurrentPage] = useState(1);
+
+  // 드롭다운 가시화 변수
+  const [dropdownVisibility, setDropdownVisibility] = useState(false);
 
   // 드롭다운에서 선택된 항목 정보 저장하는 변수
   const [selectedItem, setSelectedItem] = useState('');
@@ -106,6 +110,11 @@ const SearchPage = () => {
 
   const [selcate, setSelcate] = useState();
   const txtC = useRef();
+  const txtInput = useRef();
+
+  const cate = Object.keys(items);
+  // console.log(cate);
+
 
   const selItem = (i) => {
     setSelcate(i);
@@ -116,6 +125,18 @@ const SearchPage = () => {
   // 초기값 빈배열[]
   const [ctag, setCTag] = useState([]);
 
+  // const showC1 = (e) => {
+  //   console.log("txtC", txtC);
+  //   // txtC 값을 소문자로 바꾸고
+  //   const searchText = txtC.current.value.toLowerCase();
+  //   // 그 값을 포함하는 list filter로 거름 
+  //   const temp = list1.filter((i) => i.toLowerCase().includes(searchText));
+  //   setCTag(
+  //     temp.map((i) => (
+  //       <li onClick={() => selItem(i)} key={i}>{i}</li>
+  //     ))
+  //   );
+  // };
 
   // 돋보기 버튼 클릭시 txtC, key 값을 넘기는 get 요청
   const handleSubmit = async () => {
@@ -227,7 +248,11 @@ const SearchPage = () => {
 
       // 요청들을 병렬로 수행하고 결과를 배열로 저장
       const results = await Promise.all(requests);
-      console.log('results : ', results);
+      console.log('results : ', results)
+
+      // 결과 배열을 sentData와 receivedData로 분리
+      // const sentData = results.map(({ response, ...item }) => item);
+      // const receivedData = results.map(({ response }) => response);
 
       // 한 번에 페이지 이동
       navigate('/cart');
