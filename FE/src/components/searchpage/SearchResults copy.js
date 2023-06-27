@@ -1,19 +1,12 @@
-// 결과 페이지 컴포넌트
-import React from 'react';
-
 const SearchResults = ({ results, currentPage, resultsPerPage, totalResults, onPageChange }) => {
-  // 현재 페이지의 결과 범위 계산
   const startIndex = (currentPage - 1) * resultsPerPage;
   const endIndex = startIndex + resultsPerPage;
 
-  // 현재 페이지의 결과 데이터 추출
   const currentPageResults = results.slice(startIndex, endIndex);
 
-  // 페이지네이션을 위한 페이지 수 계산
   const totalPages = Math.ceil(totalResults / resultsPerPage);
 
   const handlePageChange = (newPage) => {
-    // 부모 컴포넌트로 페이지 변경 이벤트 전달
     onPageChange(newPage);
   };
 
@@ -23,7 +16,6 @@ const SearchResults = ({ results, currentPage, resultsPerPage, totalResults, onP
         <div key={result.id}>{result.title}</div>
       ))}
 
-      {/* 페이지네이션 컴포넌트 렌더링 */}
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
@@ -33,7 +25,6 @@ const SearchResults = ({ results, currentPage, resultsPerPage, totalResults, onP
   );
 }
 
-// 페이지네이션 컴포넌트
 function Pagination({ currentPage, totalPages, onPageChange }) {
   const handlePrevPage = () => {
     if (currentPage > 1) {

@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import RouterNav from './RouterNav';
-// import RouterLogin from './RouterLogin';
 import MainPage from '../pages/MainPage';
 import LoginPage from '../pages/LoginPage';
 import MyPage from '../pages/MyPage';
@@ -18,23 +17,8 @@ import DataPage from '../pages/DataPage';
 
 const RouterMain = () => {
     
-    // const [isLogged, setIsLogged] = useState(false);
-
-    // useEffect(() => {
-
-    //     // 로그인 상태를 강제로 false로 설정
-    //     setIsLogged(false);
-        
-    // }, []);
-
-    // useEffect(() => {
-    // localStorage.removeItem('userId')
-    // },[isLogged])
-
-
     return (
         <>
-            {/* <RouterLogin />  */}
             <RouterNav />
             <Routes>
                 < Route path="/" element={<MainPage />} />
@@ -53,7 +37,6 @@ const RouterMain = () => {
                 < Route path="/data" element={<DataPage />} />
             </Routes>
         </>
-
     );
 }
 export default RouterMain;

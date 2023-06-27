@@ -31,7 +31,6 @@ const UserDelete = () => {
         password: password,
         confirmPassword: confirmPassword
     }
-    // 회원 탈퇴 요청을 백엔드로 전송
     try{
       await axios.delete('api/user/delete', {
         data: data,
@@ -47,7 +46,6 @@ const UserDelete = () => {
       console.log(error)
   } 
 
-    // 폼 초기화
     setUsername('');
     setPassword('');
     setConfirmPassword('');

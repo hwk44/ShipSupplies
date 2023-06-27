@@ -1,7 +1,5 @@
-// 검색창 컴포넌트
-import items from '../../db/items.json';
 import data from '../../db/datas.json'
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { BiSearch } from "react-icons/bi";
 import Select from 'react-select';
 import axios from 'axios';
@@ -9,15 +7,12 @@ import SearchResults from './SearchResults';
 
 
 const SearchBar = () => {
-  // 드롭다운 선택 후 해당 데이터
   const [seldata, setSelData] = useState(null);
 
-  // 드롭다운에서 선택된 항목 정보 저장하는 변수
   const [selectedItem, setSelectedItem] = useState('');
   const [key, setKey] = useState(false);
 
   useEffect(() => {
-    // console.log('선택된 항목:', selectedItem);
     if (selectedItem.includes("카테고리")) {
       setKey("key2")
     } else if (selectedItem.includes("청구품목")) {
@@ -40,23 +35,19 @@ const SearchBar = () => {
   sel1 = [{ value: '', label: '' }, ...sel1];
   // console.log(sel1)
   const [selectSel1, setSelectSel] = useState(sel1[0]);
-  //안에 들어가는 값을 받아야해서 state사용
 
   useEffect(() => {
     // console.log(selectSel1)
   }, [selectSel1]);
 
-  // 돋보기 버튼 클릭시 txtC, key 값을 넘기는 get 요청
   const handleSubmit = async () => {
     try {
       let requestUrl;
 
       if (key === "key2") {
-        // requestUrl = "/api/item/findByCategory";
         requestUrl = "/api/item/findByCategory";
         requestUrl = requestUrl + "?category=" + selectSel1['value'];
-        console.log(requestUrl)
-        // /?category=cooler
+        // console.log(requestUrl)
       } else if (key === "청구품목") {
         requestUrl = "/api/item/findByItem";
         requestUrl = requestUrl + "?item=" + selectSel1['value'];
@@ -76,16 +67,15 @@ const SearchBar = () => {
         }
       );
       setSelData(response.data);
-      console.log("DATA", response.data);
-      // console.log("setData => ", seldata);
+      // console.log("DATA", response.data);
     } catch (error) {
       console.error("GET 요청 에러:", error);
     }
   };
 
-  useEffect(() => {
-    console.log("setData => ", seldata);
-  }, [seldata]);
+  // useEffect(() => {
+  //   console.log("setData => ", seldata);
+  // }, [seldata]);
 
   return (
     <>
@@ -102,8 +92,8 @@ const SearchBar = () => {
         <div className='w-2/6'>
           <Select
             className=""
-            options={sel1} //위에서 만든 배열을 select로 넣기
-            onChange={setSelectSel} //값이 바뀌면 setState되게
+            options={sel1} 
+            onChange={setSelectSel} 
             defaultValue={sel1[0]} />
         </div>
 

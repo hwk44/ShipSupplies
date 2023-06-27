@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsPerson } from 'react-icons/bs';
 
-
 const Dropdown = () => {
   const navigate = useNavigate();
 
-  const [isOpen, setIsOpen] = useState(false); // 드롭다운 상태를 관리하는 state
+  const [isOpen, setIsOpen] = useState(false); 
 
   const toggleDropdown = () => {
-    setIsOpen(!isOpen); // 드롭다운 상태를 토글
+    setIsOpen(!isOpen); 
   };
 
   const userId = localStorage.getItem('userId');
