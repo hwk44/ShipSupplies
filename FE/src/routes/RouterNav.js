@@ -26,12 +26,11 @@ const RouterNav = () => {
 
     const handleLogout = async () => {
         try {
-            // 서버에 로그아웃 요청
             const response = await axios.post('/api/user/logout', {
                 user: { id: userId }
             });
 
-            console.log(response)
+            // console.log(response);
 
             localStorage.removeItem('userId');
             alert('로그아웃 되었습니다.');
@@ -54,7 +53,7 @@ const RouterNav = () => {
         <nav>
             <div className='flex items-center justify-between my-4 mr-5 h-14'>
                 <Logo />
-                <ul className='flex flex-row space-x-4 items-center mr-12'>
+                <ul className='flex flex-row space-x-4 items-center mr-12 caret-transparent'>
                     <li>
                         <a href="/data" className="hover:text-blue-700" onClick={handleLinkClick}>
                             데이터 통계
@@ -96,7 +95,6 @@ const RouterNav = () => {
                                 <BsCart3 size={25} />
                             </button>
 
-                            {/* 로그인 시 로그아웃 버튼 보이게 */}
                             {isLoggedIn ? (
                                 <button
                                     type="button"

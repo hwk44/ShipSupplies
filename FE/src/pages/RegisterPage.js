@@ -25,10 +25,9 @@ const RegisterPage = () => {
         email: email,
         role: "USER"
       });
-      console.log(response.data); // 서버에서 반환한 데이터 출력
+      // console.log(response.data); 
       alert('회원가입이 완료되었습니다.');
 
-      // 회원가입 완료 후 로그인 페이지로 이동 등의 처리
       navigate('/login');
     }
     catch (error) {

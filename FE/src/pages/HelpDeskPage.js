@@ -6,42 +6,30 @@ import '../styles/HelpDesk.css';
 const HelpDesk = () => {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
-    const [id, setId] = useState(""); // 사용자 ID를 입력받기 위한 state
-    const [isWriting, setIsWriting] = useState(false); // 글 작성 중인지 상태를 관리하는 state
+    const [id, setId] = useState(""); 
+    const [isWriting, setIsWriting] = useState(false); 
     const [posts, setPosts] = useState([]);
 
     const userId = localStorage.getItem('userId');
-
-    // 페이지 번호에 대한 상태 변수 추가
     const [page, setPage] = useState(0);
-
-    // 페이지별 게시글 개수
     const pageSize = 10;
-
-    // 페이지네이션 변수
     const [currentPage, setCurrentPage] = useState(1);
 
-    // 페이지네이션 시작과 끝 인덱스 설정
     const ITEMS_PER_PAGE = 10;
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
 
-    // 페이지네이션 숫자 배열 생성
-    // 이 부분 오류?
     const pageNumbers = posts
         ? [...Array(Math.ceil(posts.length / ITEMS_PER_PAGE)).keys()]
         : [];
 
-    // 현재 페이지가 속한 페이지 그룹 인덱스 계산
     const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
 
-    // n 개씩 페이지네이션 그룹으로 나누기
     const pageGroups = [];
     for (let i = 0; i < pageNumbers.length; i += 10) {
         pageGroups.push(pageNumbers.slice(i, i + 10));
     }
 
-    // 페이지 전환 핸들러
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -53,19 +41,19 @@ const HelpDesk = () => {
             }
         });
 
-        setPosts(response.data.content); // 'content'는 페이지에 대한 데이터를 담고있는 속성
+        setPosts(response.data.content); 
     }
 
     useEffect(() => {
-        fetchData(page, pageSize); // 첫 번째 페이지, 페이지당 10개의 게시글 불러옴  
+        fetchData(page, pageSize); 
     }, [page]);
 
     const handleWriteButton = () => {
-        setIsWriting(true); // 글 작성 시작
+        setIsWriting(true); 
     };
 
     const addBoard = async (e) => {
-        e.preventDefault(); // form이 새로고침을 유발하는 것을 방지
+        e.preventDefault(); 
 
         try {
             const response = await axios.post('/api/board/add', { title, text, user: { id: userId } },
@@ -75,13 +63,13 @@ const HelpDesk = () => {
                     }
                 }
             );
-            console.log(response.data);
+            // console.log(response.data);
 
             setTitle("");
             setText("");
             setId("");
             setIsWriting(false);
-            await fetchData(page, pageSize); // 게시글을 추가한 후 게시글 목록을 다시 불러옴
+            await fetchData(page, pageSize); 
 
         } catch (error) {
             console.log(error);

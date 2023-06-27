@@ -9,8 +9,7 @@ const CategoryCount = () => {
         try {
             const response = await axios.get('/api/item/categoryDistribution');
             setData(response.data);
-            console.log("data : ", data);
-            console.log("console.log : ", response.data)
+            // console.log("data : ", data);
         } catch (error) {
             console.log(error);
         }
@@ -21,7 +20,7 @@ const CategoryCount = () => {
     }, []);
 
     useEffect(() => {
-        console.log("data: ", data);
+        // console.log("data: ", data);
 
         if (data.length > 0) {
             const category = data.slice(0, 69).map((item) => item.category);

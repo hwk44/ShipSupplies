@@ -46,13 +46,13 @@ const SearchResults = ({ results }) => {
     }
 
     setIsLoading(true); 
-    console.log('Checked items:', checkedList);
+    // console.log('Checked items:', checkedList);
 
     e.preventDefault();
 
     try {
       const selectedItems = seldata.filter((item) => checkedList.includes(item.id));
-      console.log('selectedItems', selectedItems)
+      // console.log('selectedItems', selectedItems)
 
       if (selectedItems.length === 0) {
         throw new Error('선택된 아이템 없음');
@@ -105,7 +105,7 @@ const SearchResults = ({ results }) => {
       });
 
       const results = await Promise.all(requests);
-      console.log('results : ', results)
+      // console.log('results : ', results)
 
       navigate('/cart');
 

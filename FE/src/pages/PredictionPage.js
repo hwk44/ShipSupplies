@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 const PredictionPage = () => {
@@ -8,8 +8,6 @@ const PredictionPage = () => {
   const [item, setItem] = useState('');
   const [prediction, setPrediction] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  const token = localStorage.getItem('jwt');
 
   const handlePred = async (e) => {
     setIsLoading(true);
@@ -23,7 +21,7 @@ const PredictionPage = () => {
         Item: item,
       };
 
-      console.log('requestBody', requestBody); // 확인: requestBody 값 출력
+      // console.log('requestBody', requestBody); 
 
       const response = await axios.post(
         '/api/item/predict/classify',
@@ -35,8 +33,8 @@ const PredictionPage = () => {
         }
       );
 
-      console.log("카테고리 값", response.data); // 서버에서 반환한 데이터 출력
-      setPrediction(response.data); // 카테고리 값을 상태에 저장
+      // console.log("카테고리 값", response.data); 
+      setPrediction(response.data); 
     } catch (error) {
       alert("예측할 수 없는 조합입니다.")
       console.log(error);

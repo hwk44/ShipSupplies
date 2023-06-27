@@ -57,7 +57,7 @@ const Comment = ({ id }) => {
                         'Content-Type': 'application/json',
                     }
                 });
-            console.log(response.data);
+            // console.log(response.data);
             setComment("");
             await fetchComments();
         } catch (error) {

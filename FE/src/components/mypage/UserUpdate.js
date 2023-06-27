@@ -25,7 +25,7 @@ const UserUpdate = () => {
             };
 
             const response = await axios.put('/api/user/update', requestBody);
-            console.log(response.data);
+            // console.log(response.data);
             alert('회원정보 변경이 완료되었습니다.');
             navigate('/');
 

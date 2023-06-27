@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Comment from '../components/helpdesk/Comment';
@@ -6,9 +6,9 @@ import Comment from '../components/helpdesk/Comment';
 const PostDetail = () => {
     const { id } = useParams();
     const [post, setPost] = useState(null);
-    const [editing, setEditing] = useState(false);  // 수정 모드 상태값
-    const [updatedTitle, setUpdatedTitle] = useState('');  // 수정된 제목 상태값
-    const [updatedText, setUpdatedText] = useState('');  // 수정된 본문 상태값
+    const [editing, setEditing] = useState(false);  
+    const [updatedTitle, setUpdatedTitle] = useState('');  
+    const [updatedText, setUpdatedText] = useState('');  
 
     const navigate = useNavigate();
 

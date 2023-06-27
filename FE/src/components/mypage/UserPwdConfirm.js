@@ -8,7 +8,7 @@ const UserPwdConfirm = () => {
     const [confirmPwd, setConfirmPwd] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
 
     const handleconfirmPwd = async (e) => {
         e.preventDefault();
@@ -24,9 +24,9 @@ const UserPwdConfirm = () => {
             };
 
             const response = await axios.put('/api/user/update', requestBody );
-            console.log(response.data);
+            // console.log(response.data);
             setIsAuthenticated(true);
-            console.log(isAuthenticated);
+            // console.log(isAuthenticated);
         }
         catch (error) {
             console.log(error);

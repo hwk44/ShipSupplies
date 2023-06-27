@@ -15,19 +15,17 @@ const LoginPage = () => {
         }
     }
 
-
     const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
             const response = await axios.post("/api/user/login", { id, password });
-            // setIsLoggedIn(true);
-            console.log(isLoggedIn);
-            console.log(response.data); // 서버에서 반환한 데이터 출력
+            // console.log(isLoggedIn);
+            // console.log(response.data); 
             localStorage.setItem("userId", response.data.userId)
-            console.log("로컬스토리지에 저장된 ID : ",localStorage.getItem("userId"))
+            // console.log("로컬스토리지에 저장된 ID : ",localStorage.getItem("userId"))
             
-            navigate('/'); // 로그인 완료 후 메인 페이지로 이동
+            navigate('/'); 
         } catch (error) {
             alert("ID 혹은 비밀번호가 일치하지 않습니다.")
             console.log(error);

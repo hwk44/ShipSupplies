@@ -64,12 +64,14 @@ table th, table td {
     display: flex;
     flex-direction: column;
     margin-top: 50px;
+    caret-color: transparent;
 }
 
 .h-96 {
     height: 60vh;
     border: none;
     background-color: white;
+    caret-color: transparent;
 }
 
 .wrtBtn {

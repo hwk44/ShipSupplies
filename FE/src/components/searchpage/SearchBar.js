@@ -47,7 +47,7 @@ const SearchBar = () => {
       if (key === "key2") {
         requestUrl = "/api/item/findByCategory";
         requestUrl = requestUrl + "?category=" + selectSel1['value'];
-        console.log(requestUrl)
+        // console.log(requestUrl)
       } else if (key === "청구품목") {
         requestUrl = "/api/item/findByItem";
         requestUrl = requestUrl + "?item=" + selectSel1['value'];
@@ -67,15 +67,15 @@ const SearchBar = () => {
         }
       );
       setSelData(response.data);
-      console.log("DATA", response.data);
+      // console.log("DATA", response.data);
     } catch (error) {
       console.error("GET 요청 에러:", error);
     }
   };
 
-  useEffect(() => {
-    console.log("setData => ", seldata);
-  }, [seldata]);
+  // useEffect(() => {
+  //   console.log("setData => ", seldata);
+  // }, [seldata]);
 
   return (
     <>

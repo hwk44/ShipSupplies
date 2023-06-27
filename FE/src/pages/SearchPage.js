@@ -1,70 +1,46 @@
 import data from '../db/datas.json'
 import axios from 'axios';
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Search.css';
 import { BiSearch } from "react-icons/bi";
 import Select from 'react-select';
 
 const SearchPage = () => {
-  // 드롭다운 선택 후 해당 데이터
   const [seldata, setSelData] = useState(null);
-
-  // 페이지네이션 변수
   const [currentPage, setCurrentPage] = useState(1);
-
-  // 드롭다운에서 선택된 항목 정보 저장하는 변수
   const [selectedItem, setSelectedItem] = useState('');
-
   const [key, setKey] = useState(false);
-
   const [list1, setList1] = useState([]);
-
-  // 체크박스 데이터 저장할 빈배열
   const [checkedList, setCheckedList] = useState([]);
-
-  // 저장 버튼 클릭 시 응답 기다리는 변수
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-
   const userId = localStorage.getItem('userId');
-
-  // 페이지 전환 핸들러
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // 페이지네이션 시작과 끝 인덱스 설정
   const ITEMS_PER_PAGE = 10;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
 
-  // 페이지네이션 숫자 배열 생성
   const pageNumbers = seldata
     ? [...Array(Math.ceil(seldata.length / ITEMS_PER_PAGE)).keys()]
     : [];
-
-  // 현재 페이지가 속한 페이지 그룹 인덱스 계산
   const currentPageGroupIndex = Math.floor((currentPage - 1) / 10);
-
-  // n 개씩 페이지네이션 그룹으로 나누기
   const pageGroups = [];
   for (let i = 0; i < pageNumbers.length; i += 10) {
     pageGroups.push(pageNumbers.slice(i, i + 10));
   }
 
-
-  // 전체 체크 상태
   const [isAllChecked, setIsAllChecked] = useState(false);
-
-  // 전체 선택/해제 함수
   const handleAllChecked = useCallback(() => {
     setIsAllChecked(!isAllChecked);
     if (!isAllChecked) {
       if (seldata) {
-        const pageItems = seldata.slice(startIndex, endIndex);  // 현재 페이지의 아이템들
-        const pageIds = pageItems.map(item => item.id);  // 현재 페이지의 아이템 ID들
+        const pageItems = seldata.slice(startIndex, endIndex);  
+        const pageIds = pageItems.map(item => item.id);  
         setCheckedList(pageIds);
       }
     } else {
@@ -72,8 +48,6 @@ const SearchPage = () => {
     }
   }, [isAllChecked, seldata, startIndex, endIndex]);
 
-  
-  // 개별 체크 상태 변경 함수
   const onCheckedItem = useCallback(
     (checked, item) => {
       if (checked) {
@@ -86,7 +60,6 @@ const SearchPage = () => {
   );
 
   useEffect(() => {
-    // console.log('선택된 항목:', selectedItem);
     if (selectedItem.includes("카테고리")) {
       setKey("key2")
     } else if (selectedItem.includes("청구품목")) {
@@ -97,11 +70,9 @@ const SearchPage = () => {
 
   }, [selectedItem]);
 
-  // key 값이 변할때 data를 다르게 불러오도록 하는 useEffect
   useEffect(() => {
     const newList1 = data[key] || [];;
     setList1(newList1);
-    // console.log(list1)
   }, [key]);
 
   const [selcate, setSelcate] = useState();
@@ -110,24 +81,19 @@ const SearchPage = () => {
   const selItem = (i) => {
     setSelcate(i);
     txtC.current.value = i;
-    setCTag([]); // txtC가 선택되면 아래항목 보이지않게 배열 초기화
+    setCTag([]); 
   }
 
-  // 초기값 빈배열[]
   const [ctag, setCTag] = useState([]);
 
-
-  // 돋보기 버튼 클릭시 txtC, key 값을 넘기는 get 요청
   const handleSubmit = async () => {
     try {
       let requestUrl;
 
       if (key === "key2") {
-        // requestUrl = "/api/item/findByCategory";
         requestUrl = "/api/item/findByCategory";
         requestUrl = requestUrl + "?category=" + selectSel1['value'];
-        console.log(requestUrl)
-        // /?category=cooler
+        // console.log(requestUrl)
       } else if (key === "청구품목") {
         requestUrl = "/api/item/findByItem";
         requestUrl = requestUrl + "?item=" + selectSel1['value'];
@@ -147,39 +113,34 @@ const SearchPage = () => {
         }
       );
       setSelData(response.data);
-      console.log("DATA", response.data);
+      // console.log("DATA", response.data);
     } catch (error) {
       console.error("GET 요청 에러:", error);
     }
   };
 
-  // 저장버튼 클릭시
   const handleSave = async (e) => {
 
-    // seldata가 null일 때 에러 방지를 위한 체크
-    if (!seldata) {
-      console.error("seldata is null");
-      return;
-    }
+    // if (!seldata) {
+    //   console.error("seldata is null");
+    //   return;
+    // }
 
-    setIsLoading(true); // 요청이 시작될 때 true로 변경
-    console.log('Checked items:', checkedList);
+    setIsLoading(true); 
+    // console.log('Checked items:', checkedList);
 
     e.preventDefault();
 
     try {
-      // 필요한 데이터를 추출
       const selectedItems = seldata.filter((item) => checkedList.includes(item.id));
-      console.log('selectedItems', selectedItems)
+      // console.log('selectedItems', selectedItems)
 
       if (selectedItems.length === 0) {
         throw new Error('선택된 아이템 없음');
       }
 
-      // 선택된 아이템에 대한 요청을 모두 생성
       const requests = selectedItems.map(async itemToSend => {
         try {
-          // 첫 번째 요청
           const response = await axios.post(
             '/api/item/predict/regression',
             {
@@ -199,7 +160,6 @@ const SearchPage = () => {
 
           const itemWithResponse = { ...itemToSend, response: response.data };
 
-          // 두 번째 요청
           await axios.post(
             '/api/wish/add',
             {
@@ -225,11 +185,8 @@ const SearchPage = () => {
         }
       });
 
-      // 요청들을 병렬로 수행하고 결과를 배열로 저장
       const results = await Promise.all(requests);
-      console.log('results : ', results);
-
-      // 한 번에 페이지 이동
+      // console.log('results : ', results);
       navigate('/cart');
 
 
@@ -238,13 +195,9 @@ const SearchPage = () => {
       console.log(error);
       alert("저장 실패")
     } finally {
-      setIsLoading(false) // 요청이 끝나면 다시 false로 변경
+      setIsLoading(false) 
     }
   };
-
-
-
-
 
   let sel1 = [];
   if (key === '발주처' || key === '청구품목' || key === 'key2') {
@@ -256,12 +209,9 @@ const SearchPage = () => {
     }
   }
   sel1 = [{ value: '', label: '' }, ...sel1];
-  // console.log(sel1)
   const [selectSel1, setSelectSel] = useState(sel1[0]);
-  //안에 들어가는 값을 받아야해서 state사용
 
   useEffect(() => {
-    // console.log(selectSel1)
   }, [selectSel1]);
 
 
@@ -278,11 +228,10 @@ const SearchPage = () => {
         </select>
 
         <div className='w-2/6'>
-          <Select options={sel1} //위에서 만든 배열을 select로 넣기
-            onChange={setSelectSel} //값이 바뀌면 setState되게
+          <Select options={sel1} 
+            onChange={setSelectSel}
             defaultValue={sel1[0]} />
         </div>
-
 
         <button
           onClick={handleSubmit}

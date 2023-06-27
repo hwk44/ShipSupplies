@@ -1,22 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 
 const RegressionPage = () => {
   const [subject, setSubject] = useState("");
-  const [shipcarrier, setShipcarrier] = useState(''); // 출고운반선
+  const [shipcarrier, setShipcarrier] = useState(''); 
   const [key2, setKey2] = useState('');
   const [assembly, setAssembly] = useState('');
-  const [currency, setCurrency] = useState(''); // 견적화폐
-  const [client, setClient] = useState(''); // 발주처
+  const [currency, setCurrency] = useState(''); 
+  const [client, setClient] = useState(''); 
   const [regression, setRegression] = useState('');
-
-  //응답 기다리는 변수
   const [isLoading, setIsLoading] = useState(false);
-
   const [item, setItem] = useState('');
 
   const handlePred = async (e) => {
-    setIsLoading(true); // 요청이 시작될 때 true로 변경
+    setIsLoading(true); 
     e.preventDefault();
 
     try {
@@ -29,7 +26,7 @@ const RegressionPage = () => {
         company: client,
       };
 
-      console.log('requestBody', requestBody); // 확인: requestBody 값 출력
+      // console.log('requestBody', requestBody); 
 
       const response = await axios.post(
         '/api/item/predict/regression',
@@ -41,15 +38,14 @@ const RegressionPage = () => {
         }
       );
 
-      console.log("카테고리 값", response.data);
+      // console.log("카테고리 값", response.data);
       setRegression(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      setIsLoading(false); // 요청이 끝나면 false로 변경
+      setIsLoading(false); 
     }
   };
-
 
   return (
     <>
