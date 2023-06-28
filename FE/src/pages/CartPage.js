@@ -1,23 +1,15 @@
-import userEvent from "@testing-library/user-event";
-import { useState, useEffect, useRef, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Link, Route } from 'react-router-dom';
+import { useState, useEffect, useCallback } from "react";
 import '../styles/Cart.css';
 import axios from "axios";
-import { isCompositeComponent } from "react-dom/test-utils";
-import PastLeadtimePage from '../pages/PastLeadtimePage';
 import { useNavigate } from "react-router-dom";
-import { MdClose } from "react-icons/md";
-
 
 const CartPage = () => {
 
-    const [wishList, setWishList] = useState([]); // 서버로부터 받은 데이터 저장할 변수
+    const [wishList, setWishList] = useState([]); 
     const userId = localStorage.getItem('userId');
-    const [selectedItem, setSelectedItem] = useState(null); // 클릭한 항목 정보 저장
+    const [selectedItem, setSelectedItem] = useState(null); 
     const navigate = useNavigate();
-    const [selectAllState, setSelectAllState] = useState({}); // 전체선택 체크박스 상태
-
-    // 체크박스 데이터 저장할 빈배열
+    const [selectAllState, setSelectAllState] = useState({}); 
     const [checkedList, setCheckedList] = useState([]);
 
     useEffect(() => {
@@ -37,9 +29,8 @@ const CartPage = () => {
             }
         }
 
-        setCheckedList([...new Set(newCheckedList)]); // 중복 제거(무한 루프 방지)
+        setCheckedList([...new Set(newCheckedList)]); 
     }, [selectAllState, wishList]);
-
 
     const handleSelectAll = (category) => {
         const currentSelectAllState = selectAllState[category] || false;
@@ -73,8 +64,6 @@ const CartPage = () => {
         [checkedList, selectAllState]
     );
 
-
-    // 삭제버튼 클릭시
     const handleDelete = async (e) => {
         if (checkedList.length === 0) {
             console.error("선택된 항목이 없습니다.");
@@ -82,16 +71,14 @@ const CartPage = () => {
         }
 
         e.preventDefault();
-        console.log("선택된 항목들:", checkedList);
+        // console.log("선택된 항목들:", checkedList);
 
         try {
-            // 선택된 항목들을 삭제하는 요청 보내기
             await Promise.all(checkedList.map(id => axios.delete("/api/wish/delete", { data: { id } })));
 
-            // 선택된 항목들을 제외한 새로운 wishList 생성
             const updatedWishList = wishList.filter(item => !checkedList.includes(item.id));
             setWishList(updatedWishList);
-            setCheckedList([]); // 선택된 항목들 초기화
+            setCheckedList([]); 
             alert("삭제되었습니다.")
 
         } catch (error) {
@@ -104,8 +91,7 @@ const CartPage = () => {
         const fetchList = async () => {
             try {
                 const response = await axios.get(`/api/wish/get/?userId=${userId}`)
-                console.log('wishlist : ', response);
-                // console.log('response.data', response.data);
+                // console.log('wishlist : ', response);
                 setWishList(response.data);
             } catch (error) {
                 console.log(error);

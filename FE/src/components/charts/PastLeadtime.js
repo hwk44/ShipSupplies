@@ -1,6 +1,6 @@
 import ApexCharts from 'apexcharts';
 
-const Chart = ({ foundItems }) => {
+const PastLeadtime = ({ foundItems }) => {
 
     const leadtime = foundItems.map((item) => (
         item.leadtime
@@ -27,7 +27,7 @@ const Chart = ({ foundItems }) => {
         },
         grid: {
             row: {
-                colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                colors: ['#f3f3f3', 'transparent'], 
                 opacity: 0
             },
         },
@@ -51,21 +51,10 @@ const Chart = ({ foundItems }) => {
 
 
     return (
-        <>
-            {/* API에서 가져온 결과를 렌더링 */}
-            {/* {foundItems.map((item) => (
-                <div key={item.leadtime}>
-                    <p>리드타임 : {item.leadtime}</p>
-                    <p>날짜 : {new Date(item.date).toLocaleDateString('ko-KR')}</p>
-                </div>
-            ))} */}
-            <div className="flex justify-center">
-                <div id="chart" className="w-6/12"></div>
-            </div>
-
-        </>
+        <div className="flex justify-center">
+            <div id="chart" className="w-6/12"></div>
+        </div>
     );
 };
 
-export default Chart;
-
+export default PastLeadtime;

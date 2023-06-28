@@ -9,8 +9,7 @@ const CategoryCount = () => {
         try {
             const response = await axios.get('/api/item/categoryDistribution');
             setData(response.data);
-            console.log("data : ", data);
-            console.log("console.log : ", response.data)
+            // console.log("data : ", data);
         } catch (error) {
             console.log(error);
         }
@@ -21,7 +20,7 @@ const CategoryCount = () => {
     }, []);
 
     useEffect(() => {
-        console.log("data: ", data);
+        // console.log("data: ", data);
 
         if (data.length > 0) {
             const category = data.slice(0, 69).map((item) => item.category);
@@ -42,11 +41,11 @@ const CategoryCount = () => {
                     bar: {
                         borderRadius: 10,
                         dataLabels: {
-                            position: 'top', // top, center, bottom
+                            position: 'top', 
                         },
                     },
                 },
-                colors: ['#33AB5F'], // 막대 색상 변경,
+                colors: ['#33AB5F'], 
                 dataLabels: {
                     enabled: true,
 
@@ -106,9 +105,7 @@ const CategoryCount = () => {
             var chart = new ApexCharts(document.querySelector("#chart"), options);
             chart.render();
         }
-    }, [data]); // 상태가 업데이트될 때마다 실행되는 useEffect
-
-
+    }, [data]); 
 
     return <div id="chart" className="w-full"/>;
 };

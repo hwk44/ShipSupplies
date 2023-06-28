@@ -17,11 +17,8 @@ const PastLeadtimePage = () => {
         const encodedCompany = encodeURIComponent(selectedItem.company);
 
         const response = await axios.get(`/api/item/pastLeadtime?item=${encodedItem}&category=${encodedCategory}&company=${encodedCompany}`);
-        console.log("pastleadtime 결과:", response.data);
-        setFoundItems(response.data);
-        // const response = await axios.get(`/api/item/pastLeadtime?item=${selectedItem.item}&category=${selectedItem.category}&company=${selectedItem.company}`);
         // console.log("pastleadtime 결과:", response.data);
-        // setFoundItems(response.data);
+        setFoundItems(response.data);
       } catch (error) {
         console.log(error);
       }

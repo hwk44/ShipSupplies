@@ -11,7 +11,7 @@ const LeadtimeCount = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get("/api/item/leadtimeDistribution");
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data);
     }
     catch (error) {
@@ -22,7 +22,6 @@ const LeadtimeCount = () => {
   useEffect(() => {
     fetchData();
 
-    // 차트를 맨 처음에 그리고 밑에서 데이터만 업데이트 -> 차트 로딩 속도 향상
     var options = {
       series: [
         {
@@ -38,7 +37,7 @@ const LeadtimeCount = () => {
         bar: {
           borderRadius: 10,
           dataLabels: {
-            position: 'top', // top, center, bottom
+            position: 'top', 
           },
         }
       },
@@ -98,7 +97,6 @@ const LeadtimeCount = () => {
     var chart = new ApexCharts(document.querySelector("#chart1"), options);
     chart.render();
 
-    // 차트 인스턴스를 저장하여 나중에 재사용할 수 있게 함.
     setChart(chart);
 
   }, []);
@@ -111,7 +109,6 @@ const LeadtimeCount = () => {
       const leadtime = data.slice(start, end).map((item) => item.leadtime);
       const leadtimeCount = data.slice(start, end).map((item) => item.leadtimeCount);
 
-      // 데이터만 업데이트
       chart.updateSeries([
         {
           name: '개수',
@@ -129,14 +126,14 @@ const LeadtimeCount = () => {
   }, [data, currentIndex]);
 
   const handleNext = () => {
-    if (currentIndex < 3) { // 4개의 구간이 있으므로 0부터 3까지의 인덱스를 사용
+    if (currentIndex < 3) { 
       setCurrentIndex(currentIndex + 1);
     }
   }
 
   const handlePrevious = () => {
 
-    if (currentIndex > 0) { // 최소 인덱스는 0
+    if (currentIndex > 0) { 
       setCurrentIndex(currentIndex - 1);
     }
   }

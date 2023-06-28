@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import UserUpdate from './UserUpdate';
 
 const UserPwdConfirm = () => {
@@ -9,7 +8,7 @@ const UserPwdConfirm = () => {
     const [confirmPwd, setConfirmPwd] = useState('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
 
     const handleconfirmPwd = async (e) => {
         e.preventDefault();
@@ -25,10 +24,9 @@ const UserPwdConfirm = () => {
             };
 
             const response = await axios.put('/api/user/update', requestBody );
-            console.log(response.data);
-            // 비밀번호 일치하면 정보변경 페이지로
+            // console.log(response.data);
             setIsAuthenticated(true);
-            console.log(isAuthenticated);
+            // console.log(isAuthenticated);
         }
         catch (error) {
             console.log(error);
@@ -72,8 +70,7 @@ const UserPwdConfirm = () => {
                             <div>
                                 <button
                                     type="submit"
-                                    className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                                >
+                                    className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                                     다음
                                 </button>
                             </div>
