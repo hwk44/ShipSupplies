@@ -4,9 +4,7 @@ import axios from 'axios';
 const PredictionPage = () => {
   const [machinery, setMachinery] = useState('');
   const [assembly, setAssembly] = useState('');
-  const [company, setCompany] = useState('');
   const [partno1, setPartno1] = useState('');
-  const [partno2, setPartno2] = useState('');
   const [item, setItem] = useState('');
   const [prediction, setPrediction] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -19,14 +17,11 @@ const PredictionPage = () => {
       const requestBody = {
         Machinery: machinery,
         Assembly: assembly,
-        Company : company,
         PartNo1: partno1,
-        PartNo2: partno2,
         Item: item,
-
       };
 
-      console.log('requestBody : ', requestBody); 
+      // console.log('requestBody', requestBody); 
 
       const response = await axios.post(
         '/api/item/predict/classify',
@@ -87,19 +82,6 @@ const PredictionPage = () => {
 
             <div className="mt-2">
               <input
-                id="company"
-                name="company"
-                value={company}
-                type="text"
-                required
-                onChange={(e) => setCompany(e.target.value)}
-                placeholder="Company"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-
-            <div className="mt-2">
-              <input
                 id="partno1"
                 name="partno1"
                 value={partno1}
@@ -107,19 +89,6 @@ const PredictionPage = () => {
                 required
                 onChange={(e) => setPartno1(e.target.value)}
                 placeholder="Part No.1"
-                className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
-              />
-            </div>
-
-            <div className="mt-2">
-              <input
-                id="partno2"
-                name="partno2"
-                value={partno2}
-                type="text"
-                required
-                onChange={(e) => setPartno2(e.target.value)}
-                placeholder="Part No.2"
                 className="pl-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
               />
             </div>
