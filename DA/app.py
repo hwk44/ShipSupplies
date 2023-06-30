@@ -31,7 +31,7 @@ def home():
     model = tf.keras.models.load_model("./model/model_classification_0629.h5")
 
 
-    # react 에서 form 으로 4개 값을 json 으로 보냄.
+    # react 에서 form 으로 6개 값을 json 으로 보냄.
     data = request.get_json()
 
     # 공백 제거
@@ -45,18 +45,19 @@ def home():
     datas = [data1, data2, data3, data4, data5, data6]
     arr = [data1, data2, data3, data4, data5, data6]
 
-    combined_sequence = tokenizer.texts_to_sequences([" ".join(datas)])
+    combined_padded_sequence = tokenizer.texts_to_sequences([" ".join(datas)])
 
     max_len = 36
-    combined_padded_sequence = pad_sequences(combined_sequence, maxlen=max_len)
+    combined_padded_sequence = pad_sequences(combined_padded_sequence, maxlen=max_len)
 
     # 예측
     y_pred = model.predict(combined_padded_sequence)
 
     y_pred_result = encoder.inverse_transform(np.argmax(y_pred, axis=1))
-    # 예측 값 디코딩
-    # pred = label_encoders["key2"].inverse_transform(pred)
-    return jsonify({"datas": datas, "pred": y_pred_result[0]})
+
+
+    return jsonify({"datas": datas, "pred": y_pred_result[0], })
+
 
 @app.route('/api/item/predict/regression', methods=['POST'])
 def home1():
@@ -81,10 +82,10 @@ def home1():
 
     datas = " ".join(datas)
 
-    combined_sequence = tokenizer.texts_to_sequences([datas])
+    combined_padded_sequence = tokenizer.texts_to_sequences([datas])
 
     # 시퀀스 패딩
-    combined_padded_sequence = pad_sequences(combined_sequence, maxlen=100)
+    combined_padded_sequence = pad_sequences(combined_padded_sequence, maxlen=100)
 
     # 예측
     pred = model.predict(combined_padded_sequence)
@@ -116,10 +117,10 @@ def home_flask():
     datas = [data1, data2, data3, data4, data5, data6]
     # arr = [data1, data2, data3, data4, data5, data6]
 
-    combined_sequence = tokenizer.texts_to_sequences([" ".join(datas)])
+    combined_padded_sequence = tokenizer.texts_to_sequences([" ".join(datas)])
 
     max_len = 36
-    combined_padded_sequence = pad_sequences(combined_sequence, maxlen=max_len)
+    combined_padded_sequence = pad_sequences(combined_padded_sequence, maxlen=max_len)
 
     # 예측
     y_pred = model.predict(combined_padded_sequence)
